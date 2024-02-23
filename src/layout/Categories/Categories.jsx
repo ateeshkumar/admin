@@ -13,7 +13,9 @@ import {
 } from "../../context/SubcatContext";
 
 function Categories() {
-  const navigate = useNavigate();
+  
+
+  const CategoryUrl="/categories"
 
   const { subcatData, setData, setLoading, setError, categoryId, setcatId } =
     UsesubcategoriesContext();
@@ -82,30 +84,11 @@ function Categories() {
 
     event.preventDefault();
 
-    addData(params)
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "Your data has been submitted",
-          icon: "success",
-        }).then(() => {
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-        swal({
-          icon: "error",
-          title: "Oops...",
-          text: "An error occurred while submitting the form",
-        });
-      });
-    console.log(params);
+    addData(params , CategoryUrl)
+      
   };
 
-  console.log(params);
+  console.log(params , CategoryUrl);
   // delete the particular Categories
   const { Delete } = useDeleteOne(
     `https://api.logicmitra.com:8086/api/categories/delete-cat?catId=`
@@ -114,23 +97,7 @@ function Categories() {
   // Handle deletion of a category
   const handleDelete = async (e) => {
     console.log("cate id is ", e.target.id);
-    swal({
-      title: "Are you sure?",
-      text: "you want to delete this !",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        Delete(e.target.id);
-
-       setTimeout(() => {
-        window.location.reload()
-       }, 2000);
-      } else {
-        swal("Your  is safe");
-      }
-    });
+   Delete(e.target.id , CategoryUrl)
   };
 
   // Fetch category data using a custom hook (useFetch)
@@ -166,7 +133,7 @@ function Categories() {
                 <div className="table-responsive Ttable">
                 <table className=" table-striped w-[100%]">
                   <thead>
-                    <tr>
+                    <tr className="Thead">
                       <th scope="col">Title</th>
                       <th scope="col">Image</th>
 
@@ -196,28 +163,29 @@ function Categories() {
                           <button className="btn " onClick={getSubcategories}>
                             <Link
                               to={"/categories/subcategories"}
-                              className="icon bg-primary"
+                              className="py-2 px-3 rounded-md view-icon text-white"
                               id={item.id}
                             >
                               <i id={item.id} className="bi bi-eye-fill"></i>
                             </Link>
                           </button>
                         </td>
-                        <td className="flex gap-2 items-center">
+                        <td className="flex gap-2 items-center justify-center">
                           {/* Action links for each trainer */}
                           <Link
-                            id={item.id}
-                            className=" py-2 px-3 rounded-md bg-danger "
-                            onClick={handleDelete}
-                          >
-                            <i id={item.id} className="bi bi-trash3"></i>
-                          </Link>{" "}
-                          <Link
-                            className="py-2 px-3 rounded-md bg-warning"
+                            className="py-2 px-3 rounded-md edit-icon"
                             to={`/categories/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>
+                          <Link
+                            id={item.id}
+                            className=" py-2 px-3 rounded-md delete-icon "
+                            onClick={handleDelete}
+                          >
+                            <i id={item.id} className="bi bi-trash3"></i>
+                          </Link>{" "}
+                         
                         </td>
                       </tr>
                     ))}
@@ -243,7 +211,7 @@ function Categories() {
                 name="title"
                 value={params?.title}
                 type="text"
-                className="form-control my-2"
+                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
               />
             </div>
             <div className="">
@@ -255,7 +223,7 @@ function Categories() {
                 // value={params?.imageUrl}
                 type="file"
                 multiple={true}
-                className="form-control my-2"
+                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
               />
             </div>
 
@@ -297,7 +265,7 @@ function Categories() {
                 name="sequence"
                 value={params?.sequence}
                 type="number"
-                className="form-control my-2"
+                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
               />
             </div>
             <div className="">
@@ -305,7 +273,7 @@ function Categories() {
               <textarea
                 type="text"
                 required
-                className="form-control my-2"
+                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 value={params?.description}
                 name="description"
                 onChange={handleChange}
@@ -313,7 +281,7 @@ function Categories() {
             </div>
 
             {/* {similar fields} */}
-            <button className="btn btn-primary mt-3 w-[100%]">Add Category</button>
+            <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">Add Category</button>
           </form>
           </div>
         )}

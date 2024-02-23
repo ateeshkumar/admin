@@ -53,10 +53,10 @@ function EditHomeSlider() {
 
       {/* Render the form if data is available */}
       {data && (
-        <div className="w-100 p-3 bg-main">
+        <div className=" py-3 sm:p-3 box w-[100%]">
           <form
             // Form for updating slider information
-            className="forms-sample w-100 m-2 p-4 card"
+            className="forms-sample  m-2 p-4  w-[100%]"
             onSubmit={handleSubmit}
           >
             {/* Form inputs for slider details */}
@@ -67,8 +67,8 @@ function EditHomeSlider() {
                 <input
                   type="text"
                   className="form-control"
-                  value={params.htitle || ""}
-                  name="htitle"
+                  value={params?.title || ""}
+                  name="title"
                   id="exampleInputUsername1"
                   placeholder="Title"
                   onChange={handleChange}
@@ -78,12 +78,15 @@ function EditHomeSlider() {
             </div>
 
             {/* Submit and cancel buttons */}
-            <button type="submit" className="btn btn-primary mr-2">
+           
+           <div className="">
+           <button type="submit" className="px-3 py-2 Add-btn rounded-md  mr-2">
               Submit
             </button>
-            <button type="reset" className="btn btn-light">
+            <button type="reset" className=" px-3 py-2 Cancel-btn">
               Cancel
             </button>
+           </div>
           </form>
         </div>
       )}

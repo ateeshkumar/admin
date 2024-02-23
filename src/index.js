@@ -6,6 +6,8 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import "./index.css";
 import "./App.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./Home";
 import {
   Trainers,
@@ -36,6 +38,8 @@ import { SubModuleContext } from "./context/CourseContext";
 import SubModule from "./layout/CourseDetails/SubModule";
 import EditModule from "./layout/CourseDetails/EditModule";
 import EditSubModule from "./layout/CourseDetails/EditSubModule";
+import Enrollment from "./layout/Enrollment/Enrollment";
+import Batches from "./layout/Batches/Batches";
 
 const router = createBrowserRouter([
   {
@@ -44,8 +48,8 @@ const router = createBrowserRouter([
 
     children: [
       {
-        path : "",
-        element : <Dashboard/>
+        path: "",
+        element: <Dashboard />,
       },
       {
         path: "trainers",
@@ -173,6 +177,24 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "enrollment",
+        children: [
+          {
+            path: "",
+            element: <Enrollment />,
+          },
+        ],
+      },
+      {
+        path: "batches",
+        children: [
+          {
+            path: "",
+            element: <Batches />,
+          },
+        ],
+      },
     ],
   },
 ]);
@@ -183,6 +205,7 @@ root.render(
     <SubModuleContext>
       <SubcatContext>
         <RouterProvider router={router} />
+        <ToastContainer />
       </SubcatContext>
     </SubModuleContext>
   </React.StrictMode>

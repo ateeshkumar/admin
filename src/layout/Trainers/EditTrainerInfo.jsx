@@ -22,11 +22,12 @@ function EditTrainerInfo() {
 
   // Updates params when data is fetched
   useEffect(() => {
-    Fetch(`studentId=${id}`);
+    Fetch(`userID=${id}`);
   }, []);
 
   // State to store form parameters
   const [params, setParams] = useState({});
+  console.log(params);
 
   // Updates params when data is fetched
   useEffect(() => {
@@ -47,7 +48,7 @@ function EditTrainerInfo() {
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/trainers/update-trainer`
+    `https://api.logicmitra.com:8086/api/user/update-user`
   );
 
   // Handles form submission
@@ -57,16 +58,14 @@ function EditTrainerInfo() {
     formdata.append("banner-image", params.sbackgroundUrl);
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`trainId=${e.target.id}`, params).then(() => {
+    handleUpdate(`userId=${e.target.id}`, params).then(() => {
       // Displays a success message using SweetAlert library
       swal("Good job!", "Student Updated Successfully", "success");
       navigate("/trainers");
       // window.location.reload();
     });
   };
-
   console.log(params);
-
   return (
     <>
       {/* Display error message if there's an error */}

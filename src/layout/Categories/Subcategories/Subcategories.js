@@ -9,7 +9,9 @@ import { useDeleteOne } from "../../../hooks/useDeleteOne";
 import { UsesubcategoriesContext } from "../../../context/SubcatContext";
 
 const SubCategories = () => {
-  const navigate = useNavigate();
+ 
+
+  const SubCatUrl= "/categories/subcategories"
 
   // Fetch subcategory data using a custom hook (useFetch)
 
@@ -48,27 +50,8 @@ const SubCategories = () => {
   );
   const handleSubmit = (event) => {
     event.preventDefault();
-    addData(params)
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "Your data has been submitted",
-          icon: "success",
-        }).then(() => {
-          navigate("/categories/subcategories");
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
-        });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-        swal({
-          icon: "error",
-          title: "Oops...",
-          text: "An error occurred while submitting the form",
-        });
-      });
+    addData(params , SubCatUrl)
+     
   };
   // delete the particular Categories
   const { Delete } = useDeleteOne(
@@ -77,24 +60,7 @@ const SubCategories = () => {
 
   // Handle deletion of a category
   const handleDelete = async (e) => {
-    console.log("cate id is ", e.target.id);
-    swal({
-      title: "Are you sure?",
-      text: "you want to delete this data!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        Delete(e.target.id);
-
-       setTimeout(() => {
-        window.location.reload()
-       }, 2000);
-      } else {
-        swal("Your data is safe");
-      }
-    });
+    Delete(e.target.id , SubCatUrl);
   };
 
   return (

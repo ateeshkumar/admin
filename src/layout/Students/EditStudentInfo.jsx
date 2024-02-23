@@ -41,7 +41,7 @@ function EditStudentInfo() {
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/user/update-student`
+    `https://api.logicmitra.com:8086/api/user/update-user?`
   );
   // Handles form submission
   const handleSubmit = (e) => {
@@ -51,7 +51,7 @@ function EditStudentInfo() {
     console.log(e);
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`studentId=${e.target.id}`, params).then(() => {
+    handleUpdate(`userId=${e.target.id}`, params).then(() => {
       // Displays a success message using SweetAlert library
       swal("Good job!", "Student Updated Successfully", "success");
       navigate("/students");
@@ -70,17 +70,18 @@ function EditStudentInfo() {
 
       {/* Render the form if data is available */}
       {data.data && (
-        <div className="w-100 p-3 bg-main">
+        <div className="w-100 py-3 sm:p-3 ">
           <form
-            className="forms-sample w-100 m-2 p-4 card"
+            className="forms-sample w-100 m-2 p-4 box"
             onSubmit={handleSubmit}
           >
-            <div className="w-100 d-flex gap-3">
-              <div className="form-group w-100 row">
+            <div className="w-100 d-flex ">
+              <div className="form-group  row">
                 <div className="col-4">
                   <label htmlFor="exampleInputUsername1">Student Name</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="sname"
                     value={params?.sname}
@@ -92,6 +93,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Gender</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="sgender"
                     value={params?.sgender}
@@ -102,6 +104,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputEmail1">Email</label>
                   <input
                     type="email"
+                    required
                     className="form-control"
                     name="semail"
                     value={params?.semail}
@@ -113,6 +116,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputMobile">Password</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="spassword"
                     value={params?.spassword}
@@ -124,6 +128,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputMobile">Mobile</label>
                   <input
                     type="number"
+                    required
                     className="form-control"
                     name="smobile"
                     value={params?.smobile}
@@ -135,6 +140,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputMobile">Whatsapp</label>
                   <input
                     type="number"
+                    required
                     className="form-control"
                     name="swhatsapp"
                     value={params?.swhatsapp}
@@ -146,6 +152,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Date of Birth</label>
                   <input
                     type="date"
+                    required
                     className="form-control"
                     name="sdob"
                     value={params?.sdob}
@@ -156,6 +163,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Status</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="status"
                     value={params?.status}
@@ -166,6 +174,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">City</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="scity"
                     value={params?.scity}
@@ -176,6 +185,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Address</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="saddress"
                     value={params?.saddress}
@@ -186,6 +196,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Country</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="scountry"
                     value={params?.scountry}
@@ -197,6 +208,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Verified</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="varified"
                     value={params?.varified}
@@ -207,6 +219,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Profile Pic</label>
                   <input
                     type="file"
+                    required
                     className="form-control"
                     name="sprofilepicUrl"
                     onChange={handleChange}
@@ -216,6 +229,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Background Image</label>
                   <input
                     type="file"
+                    required
                     className="form-control"
                     name="sbackgroundUrl"
                     onChange={handleChange}
@@ -225,6 +239,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Pin Code</label>
                   <input
                     type="number"
+                    required
                     className="form-control"
                     name="spincode"
                     value={params?.spincode}
@@ -235,6 +250,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Level of Education</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="levelOfeducation"
                     value={params?.levelOfeducation}
@@ -245,6 +261,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Pass Out Year</label>
                   <input
                     type="number"
+                    required
                     className="form-control"
                     name="passOutYear"
                     value={params?.passOutYear}
@@ -255,6 +272,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">State</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="sstate"
                     value={params?.sstate}
@@ -266,6 +284,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Fcm</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="sfcm"
                     value={params?.sfcm}
@@ -276,6 +295,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Lattitude</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="slattitude"
                     value={params?.slattitude}
@@ -286,6 +306,7 @@ function EditStudentInfo() {
                   <label htmlFor="exampleInputDOB">Longitude</label>
                   <input
                     type="text"
+                    required
                     className="form-control"
                     name="slongitude"
                     value={params?.slongitude}

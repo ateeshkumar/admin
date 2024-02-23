@@ -51,10 +51,13 @@ function Students() {
     setParams({ ...params, [e.target.name]: e.target.value });
   };
 
-  const { Delete } = useDeleteOne(`/api/user/delete-student?studentId=`);
+  const { Delete } = useDeleteOne(
+    `https://api.logicmitra.com:8086/api/user/delete-user?userId=`
+  );
 
   //handling delete student request
   const handleDelete = async (e) => {
+    console.log(e.target.id);
     swal({
       title: "Are you sure?",
       text: "you want to delete this data!",
@@ -80,7 +83,7 @@ function Students() {
         <div className="text-xl font-medium   d-flex justify-between items-center">
           <h1>Students List</h1>
           <div className="">
-            <Link to="/students/add" className="btn btn-primary">
+            <Link to="/students/add" className="Add-btn py-2 px-3 rounded-md">
               Add Student
             </Link>
           </div>
@@ -88,21 +91,12 @@ function Students() {
       </section>
 
       <div className="row ">
-        <Card title="Total Students" value={totalStudents} bgColor="bg-1"/>
-        <Card
-          title="Organization Students"
-          value={organizationStudents}
-          bgColor="bg-2"
-      />
-        <Card
-          title="Inactive Students"
-          value={inactiveStudents}
-          bgColor="bg-3"
-      />
-        <Card title="Blocked Students" value={blockedStudents} bgColor="bg-4"/>
+        <Card title="Total Students" value={totalStudents} />
+        <Card title="Organization Students" value={organizationStudents} />
+        <Card title="Inactive Students" value={inactiveStudents} />
+        <Card title="Blocked Students" value={blockedStudents} />
       </div>
 
-      
       <div className="row">
         <div className="col">
           <div className="box ">
@@ -111,33 +105,38 @@ function Students() {
                 <h4 className="text-white heading">Filters</h4>
               </div>
               <div className="col-12 col-sm-3 text-white relative ">
-                <label className="text-white" htmlFor="search">Search</label>
+                <label className="text-white" htmlFor="search">
+                  Search
+                </label>
                 <input
                   type="search"
-                  className="form-control fs-6  w-[100%] w-100"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none fs-6  w-[100%] text-white"
                   id="search"
                   name="name"
                   onChange={handleChange}
                   aria-describedby="emailHelp"
-                  placeholder=""
+                  placeholder="search "
                 />
-               
               </div>
               <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="start-date">Start Date</label>
+                <label className="text-white" htmlFor="start-date">
+                  Start Date
+                </label>
                 <input
                   type="date"
-                  className="form-control "
+                  className="form-control input focus-within:bg-none focus:border-none outline-none "
                   name="startDate"
                   id="start-date"
                   onChange={handleChange}
                 />
               </div>
               <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="end-date">End Date</label>
+                <label className="text-white" htmlFor="end-date">
+                  End Date
+                </label>
                 <input
                   type="date"
-                  className="form-control "
+                  className="form-control input focus-within:bg-none focus:border-none outline-none "
                   id="endDate"
                   placeholder=""
                   onChange={handleChange}
@@ -145,10 +144,12 @@ function Students() {
                 />
               </div>
               <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="filters">Filters</label>
+                <label className="text-white" htmlFor="filters">
+                  Filters
+                </label>
                 <select
                   id="filters"
-                  className="form-select py-2 "
+                  className="form-select py-2 input focus-within:bg-none focus:bg-none focus-within:border-none outline-none"
                   value={params.filter}
                   onChange={handleChange}
                   name="filter"
@@ -165,9 +166,6 @@ function Students() {
         </div>
       </div>
 
-
-
-
       <div className=" w-[100%]">
         <div className=" ">
           {loading && <h1 className="text-white">Loading...</h1>}
@@ -177,7 +175,7 @@ function Students() {
             <div className="table-responsive Ttable mt-4">
               <table className=" table-striped  w-[100%]">
                 <thead>
-                  <tr>
+                  <tr className="Thead">
                     <th scope="col">Name</th>
                     <th scope="col"> Number</th>
                     <th scope="col">Email</th>
@@ -191,7 +189,7 @@ function Students() {
                     <th scope="col">Options</th>
                   </tr>
                 </thead>
-                
+
                 <tbody className="table-group-divider ">
                   {data?.data?.map((item) => (
                     <tr key={item.id} className="Tbody ">
@@ -208,25 +206,26 @@ function Students() {
                       {/* <td>{item.status}</td> */}
                       <td>{item.enrollCourse.length}</td>
                       <td>{item.walletAmt}</td>
-                      <td className="flex gap-2 items-center">
+                      <td className="flex gap-2 items-center justify-center">
                         <Link
-                          className=" px-3 py-2 rounded-md  bg-danger "
-                          onClick={handleDelete}
-                        >
-                          <i id={item.id} className="bi bi-trash3"></i>
-                        </Link>{" "}
-                        <Link
-                          className=" px-3 py-2 rounded-md  bg-primary"
+                          className=" px-3 py-2 rounded-md  view-icon"
                           to={`/students/view/${item.id}`}
                         >
                           <i className="bi bi-eye-fill"></i>
                         </Link>{" "}
                         <Link
-                          className= "px-3 py-2 rounded-md bg-warning"
+                          className="px-3 py-2 rounded-md edit-icon"
                           to={`/students/edit/${item.id}`}
                         >
                           <i className="bi bi-pencil-square"></i>
                         </Link>
+                        <Link
+                          className=" px-3 py-2 rounded-md  delete-icon "
+                          onClick={handleDelete}
+                          id={item.id}
+                        >
+                          <i id={item.id} className="bi bi-trash3"></i>
+                        </Link>{" "}
                       </td>
                     </tr>
                   ))}

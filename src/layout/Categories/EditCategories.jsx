@@ -6,8 +6,7 @@ import useUpdate from "../../hooks/useUpdate";
 import { useFetch } from "../../hooks/useFetch";
 
 function EditCategories() {
-  const navigate = useNavigate();
-  // Extracts category title from URL parameters
+  const CategoryUrl = "/categories";
 
   const { id } = useParams();
   const catId = id;
@@ -22,7 +21,7 @@ function EditCategories() {
   // State to store form parameters
   const [params, setParams] = useState({});
 
-  console.log(params?.status);
+  console.log(params);
   // Updates params when data is fetched
   useEffect(() => {
     if (data) {
@@ -57,15 +56,7 @@ function EditCategories() {
 
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`catId=${e.target.id}`, params).then(() => {
-      // Displays a success message using SweetAlert library
-      swal("Good job!", "Category Updated Successfully", "success");
-     
-      window.location.reload()
-      setTimeout(() => {
-        navigate("/categories");
-      }, 1000);
-    });
+    handleUpdate(`catId=${e.target.id}`, params, CategoryUrl);
   };
 
   return (
@@ -78,7 +69,7 @@ function EditCategories() {
 
       {/* Render the form if data is available */}
       {data.data && (
-        <div className="w-100 p-3 ">
+        <div className="w-[100%] py-3 sm:p-3">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -86,79 +77,111 @@ function EditCategories() {
             id={params?.id}
           >
             {/* Form inputs for category details */}
-            <div className="w-100 d-flex gap-3">
+            <div className="w-100 ">
               {/* Form group for title */}
-              <div className="form-group w-100 row">
-                <div className="col-4">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Title</label>
-                  <input
-                    type="text"
-                    required
-                    className="form-control"
-                    value={params?.title}
-                    name="title"
-                    placeholder="title"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="col-4">
-                  <label className="text-white" htmlFor="exampleInputUsername1">ImageUrl</label>
-                  <input
-                    type="file"
-                    required
-                    className="form-control"
-                    // value={params?.imageUrl}
-                    name="imageUrl"
-                    onChange={handleChange}
-                  />
-                </div>
+              <div className="form-group">
+                <div className="flex flex-col-reverse md:flex-row md:flex items-center justify-between ">
+                  <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] ">
+                    <div className=" ">
+                      <label
+                        className="text-white"
+                        htmlFor="exampleInputUsername1"
+                      >
+                        Title
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        className="form-control w-[100%]"
+                        value={params?.title}
+                        name="title"
+                        placeholder="title"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className=" ">
+                      <label
+                        className="text-white"
+                        htmlFor="exampleInputUsername1"
+                      >
+                        ImageUrl
+                      </label>
+                      <input
+                        type="file"
+                        className="form-control w-[100%]"
+                        // value={formdata1?.imageUrl[0]}
+                        name="imageUrl"
+                        placeholder="imageUrl"
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                <div className="col-4">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Status</label>
+                    <div className=" ">
+                      <label
+                        className="text-white"
+                        htmlFor="exampleInputUsername1"
+                      >
+                        Sequence
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control w-[100%]"
+                        value={params?.sequence}
+                        name="sequence"
+                        placeholder="sequence"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="col-12 col-sm-4">
+                      <label
+                        className="text-white"
+                        htmlFor="exampleInputUsername1"
+                      >
+                        Status
+                      </label>
 
-                  <div className="text-white d-flex gap-2">
-                    <input
-                      type="radio"
-                      id="active"
-                      name="status"
-                      value={1}
-                      checked={params?.status == 1}
-                      onChange={handleChange}
+                      <div className="text-white d-flex gap-2">
+                        <input
+                          type="radio"
+                          id="active"
+                          name="status"
+                          value={1}
+                          checked={params?.status == 1}
+                          onChange={handleChange}
+                        />
+                        Active
+                        <input
+                          type="radio"
+                          id="active"
+                          name="status"
+                          value={0}
+                          checked={params?.status == 0}
+                          onChange={handleChange}
+                        />
+                        Inactive
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
+                    <img
+                      src={`https://api.logicmitra.com/uploads/categories/${params?.imageUrl}`}
+                      alt="image"
+                      className="w-[100%] h-[100%]  object-contain"
                     />
-                    Active
-                    <input
-                      type="radio"
-                      id="active"
-                      name="status"
-                      value={0}
-                      checked={params?.status == 0}
-                      onChange={handleChange}
-                    />
-                    Inactive
                   </div>
                 </div>
 
-                <div className="col-4">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Sequence</label>
-                  <input
-                    type="number"
-                    required
-                    className="form-control"
-                    value={params?.sequence}
-                    name="sequence"
-                    placeholder="sequence"
-                    onChange={handleChange}
-                  />
-                </div>
                 <div className="col-12">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Description</label>
+                  <label className="text-white" htmlFor="exampleInputUsername1">
+                    Description
+                  </label>
                   <textarea
                     type="text"
-                    required
-                    cols="30"
+                    cols="10"
                     rows="10"
-                    className="form-control"
-                    value={params?.description}
+                    className="form-control w-[100%]"
+                    value={params?.descprition}
                     name="description"
                     placeholder="Description"
                     onChange={handleChange}
@@ -168,15 +191,21 @@ function EditCategories() {
             </div>
 
             {/* Submit and cancel buttons */}
-           
-           <div className="space-y-2">
-           <button type="submit" className="w-[100%] bg-blue-500 mr-2 rounded-md p-2">
-              Submit
-            </button>
-            <button type="reset" className="bg-gray-200 w-[100%] rounded-md p-2">
-              Cancel
-            </button>
-           </div>
+
+            <div className=" flex items-center my-4 justify-between">
+              <button
+                type="submit"
+                className="submit bg-blue-500 mr-2  rounded-md px-5 py-2"
+              >
+                Submit
+              </button>
+              <button
+                type="reset"
+                className="cancel bg-gray-200  rounded-md px-5 py-2"
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       )}

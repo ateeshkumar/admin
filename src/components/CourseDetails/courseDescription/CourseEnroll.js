@@ -27,10 +27,10 @@ const CourseEnroll = ({CourseData}) => {
        <div className="space-y-1  w-[100%] lg:w-[50%]">
           <h1 className="font-bold text-xl"> {data?.data?.ctitle}</h1>
           <p>
-          {data?.data?.cdescription}
+          {data?.data?.cduration}
           </p>
          
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
           <h1>Learn :</h1>
       <ul className='grid grid-cols-2 sm:grid-cols-4 gap-2  lg:grid-cols-4'>
         <li className='small-box px-3 '>Html</li>
@@ -38,7 +38,7 @@ const CourseEnroll = ({CourseData}) => {
         <li className='small-box px-3'>Javascript</li>
         <li className='small-box px-3'>React js</li>
       </ul>
-</div>
+</div> */}
 
 <ul>
     <li><span className="Text font-bold flex gap-2"> {data?.data?.ratings} { <RatingStars stars={data?.data?.ratings} reviews={'vish'} />} </span> </li>
@@ -50,7 +50,7 @@ const CourseEnroll = ({CourseData}) => {
        </div>
 
 {/* what will you learn  */}
-<div className="Cbox space-y-2 w-[100%] lg:w-[50%]">
+<div className="Cbox space-y-2 w-[100%] lg:w-[60%]">
 <h1 className="font-bold Text "> What will you learn :</h1>
      <ul className="grid grid-cols-1  sm:grid-cols-2 gap-1">
         <li className="flex items-center gap-1"> <VscTriangleRight className="text-sm Text"/> Prepare for Industry Certification Exam</li>

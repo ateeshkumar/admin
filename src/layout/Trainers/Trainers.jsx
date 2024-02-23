@@ -53,7 +53,7 @@ function Trainers() {
   };
 
   const { Delete } = useDeleteOne(
-    `https://api.logicmitra.com:8086/api/user/delete-student?studentId=`
+    `https://api.logicmitra.com:8086/api/user/delete-user?userId=`
   );
 
   // Handle deletion of a trainer
@@ -65,6 +65,7 @@ function Trainers() {
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
+      console.log(willDelete);
       if (willDelete) {
         Delete(e.target.id);
         setParams((prev) => prev);
@@ -78,13 +79,11 @@ function Trainers() {
 
   return (
     <div className=" pl-3  p-md-3 text-white w-[100%] ">
-      
-
       <section className="section py-3">
         <div className="text-xl font-medium   d-flex justify-between items-center">
           <h1>Trainers List</h1>
           <div className="">
-          <Link to="/trainers/add" className="btn btn-primary">
+            <Link to="/trainers/add" className="px-3 py-2 Add-btn rounded-md">
               Add Trainer
             </Link>
           </div>
@@ -93,18 +92,10 @@ function Trainers() {
 
       {/* Statistics Cards */}
       <div className="row">
-        <Card title="Total Trainers" value={totalTrainers} bgColor="bg-1" />
-        <Card
-          title="Organization Trainers"
-          value={organizationTrainers}
-          bgColor="bg-2"
-        />
-        <Card
-          title="Inactive Trainers"
-          value={inactiveTrainers}
-          bgColor="bg-3"
-        />
-        <Card title="Blocked Trainers" value={blockedTrainers} bgColor="bg-4" />
+        <Card title="Total Trainers" value={totalTrainers} />
+        <Card title="Organization Trainers" value={organizationTrainers} />
+        <Card title="Inactive Trainers" value={inactiveTrainers} />
+        <Card title="Blocked Trainers" value={blockedTrainers} />
       </div>
 
       <div className="row">
@@ -115,33 +106,38 @@ function Trainers() {
                 <h4 className="text-white heading">Filters</h4>
               </div>
               <div className="col-12 col-sm-3 text-white relative ">
-                <label className="text-white" htmlFor="search">Search</label>
+                <label className="text-white" htmlFor="search">
+                  Search
+                </label>
                 <input
                   type="search"
-                  className="form-control fs-6  w-[100%] w-100"
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none fs-6  w-[100%] w-100"
                   id="search"
                   name="name"
                   onChange={handleChange}
                   aria-describedby="emailHelp"
                   placeholder=""
                 />
-               
               </div>
               <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="start-date">Start Date</label>
+                <label className="text-white" htmlFor="start-date">
+                  Start Date
+                </label>
                 <input
                   type="date"
-                  className="form-control "
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none "
                   name="startDate"
                   id="start-date"
                   onChange={handleChange}
                 />
               </div>
               <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="end-date">End Date</label>
+                <label className="text-white" htmlFor="end-date">
+                  End Date
+                </label>
                 <input
                   type="date"
-                  className="form-control "
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none "
                   id="endDate"
                   placeholder=""
                   onChange={handleChange}
@@ -149,10 +145,12 @@ function Trainers() {
                 />
               </div>
               <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="filters">Filters</label>
+                <label className="text-white" htmlFor="filters">
+                  Filters
+                </label>
                 <select
                   id="filters"
-                  className="form-select py-2 "
+                  className="form-select py-2 input focus-within:bg-none border-none outline-none focus:bg-none"
                   value={params.filter}
                   onChange={handleChange}
                   name="filter"
@@ -172,17 +170,16 @@ function Trainers() {
       {/* Trainers Table */}
       <div className=" w-100">
         <div className=" ">
-          
-            {/* Display loading message while data is being fetched */}
-            {loading && <h1 className="text-black">Loading...</h1>}
-            {/* Display error message if there's an error */}
-            {error && <h1 className="text-black">{error.message}</h1>}
-            {/* Display trainers data if available */}
-            {data.data && (
-              <div className="table-responsive Ttable mt-4">
+          {/* Display loading message while data is being fetched */}
+          {loading && <h1 className="text-black">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-black">{error.message}</h1>}
+          {/* Display trainers data if available */}
+          {data.data && (
+            <div className="table-responsive Ttable mt-4">
               <table className=" table-striped w-[100%]">
                 <thead>
-                  <tr>
+                  <tr className="Thead">
                     <th scope="col">Name</th>
                     <th scope="col">Number</th>
                     <th scope="col">Email</th>
@@ -206,33 +203,33 @@ function Trainers() {
                       <td>{item.walletAmt}</td>
                       <td className="flex gap-2 items-center">
                         {/* Action links for each trainer */}
+
                         <Link
-                          id={item.id}
-                          className="py-2 px-3 rounded-md  bg-danger "
-                          onClick={handleDelete}
-                        >
-                          <i id={item.id} className="bi bi-trash3"></i>
-                        </Link>
-                        <Link
-                          className="py-2 px-3 rounded-md  bg-primary"
+                          className="py-2 px-3 rounded-md  view-icon"
                           to={`/trainers/view/${item.id}`}
                         >
                           <i className="bi bi-eye-fill"></i>
                         </Link>
                         <Link
-                          className="py-2 px-3 rounded-md bg-warning"
+                          className="py-2 px-3 rounded-md edit-icon"
                           to={`/trainers/edit/${item.id}`}
                         >
                           <i className="bi bi-pencil-square"></i>
+                        </Link>
+                        <Link
+                          id={item.id}
+                          className="py-2 px-3 rounded-md  delete-icon"
+                          onClick={handleDelete}
+                        >
+                          <i id={item.id} className="bi bi-trash3"></i>
                         </Link>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              </div>
-            )}
-        
+            </div>
+          )}
         </div>
       </div>
     </div>

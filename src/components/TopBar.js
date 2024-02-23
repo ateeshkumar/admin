@@ -5,10 +5,10 @@ function TopBar() {
     <nav className="navbar  col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a className="navbar-brand brand-logo mr-5" href="index.html">
-          <img src="images/logo.svg" className="mr-2" alt="logo" />
+          <img src="images/logicgyan.png" className="mr-2 w-[100%] h-[100%] object-cover" alt="logo" />
         </a>
         <a className="navbar-brand brand-logo-mini" href="index.html">
-          <img src="images/logo-mini.svg" alt="logo" />
+          <img src="images/logicgyan.png" alt="logo" className=" w-[100%] h-[100%] object-cover"/>
         </a>
       </div>
       <div className="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -20,24 +20,11 @@ function TopBar() {
           <span className="icon-menu"></span>
         </button>
         <ul className="navbar-nav mr-lg-2">
-          <li className="nav-item nav-search d-none d-lg-block">
-            <div className="input-group">
-              <div
-                className="input-group-prepend hover-cursor"
-                id="navbar-search-icon"
-              >
-                <span className="input-group-text" id="search">
+          <li className="  d-none d-lg-block px-3 ">
+            <div className=" top-search-input px-2 rounded-full flex items-center">
+             
                   <i className="icon-search"></i>
-                </span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                id="navbar-search-input"
-                placeholder="Search now"
-                aria-label="search"
-                aria-describedby="search"
-              />
+                <input type="search " placeholder="Search Now" className="px-2 bg-none border-none outline-none  w-[100%]"/>
             </div>
           </li>
         </ul>

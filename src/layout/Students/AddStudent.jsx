@@ -4,7 +4,8 @@ import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
 
 function AddStudent() {
-  const navigate = useNavigate();
+  const StudentUrl="/students";
+
   const initialFormData = {
     userType: "student",
     sname: "",
@@ -53,60 +54,46 @@ function AddStudent() {
     formdata.append("banner-image", formData.sbackgroundUrl);
     e.preventDefault();
 
-    addData(formData)
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "Your data has been submitted",
-          icon: "success",
-        }).then(() => {
-          window.location.reload();
-          navigate("/students");
-        });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-        swal({
-          icon: "error",
-          title: "Oops...",
-          text: "An error occurred while submitting the form",
-        });
-      });
+    addData(formData , StudentUrl)
+      
   };
 
   console.log(formData);
   return (
-    <div className="w-100 p-3 bg-main">
-      <form className="forms-sample w-100 m-2 p-4 card" onSubmit={handleSubmit}>
-        <div className="w-100 d-flex gap-3">
-          <div className="form-group w-100 row">
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Student Name</label>
+    <div className="w-[100%] py-3 sm:p-3 ">
+      <form className="forms-sample w-[100%] m-2 p-4 box" onSubmit={handleSubmit}>
+        <div className="  ">
+          <div className="form-group w-[100%] grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputUsername1">Student Name</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sname}
                 name="sname"
                 placeholder="Student Name"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">User Type</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputUsername1">User Type</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.userType}
                 name="userType"
                 placeholder="Trainers Name"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputEmail1">Email</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputEmail1">Email</label>
               <input
                 type="email"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.semail}
                 name="semail"
                 placeholder="Email"
@@ -114,88 +101,96 @@ function AddStudent() {
               />
             </div>
 
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Mobile</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Mobile</label>
               <input
                 type="number"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.smobile}
                 name="smobile"
                 placeholder="Mobile"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Whatsapp</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Whatsapp</label>
               <input
                 type="number"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.swhatsapp}
                 name="swhatsapp"
                 placeholder="Whatsapp"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Date of Birth</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Date of Birth</label>
               <input
                 type="date"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sdob}
                 name="sdob"
                 placeholder="Date of Birth"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Status</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Status</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sstatus}
                 name="sstatus"
                 placeholder="Status"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">City</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">City</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.scity}
                 name="scity"
                 placeholder="City"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Address</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Address</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.saddress}
                 name="saddress"
                 placeholder="Address"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">State</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">State</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sstate}
                 name="sstate"
                 placeholder="State"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Country</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Country</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.scountry}
                 name="scountry"
                 placeholder="Country"
@@ -203,29 +198,32 @@ function AddStudent() {
               />
             </div>
 
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Profile Pic</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Profile Pic</label>
               <input
                 type="file"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="sprofilepicUrl"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Background Image</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Background Image</label>
               <input
                 type="file"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="sbackgroundUrl"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Pin Code</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
               <input
                 type="number"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.spincode}
                 name="spincode"
                 placeholder="Pin code"
@@ -233,11 +231,12 @@ function AddStudent() {
               />
             </div>
 
-            <div className="col-4">
-              <label htmlFor="exampleInputDOB">Gender</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sgender}
                 name="sgender"
                 placeholder="Gender"
@@ -246,94 +245,103 @@ function AddStudent() {
             </div>
 
             <div className="col-12">
-              <label htmlFor="exampleInputMobile">Intro</label>
+              <label className="text-white" htmlFor="exampleInputMobile">Intro</label>
               <textarea
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                required
                 value={formData.sintro}
                 name="sintro"
                 onChange={handleChange}
               />
             </div>
             <div className="col-12">
-              <label htmlFor="exampleInputMobile">About</label>
+              <label className="text-white" htmlFor="exampleInputMobile">About</label>
               <textarea
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                required
                 value={formData.sabout}
                 name="sabout"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Experience</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Experience</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.experience}
                 name="experience"
                 placeholder="Experience"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Languages</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Languages</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.languages}
                 name="languages"
                 placeholder="Language"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Level Of Education</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Level Of Education</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.levelOfeducation}
                 name="levelOfeducation"
                 placeholder="Level of Education"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Pass Out Year</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Pass Out Year</label>
               <input
                 type="number"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.passOutYear}
                 name="passOutYear"
                 placeholder="pass out year"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Fcm</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Fcm</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sfcm}
                 name="sfcm"
                 placeholder="Fcm "
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Lattitude</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Lattitude</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.slattitude}
                 name="slattitude"
                 placeholder="Lattitude"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputMobile">Longitude</label>
+            <div className="">
+              <label className="text-white" htmlFor="exampleInputMobile">Longitude</label>
               <input
                 type="text"
-                className="form-control"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.slongitude}
                 name="slongitude"
                 placeholder="Longitude"
@@ -344,15 +352,21 @@ function AddStudent() {
         </div>
 
         {/* Submit and cancel buttons */}
-        <button
+       
+       <div>
+      
+      <div className="flex justify-between items-center">
+      <button
           type="submit"
-          className="btn my-2 btn-primary hover:btn-primary "
+          className="my-2 Add-btn py-2 px-5  rounded-md  "
         >
           Submit
         </button>
-        <button type="reset" className="btn my-2 btn-light">
+        <button type="reset" className="my-2 Cancel-btn px-5 py-2 rounded-md  ">
           Cancel
         </button>
+      </div>
+       </div>
       </form>
     </div>
   );

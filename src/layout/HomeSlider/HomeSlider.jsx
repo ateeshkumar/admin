@@ -1,10 +1,13 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
+import { useDeleteOne } from "../../hooks/useDeleteOne";
 
 function HomeSlider() {
+  const HomeUrl = "/home-slider";
+
   // State to store filter parameters
   const [params, setParams] = useState({
     htitle: "",
@@ -18,103 +21,96 @@ function HomeSlider() {
     // console.log(params);
   };
 
+  const { Delete } = useDeleteOne("");
   // Handle deletion of a slider item
   const handleDelete = async (e) => {
-    swal({
-      title: "Are you sure?",
-      text: "You want to delete this data!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        axios
-          .get("/api/homeslider/delete", { title: e.target.id })
-          .then(
-            swal("Poof! Selected data has been deleted!", {
-              icon: "success",
-            })
-          )
-          .catch((e) => swal(e.message));
-      } else {
-        swal("Your data is safe");
-      }
-    });
+    Delete(e.target.id, HomeUrl);
   };
 
   // Fetch category data using a custom hook (useFetch)
-  const [data, error, loading] = useFetch("https://api.logicmitra.com:8086/api/homeslider", params);
+  const [data, error, loading] = useFetch(
+    "https://api.logicmitra.com:8086/api/advertise/advertise-list",
+    params
+  );
+  console.log(data);
 
   return (
-    <div className="pl-3  p-md-3 text-white w-[100%] relative">
-     
-
+    <div className="py-3  sm:p-3 text-white w-[100%] relative">
       <section className="section py-3">
         <div className="text-xl font-medium   d-flex justify-between items-center">
           <h1>Home Sliders List</h1>
           <div className="">
-          <Link to="" className="btn btn-primary">
-             Add Home Slider
+            <Link to="" className="Add-btn px-3 py-2 rounded-md">
+              Add Home Slider
             </Link>
           </div>
         </div>
       </section>
 
-
       {/* Categories Table */}
-      <div className="card w-100">
-        <div className="card-body ">
-          <div className="table-responsive">
-            {/* Display loading message while data is being fetched */}
-            {loading && <h1 className="text-black">Loading...</h1>}
-            {/* Display error message if there's an error */}
-            {error && <h1 className="text-black">{error.message}</h1>}
-            {/* Display Category data if available */}
-            {data && (
-              <table className="table table-striped">
+      <div className="w-[100%]">
+        <div className=" ">
+          {/* Display loading message while data is being fetched */}
+          {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display Category data if available */}
+          {data?.data && (
+            <div className="table-responsive Ttable">
+              <table className=" table-striped w-[100%]">
                 <thead>
-                  <tr>
+                  <tr className="Thead">
                     <th scope="col">Title</th>
+                    <th scope="col">position</th>
                     <th scope="col">Image</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Sequence</th>
                     <th scope="col">Options</th>
                   </tr>
                 </thead>
                 <tbody className="table-group-divider">
                   {/* Map through trainers data and display in table rows */}
-                  {data.map((item) => (
-                    <tr key={item.htitle}>
-                      <td>{item.htitle}</td>
-                      <td>{item.himage}</td>
-                      <td>{item.hstatus}</td>
+                  {data?.data?.map((item) => (
+                    <tr key={item.id} className="Tbody text-white">
+                      <td>{item.title}</td>
+                      <td>{item.position}</td>
                       <td>
+                        <img
+                          src={`https://api.logicmitra.com/uploads/advertiseBanner/${item.bannerUrl}`}
+                          alt="image"
+                          className="w-10 h-10 object-cover"
+                        />
+                      </td>
+                      <td>{item.status}</td>
+                      <td>{item.sequence}</td>
+                      <td className="flex gap-2 items-center justify-center">
                         {/* Action links for each trainer */}
                         <Link
+                          className="px-3 py-2 rounded-md   view-icon"
+                          to={`/home-slider/view/:${item.id}`}
+                        >
+                          <i className="bi bi-eye-fill"></i>
+                        </Link>{" "}
+                        <Link
+                          className="px-3 py-2 rounded-md  edit-icon"
+                          to={`/home-slider/edit/:${item.id}`}
+                        >
+                          <i className="bi bi-pencil-square"></i>
+                        </Link>
+                        <Link
                           id={item.htitle}
-                          className=" icon bg-danger icon"
+                          className="px-3 py-2 rounded-md   delete-icon"
                           onClick={handleDelete}
                         >
-                          <i className="bi bi-person-fill-x"></i> Delete
+                          <i id={item.id} className="bi bi-trash3"></i>
                         </Link>{" "}
-                        <Link
-                          className=" icon bg-primary"
-                          to={`/home-slider/view/:${item.htitle}`}
-                        >
-                          <i className="bi bi-person-fill-exclamation"></i> View
-                        </Link>{" "}
-                        <Link
-                          className="icon bg-warning"
-                          to={`/home-slider/edit/:${item.htitle}`}
-                        >
-                          <i className="bi bi-person-fill-gear "></i> Edit
-                        </Link>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

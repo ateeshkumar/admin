@@ -38,8 +38,31 @@ body{
   background-color: #012628  !important;
 }
 
+.top-search-input{
+  border: 1px solid #04775A;
+  padding:5px;
+}
 
+.top-search-input input{
+  background-color: var(--box-background);
+}
 
+.input{
+  background-color: var(--small-box-background);
+  border: 1px solid var(--input-border);
+  color: white;
+}
+
+.input:focus{
+  background-color: var(--small-box-background);
+  border: 1px solid var(--input-border);
+  color: white;
+}
+.input:focus-within{
+  background-color: var(--small-box-background);
+  border: 1px solid var(--input-border);
+  color: white;
+}
 
 .App {
   text-align: center;
@@ -126,12 +149,16 @@ body{
   margin-left: -15px;
 }
 
+.card-header{
+  border-bottom: 1px solid var(--box-border);
+}
 .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
   border-radius: 5px;
-  border: none;
+  border:1px solid var(--box-border);
   position: relative;
   margin-bottom: 30px;
+  background-color: var(--small-box-background);
   color: white !important;
 }
 
@@ -374,11 +401,14 @@ background-color:var(--box-background);
 
 .Thead{
   background-color: var(--small-box-background);
+  border-bottom: 2px solid var(--box-border);
+  text-align: center;
 }
 
 .Tbody{
   background-color: #012628;
   border-bottom: 0.5px solid var(--box-border);
+  text-align: center;
 }
 
 
@@ -459,4 +489,39 @@ background-color:var(--box-background);
    color:  #013437;
 
   ;
+}
+
+
+
+
+.Add-btn{
+  background:var(--btn-backgrond);
+color: #013437;
+font-weight: 700
+;
+}
+
+.Cancel-btn{
+  background: #ADADAD;
+  color: #013437;
+font-weight: 700
+
+}
+
+.delete-icon{
+  background: #012628;
+  
+  border: 1px solid var(--box-border);
+
+;
+}
+
+.view-icon{
+  background-color: var(--small-box-background);
+border: 1px solid var(--box-border);
+}
+
+.edit-icon{
+  background: #024C50;
+  border: 1px solid var(--box-border);
 }

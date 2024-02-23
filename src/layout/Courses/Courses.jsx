@@ -11,8 +11,6 @@ import axios from "axios";
 function Courses() {
   const navigate = useNavigate();
 
-
-
   const [params, setParams] = useState({
     name: "",
     startDate: "",
@@ -20,12 +18,11 @@ function Courses() {
     filter: "",
   });
 
-// Handle changes in filter inputs
+  // Handle changes in filter inputs
   const handleChange = (e) => {
     setParams({ ...params, [e.target.name]: e.target.value });
     // console.log(params);
   };
-
 
   const [data, error, loading] = useFetch(
     "https://api.logicmitra.com:8086/api/courses/all-course",
@@ -104,110 +101,106 @@ function Courses() {
   console.log(data);
   return (
     <>
-      <div className="pl-3  p-md-3 text-white w-[100%] ">
-        
-
+      <div className="py-3  sm:p-3 text-white w-[100%] ">
         <section className="section py-3">
-        <div className="text-xl font-medium   d-flex justify-between items-center">
-          <h1>Course List</h1>
-          <div className="">
-          <Link to="/courses/add" className="btn btn-primary me-2">
-              <i className="bi bi-plus"></i> Add Cources
-            </Link>
+          <div className="text-xl font-medium   d-flex justify-between items-center">
+            <h1>Course List</h1>
+            <div className="">
+              <Link
+                to="/courses/add"
+                className="Add-btn px-3 py-2 rounded-md  me-2"
+              >
+                Add Cources
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-        
+        </section>
+
         <div className="row ">
-          <Card title="Total Courses" value={totalCourses} bgColor="bg-1" />
-          <Card title="Active Courses" value={activeCourses} bgColor="bg-2" />
-          <Card
-            title="Inactive Courses"
-            value={inactiveCourses}
-            bgColor="bg-3"
-          />
-          <Card title="Blocked Courses" value={blockedCourses} bgColor="bg-4" />
+          <Card title="Total Courses" value={totalCourses} />
+          <Card title="Active Courses" value={activeCourses} />
+          <Card title="Inactive Courses" value={inactiveCourses} />
+          <Card title="Blocked Courses" value={blockedCourses} />
         </div>
-       
-
-
-        
 
         <div className="row">
-        <div className="col">
-          <div className="box ">
-            <div className="card-body row">
-              <div className="border-bottom mb-3 border-black">
-                <h4 className="text-white heading">Filters</h4>
-              </div>
-              <div className="col-12 col-sm-3 text-white relative ">
-                <label className="text-white" htmlFor="search">Search</label>
-                <input
-                  type="search"
-                  className="form-control fs-6  w-[100%] w-100"
-                  id="search"
-                  name="name"
-                  onChange={handleChange}
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                />
-               
-              </div>
-              <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="start-date">Start Date</label>
-                <input
-                  type="date"
-                  className="form-control "
-                  name="startDate"
-                  id="start-date"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="end-date">End Date</label>
-                <input
-                  type="date"
-                  className="form-control "
-                  id="endDate"
-                  placeholder=""
-                  onChange={handleChange}
-                  name="end-date"
-                />
-              </div>
-              <div className="col-12 col-sm-3 text-white">
-                <label className="text-white" htmlFor="filters">Filters</label>
-                <select
-                  id="filters"
-                  className="form-select py-2 "
-                  value={params.filter}
-                  onChange={handleChange}
-                  name="filter"
-                  aria-label=""
-                >
-                  <option className="h-100">Open this select menu</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+          <div className="col">
+            <div className="box ">
+              <div className="card-body row">
+                <div className="border-bottom mb-3 border-black">
+                  <h4 className="text-white heading">Filters</h4>
+                </div>
+                <div className="col-12 col-sm-3 text-white relative ">
+                  <label className="text-white" htmlFor="search">
+                    Search
+                  </label>
+                  <input
+                    type="search"
+                    className="form-control input focus-within:bg-none border-none outline-none focus:bg-none fs-6  w-[100%] w-100"
+                    id="search"
+                    name="name"
+                    onChange={handleChange}
+                    aria-describedby="emailHelp"
+                    placeholder=""
+                  />
+                </div>
+                <div className="col-12 col-sm-3 text-white">
+                  <label className="text-white" htmlFor="start-date">
+                    Start Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control input focus-within:bg-none border-none outline-none focus:bg-none "
+                    name="startDate"
+                    id="start-date"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-12 col-sm-3 text-white">
+                  <label className="text-white" htmlFor="end-date">
+                    End Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control input focus-within:bg-none border-none outline-none focus:bg-none "
+                    id="endDate"
+                    placeholder=""
+                    onChange={handleChange}
+                    name="end-date"
+                  />
+                </div>
+                <div className="col-12 col-sm-3 text-white">
+                  <label className="text-white" htmlFor="filters">
+                    Filters
+                  </label>
+                  <select
+                    id="filters"
+                    className="form-select py-2 input focus-within:bg-none border-none outline-none focus:bg-none"
+                    value={params.filter}
+                    onChange={handleChange}
+                    name="filter"
+                    aria-label=""
+                  >
+                    <option className="h-100">Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-
-
-
-        <div className=" w-[100%]">
+        <div className=" w-[100%">
           <div className=" ">
-            
-              {loading && <h1 className="text-black">Loading...</h1>}
-              {error && <h1 className="text-black">{error.message}</h1>}
-              {data && (
-                <div className="table-responsive Ttable mt-4">
+            {loading && <h1 className="text-black">Loading...</h1>}
+            {error && <h1 className="text-black">{error.message}</h1>}
+            {data && (
+              <div className="table-responsive Ttable mt-4  ">
                 <table className=" table-striped w-[100%]">
                   <thead>
-                    <tr>
+                    <tr className="Thead">
                       <th scope="col">Title</th>
                       <th scope="col">Category</th>
                       <th scope="col">Subcategory</th>
@@ -218,7 +211,7 @@ function Courses() {
                       <th scope="col">Duration</th>
                       <th scope="col">Views</th>
                       <th scope="col">Options</th>
-                      {/* <th scope="col">Add Module</th> */}
+                      <th scope="col">Add Module</th>
                     </tr>
                   </thead>
                   <tbody className="table-group-divider">
@@ -247,45 +240,44 @@ function Courses() {
                         <td> {item.cofferfees}</td>
                         <td>{item.cduration}</td>
                         <td>{item.cviews}</td>
-                        <td className="flex gap-2 items-cente">
+                        <td className="flex gap-2 items-cente justify-center">
                           <Link
-                            className="  py-2 px-3 rounded-md bg-danger "
-                            onClick={handleDelete}
-                            id={item.id}
-                          >
-                            <i id={item.id} className="bi bi-trash3"></i>
-                          </Link>{" "}
-                          <Link
-                            className="  py-2 px-3 rounded-md bg-primary"
+                            className="  py-2 px-3 rounded-md view-icon"
                             to={`/courses/view/${item.id}`}
                           >
                             <i className="bi bi-eye-fill"></i>
                           </Link>{" "}
                           <Link
-                            className=" py-2 px-3 rounded-md bg-warning"
+                            className=" py-2 px-3 rounded-md edit-icon"
                             to={`/courses/edit/${item.id}`}
                           >
                             <i className="bi bi-pencil-square"></i>
                           </Link>
+                          <Link
+                            className="  py-2 px-3 rounded-md delete-icon "
+                            onClick={handleDelete}
+                            id={item.id}
+                          >
+                            <i id={item.id} className="bi bi-trash3"></i>
+                          </Link>{" "}
                         </td>
-                        {/* <td>
-                          <button className="btn w-[100%]  bg-primary text-sm" onClick={getSubModuleData}>
+                        <td>
+                          <button onClick={getSubModuleData}>
                             <Link
-                              className="flex flew-row py-2 px-3 rounded-md text-white text-sm"
-                              to={"/courses/module"}
+                              className="  py-2 px-3 rounded-md view-icon"
+                              to={`/courses/module`}
                               id={item.id}
                             >
                               Add Module
                             </Link>
                           </button>
-                        </td> */}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
-                </div>
-              )}
-           
+              </div>
+            )}
           </div>
         </div>
       </div>

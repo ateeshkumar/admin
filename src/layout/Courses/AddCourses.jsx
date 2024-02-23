@@ -3,14 +3,16 @@ import { useAdd } from "../../hooks/useAdd";
 import { useFetch } from "../../hooks/useFetch";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function AddCourses() {
   const navigate = useNavigate();
-
+  const [subCat, setSubCat] = useState();
   //fetching the category data for specific id and title
 
   const [data, error, loading] = useFetch(
-    "https://api.logicmitra.com:8086/api/courses/all-course",
+    "https://api.logicmitra.com:8086/api/categories/list",
     true
   );
 
@@ -31,7 +33,7 @@ function AddCourses() {
     ctrainer: "",
     cthumbnail: null,
     ccoverimage: null,
-    cdemovideo: null,
+    cdemovideo: "",
     ckeywords: "",
     cmodules: "",
     cdescription: "",
@@ -39,48 +41,55 @@ function AddCourses() {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (e) => {
+  console.log(subCat);
+  const [data2, error2, loading2] = useFetch(
+    `https://api.logicmitra.com:8086/api/trainers/list`
+  );
+  console.log(data2);
+  const handleChange = async (e) => {
     const { name, value, type, files } = e.target;
 
     setFormData((prevData) => ({
       ...prevData,
       [name]: type === "file" ? files[0] : value,
     }));
+    try {
+      const data = await axios.get(
+        `https://api.logicmitra.com:8086/api/categories/sub-cat?catg=${formData.ccategory}`
+      );
+      setSubCat(data?.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //add courses to the database
-  const [addData] = useAdd(
-    `https://api.logicmitra.com:8086/api/courses/create-course`
-  );
-  const handleSubmit = (e) => {
-    const formdata = new FormData();
-    formdata.append("image", formdata.ccoverimage);
-    formdata.append("banner", formdata.cthumbnail);
-    formdata.append("video", formdata.cdemovideo);
-    e.preventDefault();
-    //logic to submit data
-    addData(formData)
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "Your data has been submitted",
-          icon: "success",
-        }).then(() => {
+  const handleSubmit = async (e) => {
+    try {
+      const formdata = new FormData();
+      formdata.append("image", formdata.ccoverimage);
+      formdata.append("banner", formdata.cthumbnail);
+      e.preventDefault();
+      const data = await axios.post(
+        `https://api.logicmitra.com:8086/api/courses/create-course`,
+        formData
+      );
+      if (data?.data?.response === "success") {
+        toast.success("Course Created Successfully");
+        setTimeout(() => {
           navigate("/courses");
-
-          setTimeout(() => {
-            // window.location.reload();
-          }, 1000);
-        });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-        swal({
-          icon: "error",
-          title: "Oops...",
-          text: "An error occurred while submitting the form",
-        });
-      });
+          // window.location.reload();
+        }, 1000);
+      } else {
+        toast.warn("error while creating course");
+      }
+      //logic to submit data
+      // addData(formData).then((data) => {
+      //   console.log(data);
+    } catch (error) {
+      console.error("Error occurred:", error);
+      toast.error("Something Went wrong!!");
+    }
     console.log("Form Submitted", formData);
   };
 
@@ -122,44 +131,45 @@ function AddCourses() {
                   <option selected>Open this select menu</option>
                   {data?.data &&
                     data?.data.map((elm) => {
-                      const { _id, title } = elm.ccategory;
-                      console.log(_id, title);
-
+                      // const { _id, title } = elm.ccategory;
+                      // console.log(_id, title);
                       return (
                         <>
-                          <option value={_id}>{title}</option>
+                          <option value={elm.id}>{elm.title}</option>
                         </>
                       );
                     })}
                 </select>
               </div>
             </div>
-            <div className="col-4 text-black flex flex-col">
-              <label for="subcategory">Subcategory</label>
+            {subCat && (
+              <div className="col-4 text-black flex flex-col">
+                <label for="subcategory">Subcategory</label>
 
-              <div>
-                <select
-                  name="csubcategory"
-                  value={formData.csubcategory}
-                  onChange={handleChange}
-                  id="subcategory"
-                  className="form-select"
-                >
-                  <option selected>Open this select menu</option>
-                  {data?.data &&
-                    data?.data.map((elm) => {
-                      const { _id, title } = elm.csubcategory;
-                      console.log(_id, title);
+                <div>
+                  <select
+                    name="csubcategory"
+                    value={formData.csubcategory}
+                    onChange={handleChange}
+                    id="subcategory"
+                    className="form-select"
+                  >
+                    <option selected>Open this select menu</option>
+                    {subCat?.data &&
+                      subCat?.data?.map((elm) => {
+                        // const { _id, title } = elm.csubcategory;
+                        // console.log(_id, title);
 
-                      return (
-                        <>
-                          <option value={_id}>{title}</option>
-                        </>
-                      );
-                    })}
-                </select>
+                        return (
+                          <>
+                            <option value={elm.id}>{elm.title}</option>
+                          </>
+                        );
+                      })}
+                  </select>
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="col-4">
               <label htmlFor="exampleInputUsername1">Course Duration</label>
@@ -206,14 +216,13 @@ function AddCourses() {
                   className="form-select"
                 >
                   <option selected>Open this select menu</option>
-                  {data?.data &&
-                    data?.data.map((elm) => {
-                      const { _id, sname } = elm.ctrainer;
-                      console.log(_id, sname);
-
+                  {data2?.data &&
+                    data2?.data.map((elm) => {
+                      // const { _id, sname } = elm.ctrainer;
+                      // console.log(_id, sname);
                       return (
                         <>
-                          <option value={_id}>{sname}</option>
+                          <option value={elm.id}>{elm.sname}</option>
                         </>
                       );
                     })}
@@ -242,12 +251,15 @@ function AddCourses() {
               />
             </div>
             <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Demo Video</label>
+              <label htmlFor="exampleInputUsername1">
+                Course Demo Video Url
+              </label>
               <input
-                type="file"
+                type="link"
                 className="form-control"
                 name="cdemovideo"
-                placeholder="Course Demo Video"
+                value={formData?.cdemovideo}
+                placeholder="Course Demo Video URL"
                 onChange={handleChange}
               />
             </div>
@@ -262,7 +274,6 @@ function AddCourses() {
                 onChange={handleChange}
               />
             </div>
-
             <div className="col-12">
               <label htmlFor="exampleInputUsername1">Course Discription</label>
               <textarea
