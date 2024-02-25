@@ -40,6 +40,10 @@ import EditModule from "./layout/CourseDetails/EditModule";
 import EditSubModule from "./layout/CourseDetails/EditSubModule";
 import Enrollment from "./layout/Enrollment/Enrollment";
 import Batches from "./layout/Batches/Batches";
+import CreateBatches from "./layout/Batches/CreateBatches";
+import AddBatchesStudent from "./layout/Batches/AddBatchesStudent";
+import EditBatch from "./layout/Batches/EditBatch";
+import CreateEnrollment from "./layout/Enrollment/CreateEnrollment";
 
 const router = createBrowserRouter([
   {
@@ -184,6 +188,10 @@ const router = createBrowserRouter([
             path: "",
             element: <Enrollment />,
           },
+          {
+            path: "create",
+            element: <CreateEnrollment />,
+          },
         ],
       },
       {
@@ -192,6 +200,18 @@ const router = createBrowserRouter([
           {
             path: "",
             element: <Batches />,
+          },
+          {
+            path: "create",
+            element: <CreateBatches />,
+          },
+          {
+            path: "edit/:id",
+            element: <EditBatch />,
+          },
+          {
+            path: "add-student/:id",
+            element: <AddBatchesStudent />,
           },
         ],
       },

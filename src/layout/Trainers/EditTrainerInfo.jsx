@@ -76,15 +76,15 @@ function EditTrainerInfo() {
 
       {/* Render the form if data is available */}
       {data?.data && (
-        <div className="w-100 p-3 bg-main">
+        <div className="w-100 py-3 sm:p-3">
           <form
-            className="forms-sample w-100 m-2 p-4 card"
+            className="forms-sample w-100 m-2 p-4 box"
             onSubmit={handleSubmit}
             id={params?.id}
           >
             <div className="w-100 d-flex gap-3">
-              <div className="form-group w-100 row">
-                <div className="col-4">
+              <div className="form-group  row">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputUsername1">Trainer Name</label>
                   <input
                     type="text"
@@ -95,7 +95,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputEmail1">Gender</label>
                   <input
                     type="text"
@@ -106,7 +106,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputMobile">Date Of Birth</label>
                   <input
                     type="date"
@@ -116,7 +116,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputMobile">Address</label>
                   <input
                     type="text"
@@ -127,7 +127,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputMobile">City</label>
                   <input
                     type="text"
@@ -138,7 +138,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Pin code</label>
                   <input
                     type="number"
@@ -149,7 +149,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Profile Pic</label>
                   <input
                     type="file"
@@ -159,7 +159,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">About</label>
                   <input
                     type="text"
@@ -169,7 +169,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Status</label>
                   <input
                     type="text"
@@ -179,7 +179,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Country</label>
                   <input
                     type="text"
@@ -189,7 +189,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">State</label>
                   <input
                     type="text"
@@ -199,7 +199,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Whatsapp</label>
                   <input
                     type="number"
@@ -209,7 +209,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Lattitude</label>
                   <input
                     type="text"
@@ -219,7 +219,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Longitude</label>
                   <input
                     type="text"
@@ -229,7 +229,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB"> intro</label>
                   <input
                     type="text"
@@ -239,7 +239,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Banner</label>
                   <input
                     type="file"
@@ -248,7 +248,7 @@ function EditTrainerInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Rating </label>
                   <input
                     type="number"
@@ -262,12 +262,14 @@ function EditTrainerInfo() {
             </div>
 
             {/* Submit and cancel buttons */}
-            <button type="submit" className="btn my-2 btn-primary ">
-              Submit
-            </button>
-            <button type="reset" className="btn my-2 btn-light">
-              Cancel
-            </button>
+            <div className="flex items-center justify-between mt-3">
+             <button type="submit" className="px-5 py-2 Add-btn rounded-md">
+                Submit
+              </button>
+              <button type="reset" className=" py-2 Cancel-btn px-5">
+                Cancel
+              </button>
+             </div>
           </form>
         </div>
       )}

@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import moment from "moment"
 
 
-const  EnrollTrainer=({TrainerData})=>{
+const  EnrollStudent=({StudentData})=>{
     const [data , setdata] =useState()
 
 useEffect(()=>{
 
-  setdata(TrainerData)
-},[TrainerData])
+  setdata(StudentData)
+},[StudentData])
  
 console.log(data?.data)
     return (
@@ -89,4 +89,4 @@ console.log(data?.data)
     )
 }
 
-export default EnrollTrainer
+export default EnrollStudent

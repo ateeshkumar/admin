@@ -1,41 +1,25 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import moment from 'moment'
+const TransactionDetails = ({StudentData}) => {
 
-const TransactionDetails = () => {
 
-const data =[{
-    id:1,
-courses:"vishuf",
-            amount:"",
-        payment:"",
-            status:"",
-            
-            date:""
+const [data , setdata] =useState()
 
-},
-{
-    id:1,
-courses:"vishuf",
-            amount:"",
-        payment:"",
-            status:"",
-            
-            date:""
+useEffect(()=>{
 
-},
-{
-    id:1,
-courses:"vishuf",
-            amount:"",
-        payment:"",
-            status:"",
-            
-            date:""
-
-}]
+  setdata(StudentData)
+},[StudentData])
+ 
+console.log(data?.data)
     return (
       <>
         
-        <div className="px-2 py-3 "> 
+      {
+        data?.data?.walletTranscation?.length===0 ? (<>
+        <div className="text-white px-2 py-3 "> There is no Transaction Data</div>
+        </>) : (
+          <div className="px-2 py-3 "> 
         <div className="">
        
        <div className="flex justify-between items-center my-2"> 
@@ -56,10 +40,11 @@ courses:"vishuf",
               <table className=" table-striped Ttable">
                 <thead className="Thead">
                   <tr >
-                    <th scope="col">Courses</th>
-                    <th scope="col">Amount</th>
+                    <th scope="col">Sender</th>
+                    <th scope="col">Reciever</th>
                     <th scope="col">Payment Method</th>
                     <th scope="col">Payment Status</th>
+                    <th scope="col">Amount</th>
                     <th scope="col">Date</th>
                    
 
@@ -69,18 +54,24 @@ courses:"vishuf",
                   
                 </thead>
                 <tbody>
-                  {data?.map((item) => (
-                    <tr className=" Tbody" key={item.id}>
-                     
-                    <td>{item.courses}</td>
-                    <td>{item.courses}</td>
-                    <td>{item.courses}</td>
-                    <td>{item.courses}</td>
-                    <td>{item.courses}</td>
-                   
-                      
-                    </tr>
-                  ))}
+                {
+                  data?.data?.walletTranscation.map(item=>{
+                    console.log(item)
+                    return(
+                      <>
+                 <tr className="Tbody" key={item.id}>
+                    <td>{item?.senderId?.sname}</td>
+                    <td>{item?.receiverId?.sname}</td>
+                    <td>{item?.cardType}</td>
+                    <td>{item?.transmethod}</td>
+                    <td>{item?.amount}</td>
+                    <td className="flex flex-row"> {moment(item?.date).format("DD/ mm /yyyy")}</td>
+                 </tr>
+                      </>
+                    )
+                  })
+                }
+                 
                 </tbody>
               </table>
             </div>
@@ -90,6 +81,10 @@ courses:"vishuf",
           </div>
         
         </div>
+
+
+        )
+      }
       </>
 
     );

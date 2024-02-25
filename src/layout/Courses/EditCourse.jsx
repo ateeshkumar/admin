@@ -62,9 +62,7 @@ function EditCourses() {
     // Calls the handleUpdate function from the custom hook
     handleUpdate(`courseId=${e.target.id}`, formData).then(() => {
       // Displays a success message using SweetAlert library
-      swal("Good job!", "Category Updated Successfully", "success");
-      navigate("/courses");
-
+      // navigate("/courses");
       setTimeout(() => {
         window.location.reload();
       }, 1000);
@@ -87,22 +85,27 @@ function EditCourses() {
         <>loading...</>
       ) : (
         <>
-          <div className="w-100 p-3 bg-main">
+          <div className="w-100 py-3 sm:p-3 ">
             <form
               // Form for Adding Course information
-              className="forms-sample w-100 m-2 p-4 card"
+              className="forms-sample w-100 m-2 p-4 box"
               onSubmit={handleSubmit}
               id={formData?.id}
             >
               {/* Form inputs for course details */}
               <div className="w-100 d-flex gap-3">
                 {/* Form group for coursename*/}
-                <div className="form-group w-100 row">
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">Course Title</label>
+                <div className="form-group  row">
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
+                      Course Title
+                    </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       value={formData?.ctitle}
                       name="ctitle"
                       placeholder="Course Title"
@@ -110,11 +113,16 @@ function EditCourses() {
                     />
                   </div>
 
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">Course Status</label>
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
+                      Course Status
+                    </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       value={formData?.cstatus}
                       name="cstatus"
                       placeholder="Course Status"
@@ -122,37 +130,48 @@ function EditCourses() {
                     />
                   </div>
 
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Duration
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       value={formData?.cduration}
                       name="cduration"
                       placeholder="Course Duration"
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">Course Fees</label>
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
+                      Course Fees
+                    </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       value={formData?.cfees}
                       name="cfees"
                       placeholder="Course Fees"
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Offer Fees
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       value={formData?.cofferfees}
                       name="cofferfees"
                       placeholder="Course Offer Fees"
@@ -160,49 +179,61 @@ function EditCourses() {
                     />
                   </div>
 
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Thumbnail
                     </label>
                     <input
                       type="file"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       name="cthumbnail"
                       placeholder="Course Duration"
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Cover Image
                     </label>
                     <input
                       type="file"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       name="ccoverimage"
                       placeholder="Course Cover Image"
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="col-4">
-                    <label htmlFor="exampleInputUsername1">
+                  <div className="coll-12 col-sm-4">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Demo Video
                     </label>
                     <input
                       type="file"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       name="cdemovideo"
                       placeholder="Course Demo Video"
                       onChange={handleChange}
                     />
                   </div>
                   <div className="col-12">
-                    <label htmlFor="exampleInputUsername1">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Keywords
                     </label>
                     <input
                       type="text"
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       name="ckeywords"
                       value={formData?.ckeywords}
                       placeholder="Course keywords"
@@ -210,15 +241,18 @@ function EditCourses() {
                     />
                   </div>
 
-                  <div className="col-12">
-                    <label htmlFor="exampleInputUsername1">
+                  <div className="col-12 w-[100%]">
+                    <label
+                      className="text-white"
+                      htmlFor="exampleInputUsername1"
+                    >
                       Course Discription
                     </label>
                     <textarea
                       name="cdescription"
                       value={formData?.cdescription}
                       id=""
-                      className="form-control"
+                      className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                       cols="30"
                       rows="10"
                       onChange={handleChange}
@@ -228,12 +262,15 @@ function EditCourses() {
               </div>
 
               {/* Submit and cancel buttons */}
-              <button type="submit" className="btn my-2 btn-primary ">
-                Submit
-              </button>
-              <button type="reset" className="btn my-2 btn-light">
-                Cancel
-              </button>
+
+              <div className="flex items-center justify-between mt-3">
+                <button type="submit" className="btn my-2 Add-btn px-5">
+                  Submit
+                </button>
+                <button type="reset" className="btn my-2 Cancel-btn px-5">
+                  Cancel
+                </button>
+              </div>
             </form>
           </div>
         </>

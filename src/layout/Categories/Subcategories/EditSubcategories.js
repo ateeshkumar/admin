@@ -40,7 +40,7 @@ function EditSubcategories() {
   console.log(params);
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `http://localhost:8086/api/categories/update-subcat`
+    `https://api.logicmitra.com:8086/api/categories/update-subcat`
   );
   // Handles form submission
   const handleSubmit = (e) => {
@@ -194,13 +194,13 @@ function EditSubcategories() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="submit bg-blue-500 mr-2  rounded-md px-5 py-2"
+                className="submi Add-btn mr-2  rounded-md px-5 py-2"
               >
                 Submit
               </button>
               <button
                 type="reset"
-                className="cancel bg-gray-200  rounded-md px-5 py-2"
+                className="Cancel-btn  rounded-md px-5 py-2"
               >
                 Cancel
               </button>

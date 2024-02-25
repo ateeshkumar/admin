@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 function TopBar() {
   return (
-    <nav className="navbar  col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav className="navbar  col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style={{ boxShadow:" 0px 9px 7px 0px #04775A59"}}
+   >
       <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a className="navbar-brand brand-logo mr-5" href="index.html">
           <img src="images/logicgyan.png" className="mr-2 w-[100%] h-[100%] object-cover" alt="logo" />

@@ -15,6 +15,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { BiChevronUp } from "react-icons/bi";
 
 import { BiChevronDown } from "react-icons/bi";
+import EnrollStudent from "../../components/StudentDetails/studentctrdetails/EnrollStudent";
+import BatchStudent from "../../components/StudentDetails/studentctrdetails/BatchStudent";
 
 function ViewStudentInfo() {
   const content1 =
@@ -66,11 +68,9 @@ function ViewStudentInfo() {
 
             {/* student details name so on */}
             <div className=" w-[100%] md:w-[32%] box space-y-4 ">
-              <h1 className="heading1"> Student Name</h1>
+              <h1 className="heading1">{data?.data?.sname}</h1>
               <ul>
-                <li className="flex gap-2 items-center">
-                  <MdOutlinePerson className="text-xs" /> {data?.data?.sname}
-                </li>
+               
                 <li className="flex gap-2 items-center">
                   <CgCalendarDates className="text-xs" /> {data?.data?.sdob}
                 </li>
@@ -116,7 +116,7 @@ function ViewStudentInfo() {
               <h1 className="heading1"> Description:</h1>
 
               <div className="flex flex-col items-start justify-between space-y-14">
-                <p>{show ? `${data?.data?.sintro}` : `${data?.data?.sintro.slice(0, 50)}}...`}</p>
+                <p>{show ? `${data?.data?.sintro}` : `${data?.data?.sintro.slice(0, 50)}...`}</p>
 
                 <button className="" onClick={() => showmoreclick()}>
                   {show ? (
@@ -140,9 +140,9 @@ function ViewStudentInfo() {
           {/* tabpanel  */}
 
           <div className="">
-            <div className="overflow-hidden">
+            <div className="">
               <ul
-                className="flex justify-around p-2    relative"
+                className="flex  justify-around p-2    relative "
                 style={{ borderBottom: "2px solid #04775A" }}
               >
                 <li
@@ -175,14 +175,45 @@ function ViewStudentInfo() {
                     } cursor-pointer text-center absolute   w-[100%]`}
                   ></div>
                 </li>
+                <li
+                  className="cursor-pointer"
+                  onClick={() => setCTR("enrollstudent")}
+                >
+                  Enroll Courses
+                  <div
+                    className={` ${
+                      CTR === "enrollstudent" ? " CTR4" : "border-b-0"
+                    } cursor-pointer text-center absolute   w-[100%]`}
+                  ></div>
+                </li>
+                <li
+                  className="cursor-pointer"
+                  onClick={() => setCTR("batch")}
+                >
+                  Batch
+                  <div
+                    className={` ${
+                      CTR === "batch" ? " CTR5" : "border-b-0"
+                    } cursor-pointer text-center absolute   w-[100%]`}
+                  ></div>
+                </li>
+               
+                
+               
               </ul>
 
               {CTR === "courses" ? (
-                <CourseDetails CourseData={data} />
+                <CourseDetails StudentData={data} />
               ) : CTR === "transaction" ? (
-                <TransactionDetails  CourseData={data}/>
-              ) : CTR === "review" ? (
-                <ReviewDetails  CourseData={data}/>
+                <TransactionDetails  StudentData={data}/>
+              ) : CTR === "enrollstudent" ? (
+                <EnrollStudent  StudentData={data}/>
+              ): CTR === "batch" ? (
+                <BatchStudent StudentData={data}/>
+              )
+              
+              : CTR === "review" ? (
+                <ReviewDetails  StudentData={data}/>
               ) : null}
             </div>
           </div>

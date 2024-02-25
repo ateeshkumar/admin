@@ -20,7 +20,7 @@ function EditStudentInfo() {
 
   // Updates params when data is fetched
   useEffect(() => {
-    Fetch(`studentId=${id}`);
+    Fetch(`userID=${id}`);
   }, []);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function EditStudentInfo() {
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/user/update-user?`
+    `https://api.logicmitra.com:8086/api/user/update-user`
   );
   // Handles form submission
   const handleSubmit = (e) => {
@@ -53,9 +53,8 @@ function EditStudentInfo() {
     // Calls the handleUpdate function from the custom hook
     handleUpdate(`userId=${e.target.id}`, params).then(() => {
       // Displays a success message using SweetAlert library
-      swal("Good job!", "Student Updated Successfully", "success");
-      navigate("/students");
-      window.location.reload();
+      // navigate("/students");
+      // window.location.reload();
     });
   };
 
@@ -77,7 +76,7 @@ function EditStudentInfo() {
           >
             <div className="w-100 d-flex ">
               <div className="form-group  row">
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputUsername1">Student Name</label>
                   <input
                     type="text"
@@ -89,7 +88,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Gender</label>
                   <input
                     type="text"
@@ -100,7 +99,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputEmail1">Email</label>
                   <input
                     type="email"
@@ -112,7 +111,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputMobile">Password</label>
                   <input
                     type="text"
@@ -124,7 +123,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputMobile">Mobile</label>
                   <input
                     type="number"
@@ -136,7 +135,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputMobile">Whatsapp</label>
                   <input
                     type="number"
@@ -148,7 +147,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Date of Birth</label>
                   <input
                     type="date"
@@ -159,7 +158,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Status</label>
                   <input
                     type="text"
@@ -170,7 +169,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">City</label>
                   <input
                     type="text"
@@ -181,7 +180,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Address</label>
                   <input
                     type="text"
@@ -192,7 +191,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Country</label>
                   <input
                     type="text"
@@ -204,7 +203,7 @@ function EditStudentInfo() {
                   />
                 </div>
 
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Verified</label>
                   <input
                     type="text"
@@ -215,7 +214,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Profile Pic</label>
                   <input
                     type="file"
@@ -225,7 +224,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Background Image</label>
                   <input
                     type="file"
@@ -235,7 +234,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Pin Code</label>
                   <input
                     type="number"
@@ -246,7 +245,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Level of Education</label>
                   <input
                     type="text"
@@ -257,7 +256,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Pass Out Year</label>
                   <input
                     type="number"
@@ -268,7 +267,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">State</label>
                   <input
                     type="text"
@@ -280,7 +279,7 @@ function EditStudentInfo() {
                   />
                 </div>
 
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Fcm</label>
                   <input
                     type="text"
@@ -291,7 +290,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Lattitude</label>
                   <input
                     type="text"
@@ -302,7 +301,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-4">
+                <div className="col col-sm-4">
                   <label htmlFor="exampleInputDOB">Longitude</label>
                   <input
                     type="text"
@@ -316,17 +315,17 @@ function EditStudentInfo() {
 
                 {/* Submit and cancel buttons */}
 
-                <button
-                  type="submit"
-                  id={params?.id || ""}
-                  onClick={handleSubmit}
-                  className="btn my-2 btn-primary "
-                >
-                  Submit
-                </button>
-                <button type="reset" className="btn my-2 btn-light">
-                  Cancel
-                </button>
+               
+                <div className="flex items-center justify-between mt-3">
+             <button type="submit" className="py-2 my-2 Add-btn px-5"
+              id={params?.id || ""}
+                  onClick={handleSubmit}>
+                Submit
+              </button>
+              <button type="reset" className="py-2 my-2 Cancel-btn px-5">
+                Cancel
+              </button>
+             </div>
               </div>
             </div>
           </form>

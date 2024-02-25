@@ -10,6 +10,7 @@ const useAdd = (url) => {
       const res = await axios.post(url, params, {
         headers: {
           "Content-Type": "multipart/form-data",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       }); //Adding the data
       console.log(res);
@@ -25,11 +26,7 @@ const useAdd = (url) => {
         toast.error(res?.data?.message || "Failed Data");
       }
     } catch (error) {
-      swal({
-        icon: "error",
-        title: "Oops...",
-        text: "An error occurred while submitting the form",
-      });
+      toast.error("Error Occurred");
     }
   };
   return [addData];

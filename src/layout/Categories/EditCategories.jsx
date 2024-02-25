@@ -195,13 +195,13 @@ function EditCategories() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="submit bg-blue-500 mr-2  rounded-md px-5 py-2"
+                className="submit Add-btn mr-2  rounded-md px-5 py-2"
               >
                 Submit
               </button>
               <button
                 type="reset"
-                className="cancel bg-gray-200  rounded-md px-5 py-2"
+                className="Cancel-btn  rounded-md px-5 py-2"
               >
                 Cancel
               </button>

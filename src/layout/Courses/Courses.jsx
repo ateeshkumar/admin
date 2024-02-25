@@ -101,7 +101,7 @@ function Courses() {
   console.log(data);
   return (
     <>
-      <div className="py-3  sm:p-3 text-white w-[100%] ">
+      <div className="py-3  sm:p-3 text-white w-[100%] overflow-x-auto courses-page">
         <section className="section py-3">
           <div className="text-xl font-medium   d-flex justify-between items-center">
             <h1>Course List</h1>
@@ -136,12 +136,12 @@ function Courses() {
                   </label>
                   <input
                     type="search"
-                    className="form-control input focus-within:bg-none border-none outline-none focus:bg-none fs-6  w-[100%] w-100"
+                    className="form-control input focus-within:bg-none border-none outline-none focus:bg-none fs-6  w-[100%] w-100 text-white"
                     id="search"
                     name="name"
                     onChange={handleChange}
                     aria-describedby="emailHelp"
-                    placeholder=""
+                    placeholder="search"
                   />
                 </div>
                 <div className="col-12 col-sm-3 text-white">
@@ -192,10 +192,10 @@ function Courses() {
           </div>
         </div>
 
-        <div className=" w-[100%">
+        <div className=" w-[100%]">
           <div className=" ">
-            {loading && <h1 className="text-black">Loading...</h1>}
-            {error && <h1 className="text-black">{error.message}</h1>}
+            {loading && <h1 className="text-white">Loading...</h1>}
+            {error && <h1 className="text-white">{error.message}</h1>}
             {data && (
               <div className="table-responsive Ttable mt-4  ">
                 <table className=" table-striped w-[100%]">
@@ -262,9 +262,9 @@ function Courses() {
                           </Link>{" "}
                         </td>
                         <td>
-                          <button onClick={getSubModuleData}>
+                          <button onClick={getSubModuleData} className="flex flex-row w-[100%]">
                             <Link
-                              className="  py-2 px-3 rounded-md view-icon"
+                              className="  py-2 px-3 text-sm rounded-md view-icon"
                               to={`/courses/module`}
                               id={item.id}
                             >

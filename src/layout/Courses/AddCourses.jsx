@@ -95,21 +95,21 @@ function AddCourses() {
 
   console.log(formData);
   return (
-    <div className="w-100 p-3 bg-main">
+    <div className="w-[100%] py-3 sm:p-3">
       <form
         // Form for Adding Course information
-        className="forms-sample w-100 m-2 p-4 card"
+        className="forms-sample  m-2 p-4 box "
         onSubmit={handleSubmit}
       >
         {/* Form inputs for course details */}
         <div className="w-100  gap-3">
           {/* Form group for coursename*/}
           <div className="form-group  row">
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Title</label>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Title</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.ctitle}
                 name="ctitle"
                 placeholder="Course Title"
@@ -117,8 +117,8 @@ function AddCourses() {
               />
             </div>
 
-            <div className="col-4 text-black flex flex-col">
-              <label for="category">Category</label>
+            <div className="col-12 col-sm-4  flex flex-col">
+              <label className="text-white" htmlFor="category">Category</label>
 
               <div>
                 <select
@@ -126,7 +126,7 @@ function AddCourses() {
                   value={formData.ccategory}
                   onChange={handleChange}
                   id="category"
-                  className="form-select"
+                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-2"
                 >
                   <option selected>Open this select menu</option>
                   {data?.data &&
@@ -143,8 +143,8 @@ function AddCourses() {
               </div>
             </div>
             {subCat && (
-              <div className="col-4 text-black flex flex-col">
-                <label for="subcategory">Subcategory</label>
+              <div className="col-12 col-sm-4  flex flex-col">
+                <label className="text-white" htmlFor="subcategory">Subcategory</label>
 
                 <div>
                   <select
@@ -152,7 +152,7 @@ function AddCourses() {
                     value={formData.csubcategory}
                     onChange={handleChange}
                     id="subcategory"
-                    className="form-select"
+                    className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                   >
                     <option selected>Open this select menu</option>
                     {subCat?.data &&
@@ -171,41 +171,41 @@ function AddCourses() {
               </div>
             )}
 
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Duration</label>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Duration</label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.cduration}
                 name="cduration"
                 placeholder="Course Duration"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Fees</label>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Fees</label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.cfees}
                 name="cfees"
                 placeholder="Course Fees"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Offer Fees</label>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Offer Fees</label>
               <input
                 type="number"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.cofferfees}
                 name="cofferfees"
                 placeholder="Course Offer Fees"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4 text-black flex flex-col">
-              <label for="ctrainer">Course Trainer</label>
+            <div className="col-12 col-sm-4  flex flex-col">
+              <label className="text-white" htmlFor="ctrainer">Course Trainer</label>
 
               <div>
                 <select
@@ -213,7 +213,7 @@ function AddCourses() {
                   value={formData.ctrainer}
                   onChange={handleChange}
                   id="ctrainer"
-                  className="form-select"
+                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-2"
                 >
                   <option selected>Open this select menu</option>
                   {data2?.data &&
@@ -230,33 +230,33 @@ function AddCourses() {
               </div>
             </div>
 
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Thumbnail</label>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Thumbnail</label>
               <input
                 type="file"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="cthumbnail"
                 placeholder="Course Duration"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">Course Cover Image</label>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Cover Image</label>
               <input
                 type="file"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="ccoverimage"
                 placeholder="Course Cover Image"
                 onChange={handleChange}
               />
             </div>
-            <div className="col-4">
-              <label htmlFor="exampleInputUsername1">
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">
                 Course Demo Video Url
               </label>
               <input
                 type="link"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="cdemovideo"
                 value={formData?.cdemovideo}
                 placeholder="Course Demo Video URL"
@@ -264,10 +264,10 @@ function AddCourses() {
               />
             </div>
             <div className="col-12">
-              <label htmlFor="exampleInputUsername1">Course Keywords</label>
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Keywords</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.ckeywords}
                 name="ckeywords"
                 placeholder="Course keywords"
@@ -275,12 +275,12 @@ function AddCourses() {
               />
             </div>
             <div className="col-12">
-              <label htmlFor="exampleInputUsername1">Course Discription</label>
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Discription</label>
               <textarea
                 name="cdescription"
                 id=""
                 handleChange={formData?.cdescription}
-                className="form-control"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 cols="30"
                 rows="10"
                 onChange={handleChange}
@@ -289,18 +289,21 @@ function AddCourses() {
           </div>
 
           {/* Submit and cancel buttons */}
-          <button
+         
+         <div className="flex justify-between items-center"> 
+         <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-800 rounded-sm py-2 my-2  w-100"
+            className="Add-btn rounded-sm py-2 my-2  px-5"
           >
             Submit
           </button>
           <button
             type="reset"
-            className="bg-gray-200 hover:bg-gray-300  py-2  rounded-sm my-2 btn-light w-100"
+            className="Cancel-btn  py-2  rounded-sm my-2 px-5"
           >
             Cancel
           </button>
+         </div>
         </div>
       </form>
     </div>

@@ -146,7 +146,7 @@ function Categories() {
                   <tbody className="table-group-divider">
                     {/* Map through trainers data and display in table rows */}
                     {data.data.map((item) => (
-                      <tr key={item.title} className="Tbody">
+                      <tr key={item.id} className="Tbody">
                         <td>{item.title}</td>
                         <td>
                           <img

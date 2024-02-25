@@ -330,15 +330,7 @@ line-height:24.2px
   overflow: hidden;
   
 }
- .CTR3{
-  
-position: absolute;
-    top: 31px;
-    right: -6%;
-    width: 40%;
-    padding: 5px;
-    border-bottom: 2px solid var(--text-border1);
-}
+
 .CTR1{
   
   position: absolute;
@@ -349,19 +341,78 @@ position: absolute;
       padding: 5px;
       border-bottom: 2px solid var(--text-border1);
   }
+
   .CTR2{
   
     position: absolute;
   
         top: 31px;
-        left: 34%;
+        left:18%;
         width: 40%;
         padding: 5px;
         border-bottom: 2px solid var(--text-border1);
     }
+    .CTR3{
+  
+      position: absolute;
+          top: 31px;
+          right: 27%;
+          width: 40%;
+          padding: 5px;
+          border-bottom: 2px solid var(--text-border1);
+      }
+      .CTR4{
+  
+        position: absolute;
+      
+            top: 31px;
+           left: 53%;
+            width: 40%;
+            padding: 5px;
+            border-bottom: 2px solid var(--text-border1);
+        }
 
+        .CTR5{
+  
+          position: absolute;
+        
+              top: 31px;
+             right: 0;
+              width: 40%;
+              padding: 5px;
+              border-bottom: 2px solid var(--text-border1);
+          }
 /* course all active and completed  */
 
+.courses-page{
+  overflow-x: scroll;
+}
+
+.courses-page::-webkit-scrollbar{
+  width: 1px;
+  background-color: none;
+}
+.courses-page::-webkit-scrollbar-button{
+  width: 1px;
+  background-color: green;
+}
+
+.courses-page::-webkit-scrollbar-thumb{
+  width: 1px;
+  height: 1px;
+  background-color:none;
+}
+.courses-page::-webkit-scrollbar-track{
+  width: 1px;
+  height: 1px;
+  background-color:none;
+}
+
+.courses-page::-webkit-scrollbar-track-piece{
+  width: 1px;
+  height: 1px;
+  background-color:none;
+}
 .course-all{
   
       
@@ -462,11 +513,20 @@ background-color:var(--box-background);
   
             position: absolute;
                 top: 31px;
-                right: 0%;
+                right: 11%;
                 width: 20%;
                 padding: 5px;
                 border-bottom: 2px solid var(--text-border1);
             }
+            .TCTR6{
+  
+              position: absolute;
+                  top: 31px;
+                  right: 0%;
+                  width: 20%;
+                  padding: 5px;
+                  border-bottom: 2px solid var(--text-border1);
+              }
   
 
             .Tbox{
@@ -516,12 +576,24 @@ font-weight: 700
 ;
 }
 
+.delete-icon:hover{
+  color: var(--btn-backgrond);
+}
+
 .view-icon{
   background-color: var(--small-box-background);
 border: 1px solid var(--box-border);
 }
 
+.view-icon:hover{
+  color: var(--btn-backgrond);
+}
+
 .edit-icon{
   background: #024C50;
   border: 1px solid var(--box-border);
+}
+
+.edit-icon:hover{
+  color: var(--btn-backgrond);
 }

@@ -12,6 +12,7 @@ import TransactionTrainer from "../../components/TrainerDetails/TrainerCtradetai
 import EnrollTrainer from "../../components/TrainerDetails/TrainerCtradetails/Enrollment";
 import ReviewTrainer from "../../components/TrainerDetails/TrainerCtradetails/Review";
 import { CgCalendarDates } from "react-icons/cg";
+import BatchTrainer from "../../components/TrainerDetails/TrainerCtradetails/BatchTrainer";
 
 function ViewTrainerInfo() {
   const { id } = useParams();
@@ -173,18 +174,31 @@ function ViewTrainerInfo() {
                   } cursor-pointer text-center absolute   w-[100%]`}
                 ></div>
               </li>
+              <li className="cursor-pointer" onClick={() => setCTR("batch")}>
+                Batch
+                <div
+                  className={` ${
+                    CTR === "batch" ? " TCTR6" : "border-b-0"
+                  } cursor-pointer text-center absolute   w-[100%]`}
+                ></div>
+              </li>
             </ul>
 
             {CTR === "courses" ? (
-              <CourseTrainer />
+              <CourseTrainer TrainerData={data}/>
             ) : CTR === "about" ? (
-              <AboutTrainer />
+              <AboutTrainer TrainerData={data}/>
             ) : CTR === "transaction" ? (
-              <TransactionTrainer />
+              <TransactionTrainer TrainerData={data}/>
             ) : CTR === "enrollment" ? (
-              <EnrollTrainer />
-            ) : CTR === "review" ? (
-              <ReviewTrainer />
+              <EnrollTrainer TrainerData={data}/>
+              
+            ) : CTR === "batch" ? (
+              <BatchTrainer TrainerData={data}/>
+              
+            )
+            : CTR === "review" ? (
+              <ReviewTrainer TrainerData={data}/>
             ) : null}
           </div>
         </div>

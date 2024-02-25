@@ -29,11 +29,7 @@ const useUpdate = (updateUrl) => {
     } catch (error) {
       setError(error);
       setLoading(false);
-      swal({
-        icon: "error",
-        title: "Oops...",
-        text: "An error occurred while updating the data",
-      });
+      toast.error("An error occurred");
     }
   };
 

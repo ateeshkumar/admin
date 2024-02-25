@@ -63,7 +63,7 @@ setdata(CourseData)
 <div className=" flex justify-between gap-4 w-[100%]">
     <h1>{elm.title}</h1>
     <div className="flex ">
-        <h1>2 Lectures</h1>
+        <h1>{elm.subModule.length} Topics</h1>
         <h1>{elm.duration}</h1>
     </div>
 </div>

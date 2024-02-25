@@ -219,7 +219,7 @@ const SubCategories = () => {
             </div>
 
             {/* {similar fields} */}
-            <button className="btn btn-primary mt-3 w-[100%]">Add Subcategory</button>
+            <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">Add Subcategory</button>
           </form>
           </div>
         )}
