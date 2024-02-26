@@ -39,7 +39,7 @@ function Courses() {
 
     try {
       const res = await axios.get(
-        `https://api.logicmitra.com:8086/api/course-detail/course-modules-list?courseId=${e.target.id}`
+        `http://localhost:8086/api/course-detail/course-modules-list?courseId=${e.target.id}`
       );
       console.log(res.data);
       if (res.status === 200) {
@@ -262,7 +262,10 @@ function Courses() {
                           </Link>{" "}
                         </td>
                         <td>
-                          <button onClick={getSubModuleData} className="flex flex-row w-[100%]">
+                          <button
+                            onClick={getSubModuleData}
+                            className="flex flex-row w-[100%]"
+                          >
                             <Link
                               className="  py-2 px-3 text-sm rounded-md view-icon"
                               to={`/courses/module`}

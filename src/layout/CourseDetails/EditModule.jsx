@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import useUpdate from "../../hooks/useUpdate";
 
 const EditModule = () => {
   const navigate = useNavigate();
@@ -8,17 +9,30 @@ const EditModule = () => {
   const [data, error, loading] = useFetch(
     `https://api.logicmitra.com:8086/api/course-detail/modules-details?moduleId=${id}`
   );
-  const [params, setParams] = useState({
-    title: data?.data?.tille,
-    description: data?.data?.description,
-    duration: data?.data?.duration,
-    fileUrl: data?.data?.fileUrl,
-    videoUrl: data?.data?.videoUrl,
-    status: data?.data?.status,
-    sequence: data?.data?.sequence,
-  });
+  const [params, setParams] = useState({});
+  useEffect(() => {
+    if (data) {
+      setParams(data?.data);
+    }
+  }, [data]);
+  const handleChange = async (e) => {
+    console.log(e.target);
+    const { name, value, type, files } = e.target;
+    setParams({
+      ...params,
+      [name]: type === "file" ? files[0] : value,
+    });
+  };
+  const [handleUpdate] = useUpdate(
+    `https://api.logicmitra.com:8086/api/course-detail/update-module`
+  );
+  const handleSubmit = async (e) => {
+    console.log(e);
+    e.preventDefault();
+    handleUpdate(`moduleId=${e.target.id}`, params, "/courses/module");
+  };
   console.log(params);
-  console.log(data.data);
+
   return (
     <div>
       {/* Display error message if there's an error */}
@@ -33,8 +47,8 @@ const EditModule = () => {
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 card"
-            // onSubmit={handleSubmit}
-            // id={params?.id}
+            onSubmit={handleSubmit}
+            id={params?.id}
           >
             {/* Form inputs for category details */}
             <div className="w-100 d-flex gap-3">
@@ -45,20 +59,41 @@ const EditModule = () => {
                   <input
                     type="text"
                     className="form-control"
-                    // value={params?.title}
+                    value={params?.title}
                     name="title"
                     placeholder="title"
-                    // onChange={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="col-4">
-                  <label htmlFor="exampleInputUsername1">ImageUrl</label>
+                  <label htmlFor="exampleInputUsername1">Title</label>
                   <input
-                    type="file"
+                    type="text"
                     className="form-control"
-                    // value={params?.imageUrl}
-                    name="imageUrl"
-                    // onChange={handleChange}
+                    value={params?.duration}
+                    name="duration"
+                    placeholder="duration"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-4">
+                  <label htmlFor="exampleInputUsername1">File Url</label>
+                  <input
+                    type="url"
+                    className="form-control"
+                    value={params?.fileUrl}
+                    name="fileUrl"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-4">
+                  <label htmlFor="exampleInputUsername1">Video Url</label>
+                  <input
+                    type="url"
+                    className="form-control"
+                    value={params?.videoUrl}
+                    name="videoUrl"
+                    onChange={handleChange}
                   />
                 </div>
 
@@ -71,8 +106,8 @@ const EditModule = () => {
                       id="active"
                       name="status"
                       value={1}
-                      //   checked={params?.status == 1}
-                      //   onChange={handleChange}
+                      checked={params?.status == 1}
+                      onChange={handleChange}
                     />
                     Active
                     <input
@@ -80,8 +115,8 @@ const EditModule = () => {
                       id="active"
                       name="status"
                       value={0}
-                      //   checked={params?.status == 0}
-                      //   onChange={handleChange}
+                      checked={params?.status == 0}
+                      onChange={handleChange}
                     />
                     Inactive
                   </div>
@@ -92,10 +127,10 @@ const EditModule = () => {
                   <input
                     type="number"
                     className="form-control"
-                    // value={params?.sequence}
+                    value={params?.sequence}
                     name="sequence"
                     placeholder="sequence"
-                    // onChange={handleChange}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className="col-12">
@@ -105,22 +140,30 @@ const EditModule = () => {
                     cols="30"
                     rows="10"
                     className="form-control"
-                    // value={params?.description}
+                    value={params?.description}
                     name="description"
                     placeholder="Description"
-                    // onChange={handleChange}
+                    onChange={handleChange}
                   ></textarea>
                 </div>
               </div>
             </div>
 
             {/* Submit and cancel buttons */}
-            <button type="submit" className="btn btn-primary mr-2">
-              Submit
-            </button>
-            <button type="reset" className="btn btn-light">
-              Cancel
-            </button>
+            <div className="flex justify-between items-center">
+              <button
+                type="submit"
+                className="Add-btn rounded-sm py-2 my-2  px-5"
+              >
+                Submit
+              </button>
+              <button
+                type="reset"
+                className="Cancel-btn  py-2  rounded-sm my-2 px-5"
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       )}

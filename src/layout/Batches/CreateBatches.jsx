@@ -6,7 +6,7 @@ import { useAdd } from "../../hooks/useAdd";
 const CreateBatches = () => {
   const [courData, setCourData] = useState([]);
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com/api/user/list?userType=trainer`
+    `https://api.logicmitra.com:8086/api/user/list?userType=trainer`
   );
   const [params, setParams] = useState({
     btitle: "",
@@ -29,7 +29,7 @@ const CreateBatches = () => {
     });
     try {
       const data1 = await axios.get(
-        `https://api.logicmitra.com/api/courses//trainer-courses?trainId=${params.btrainer}`
+        `https://api.logicmitra.com:8086/api/courses//trainer-courses?trainId=${params.btrainer}`
       );
       setCourData(data1?.data?.data?.courses);
     } catch (error) {
@@ -37,7 +37,7 @@ const CreateBatches = () => {
     }
   };
   const [addData] = useAdd(
-    `https://api.logicmitra.com/api/batches/create-batch`
+    `https://api.logicmitra.com:8086/api/batches/create-batch`
   );
   const handleSubmit = (e) => {
     e.preventDefault();

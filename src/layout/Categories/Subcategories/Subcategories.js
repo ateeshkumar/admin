@@ -7,11 +7,11 @@ import { useAdd } from "../../../hooks/useAdd";
 import { useDeleteOne } from "../../../hooks/useDeleteOne";
 
 import { UsesubcategoriesContext } from "../../../context/SubcatContext";
+import Popup from "reactjs-popup";
+import ImageViewer from "../../../components/ImageViewer";
 
 const SubCategories = () => {
- 
-
-  const SubCatUrl= "/categories/subcategories"
+  const SubCatUrl = "/categories/subcategories";
 
   // Fetch subcategory data using a custom hook (useFetch)
 
@@ -50,8 +50,7 @@ const SubCategories = () => {
   );
   const handleSubmit = (event) => {
     event.preventDefault();
-    addData(params , SubCatUrl)
-     
+    addData(params, SubCatUrl);
   };
   // delete the particular Categories
   const { Delete } = useDeleteOne(
@@ -60,7 +59,7 @@ const SubCategories = () => {
 
   // Handle deletion of a category
   const handleDelete = async (e) => {
-    Delete(e.target.id , SubCatUrl);
+    Delete(e.target.id, SubCatUrl);
   };
 
   return (
@@ -76,14 +75,13 @@ const SubCategories = () => {
       <div className="row  space-y-5 lg:space-y-0">
         <div className="col col-lg-7">
           <div className=" ">
-           
-              {/* Display loading message while data is being fetched */}
-              {loading && <h1 className="text-white">Loading...</h1>}
-              {/* Display error message if there's an error */}
-              {error && <h1 className="text-white">{error.message}</h1>}
-              {/* Display Category data if available */}
-              {subcatData.data && (
-                <div className="table-responsive Ttable ">
+            {/* Display loading message while data is being fetched */}
+            {loading && <h1 className="text-white">Loading...</h1>}
+            {/* Display error message if there's an error */}
+            {error && <h1 className="text-white">{error.message}</h1>}
+            {/* Display Category data if available */}
+            {subcatData.data && (
+              <div className="table-responsive Ttable ">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr>
@@ -102,10 +100,26 @@ const SubCategories = () => {
                       <tr key={item.title} className="Tbody">
                         <td>{item.title}</td>
                         <td>
-                          <img
-                            src={`https://api.logicmitra.com/uploads/subcategories/${item.imageUrl}`}
-                            alt="image" className="w-10 h-10 rounded-md"
-                          />
+                          <Popup
+                            trigger={
+                              <button>
+                                <img
+                                  src={`https://api.logicmitra.com/uploads/subcategories/${item.imageUrl}`}
+                                  alt="image"
+                                  className="w-10 h-10 rounded-md"
+                                />
+                              </button>
+                            }
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <ImageViewer
+                                url={`https://api.logicmitra.com/uploads/subcategories/${item.imageUrl}`}
+                                close={close}
+                              />
+                            )}
+                          </Popup>
                         </td>
 
                         <td>{item.status === 1 ? "Active " : "Inactive"}</td>
@@ -131,96 +145,97 @@ const SubCategories = () => {
                     ))}
                   </tbody>
                 </table>
-                </div>
-              )}
-            
+              </div>
+            )}
           </div>
         </div>
         {subcatData?.data && (
           <div className="col-lg-5 lg:px-5">
-          <form
-            className="box   py-4 shadow-lg  lg:h-50"
-            onSubmit={handleSubmit}
-          >
-            <div className="">
-              <p className="text-white">Title</p>
-              <input
-                onChange={handleChange}
-                required
-                name="title"
-                value={params?.title}
-                type="text"
-                className="form-control my-2"
-              />
-            </div>
+            <form
+              className="box   py-4 shadow-lg  lg:h-50"
+              onSubmit={handleSubmit}
+            >
+              <div className="">
+                <p className="text-white">Title</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="title"
+                  value={params?.title}
+                  type="text"
+                  className="form-control my-2"
+                />
+              </div>
 
-            <div className="">
-              <p className="text-white">Image Url</p>
-              <input
-                onChange={handleChange}
-                required
-                name="imageUrl"
-                type="file"
-                className="form-control my-2"
-              />
-            </div>
+              <div className="">
+                <p className="text-white">Image Url</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="imageUrl"
+                  type="file"
+                  className="form-control my-2"
+                />
+              </div>
 
-            <div className="">
-              <p className="text-white">Status</p>
+              <div className="">
+                <p className="text-white">Status</p>
 
-              <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
-                <div className=" ">
-                  <input
-                    defaultChecked
-                    type="radio"
-                    id="active"
-                    name="status"
-                    value={1}
-                    checked={params?.status == 1}
-                    onChange={handleChange}
-                  />
-                  Active
-                </div>
+                <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
+                  <div className=" ">
+                    <input
+                      defaultChecked
+                      type="radio"
+                      id="active"
+                      name="status"
+                      value={1}
+                      checked={params?.status == 1}
+                      onChange={handleChange}
+                    />
+                    Active
+                  </div>
 
-                <div className="">
-                  <input
-                    type="radio"
-                    id="inactive"
-                    value={0}
-                    name="status"
-                    onChange={handleChange}
-                    checked={params?.status == 0}
-                  />
-                  Inactive
+                  <div className="">
+                    <input
+                      type="radio"
+                      id="inactive"
+                      value={0}
+                      name="status"
+                      onChange={handleChange}
+                      checked={params?.status == 0}
+                    />
+                    Inactive
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="">
-              <p className="text-white">Sequence</p>
-              <input
-                onChange={handleChange}
-                required
-                name="sequence"
-                value={params?.sequence}
-                type="number"
-                className="form-control my-2"
-              />
-            </div>
-            <div className="">
-              <p className="text-white">Description</p>
-              <textarea
-                type="text"
-                required
-                className="form-control my-2"
-                value={params?.description}
-                name="description"
-                onChange={handleChange}
-              ></textarea>
-            </div>
+              <div className="">
+                <p className="text-white">Sequence</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="sequence"
+                  value={params?.sequence}
+                  type="number"
+                  className="form-control my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">Description</p>
+                <textarea
+                  type="text"
+                  required
+                  className="form-control my-2"
+                  value={params?.description}
+                  name="description"
+                  onChange={handleChange}
+                ></textarea>
+              </div>
 
-            {/* {similar fields} */}
-            <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">Add Subcategory</button>
-          </form>
+              {/* {similar fields} */}
+              <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">
+                Add Subcategory
+              </button>
+            </form>
           </div>
         )}
       </div>

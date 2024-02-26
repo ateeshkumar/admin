@@ -4,10 +4,10 @@ import { useAdd } from "../../hooks/useAdd";
 
 const CreateEnrollment = () => {
   const [data, error, loading] = useFetch(
-    "https://api.logicmitra.com/api/courses/all-course"
+    "https://api.logicmitra.com:8086/api/courses/all-course"
   );
   const [data1, error1, loading1] = useFetch(
-    "https://api.logicmitra.com/api/user/list?userType=student"
+    "https://api.logicmitra.com:8086/api/user/list?userType=student"
   );
   console.log(data);
   console.log(data1);
@@ -37,7 +37,7 @@ const CreateEnrollment = () => {
   };
 
   const [addData] = useAdd(
-    `https://api.logicmitra.com/api/enroll/enroll-student`
+    `https://api.logicmitra.com:8086/api/enroll/enroll-student`
   );
   const handleSubmit = (e) => {
     e.preventDefault();

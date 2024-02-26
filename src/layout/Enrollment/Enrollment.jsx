@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Enrollment = () => {
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com/api/enroll/enroll-list`
+    `https://api.logicmitra.com:8086/api/enroll/enroll-list`
   );
   console.log(data);
   return (

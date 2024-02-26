@@ -29,9 +29,19 @@
 
 /* sidebar  */
 
+.topnavbar{
+  background-color: var(--box-background);
+  box-shadow: 0px 9px 7px 0px #04775A59
+}
+
 .sidebar{
   background-color: #04775A !important;
   transition: width 0.35s linear,  0.35s linear;
+ 
+}
+
+.side-menu{
+  background-color: var(--box-background);
 }
 
 body{

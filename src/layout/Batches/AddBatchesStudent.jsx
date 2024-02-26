@@ -8,7 +8,7 @@ const AddBatchesStudent = () => {
   const { id } = useParams();
   const [courseData, setCourData] = useState([]);
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com/api/batches/batch-detail?batchId=${id}`
+    `https://api.logicmitra.com:8086/api/batches/batch-detail?batchId=${id}`
   );
   console.log(data.data);
 
@@ -17,7 +17,7 @@ const AddBatchesStudent = () => {
     console.log(e.target.id);
     try {
       const data = await axios.post(
-        `https://api.logicmitra.com/api/batches/remove-student?batchId=${id}`,
+        `https://api.logicmitra.com:8086/api/batches/remove-student?batchId=${id}`,
         { studentid: e.target.id }
       );
       if (data.status === 200) {
@@ -35,7 +35,7 @@ const AddBatchesStudent = () => {
   const coursefetchData = async (id) => {
     try {
       const data = await axios.get(
-        `https://api.logicmitra.com/api/courses/course-detail?courseId=${id}`
+        `https://api.logicmitra.com:8086/api/courses/course-detail?courseId=${id}`
       );
       setCourData(data?.data?.data);
     } catch (error) {
@@ -52,7 +52,7 @@ const AddBatchesStudent = () => {
     console.log(e.target.id);
     try {
       const data = await axios.post(
-        `https://api.logicmitra.com/api/batches/add-student?batchId=${id}`,
+        `https://api.logicmitra.com:8086/api/batches/add-student?batchId=${id}`,
         { studentid: e.target.id }
       );
       if (data.status === 200) {

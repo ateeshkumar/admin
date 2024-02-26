@@ -37,22 +37,12 @@ const AddModules = () => {
   // console.log(data1?.data?.ctrainer?._id);
 
   //add module data
+  const [addData] = useAdd(
+    `https://api.logicmitra.com:8086/api/course-detail/create-module`
+  );
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const data = await axios.post(
-        "https://api.logicmitra.com:8086/api/course-detail/create-module",
-        params
-      );
-      if (data.status === 200) {
-        toast.success(data?.data?.message || "Module Created Successfully");
-      } else {
-        toast.warn(data?.data?.message || "Please Try Again!!");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Internal Server Error");
-    }
+    addData(params, "/courses/module");
   };
 
   const handleChange = (event) => {
@@ -187,14 +177,35 @@ const AddModules = () => {
                 />
               </div>
               <div className="">
-                <p className="text-white">Image Url</p>
+                <p className="text-white">Duration</p>
                 <input
                   onChange={handleChange}
                   required
-                  name="imageUrl"
-                  // value={params?.imageUrl}
-                  type="file"
-                  multiple={true}
+                  name="duration"
+                  value={params?.duration}
+                  type="text"
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">File Url</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="fileUrl"
+                  value={params?.fileUrl}
+                  type="url"
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">Video Url</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="videoUrl"
+                  value={params?.videoUrl}
+                  type="url"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
               </div>

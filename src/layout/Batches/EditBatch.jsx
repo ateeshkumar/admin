@@ -6,7 +6,7 @@ import useUpdate from "../../hooks/useUpdate";
 const EditBatch = () => {
   const { id } = useParams();
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com/api/batches/batch-detail?batchId=${id}`
+    `https://api.logicmitra.com:8086/api/batches/batch-detail?batchId=${id}`
   );
   const [params, setParams] = useState({});
   console.log(params);
@@ -26,7 +26,7 @@ const EditBatch = () => {
     });
   };
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com/api/batches/update-batch`
+    `https://api.logicmitra.com:8086/api/batches/update-batch`
   );
   const handleSubmit = async (e) => {
     console.log(e);

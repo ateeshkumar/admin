@@ -5,10 +5,10 @@ import { useDeleteOne } from "../../hooks/useDeleteOne";
 
 const Batches = () => {
   const [data, loading, error] = useFetch(
-    `https://api.logicmitra.com/api/batches/list`
+    `https://api.logicmitra.com:8086/api/batches/list`
   );
   const { Delete } = useDeleteOne(
-    `https://api.logicmitra.com/api/batches/delete-batch?batchId=`
+    `https://api.logicmitra.com:8086/api/batches/delete-batch?batchId=`
   );
   const handleDelete = async (e) => {
     console.log("cate id is ", e.target.id);
@@ -116,11 +116,11 @@ const Batches = () => {
                   <thead>
                     <tr className="Thead">
                       <th scope="col">Title</th>
-                      <th scope="col">Batch Start</th>
+                      <th scope="col">Start Date</th>
                       <th scope="col">Batch Time</th>
                       <th scope="col">Batch Seats</th>
                       <th scope="col">Status</th>
-                      <th scope="col">No of Student</th>
+                      <th scope="col">Enroll Student</th>
                       <th scope="col">Trainer</th>
                       <th scope="col">Course</th>
                       <th scope="col">Options</th>
@@ -134,7 +134,16 @@ const Batches = () => {
                         <td>{item?.bstartdate}</td>
                         <td> {item?.btime}</td>
                         <td> {item?.bseats}</td>
-                        <td> {item.bstatus}</td>
+                        <td>
+                          {" "}
+                          {item.bstatus == 0
+                            ? "Upcoming"
+                            : item.bstatus == 1
+                            ? "runing"
+                            : item.bstatus == 2
+                            ? "completed"
+                            : "cancelled"}
+                        </td>
                         <td> {item?.student?.length}</td>
                         <td> {item?.btrainer?.sname}</td>
                         <td>{item?.bcourse?.ctitle}</td>

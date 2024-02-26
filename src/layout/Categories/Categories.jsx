@@ -11,11 +11,11 @@ import {
   SubcatContext,
   UsesubcategoriesContext,
 } from "../../context/SubcatContext";
+import Popup from "reactjs-popup";
+import ImageViewer from "../../components/ImageViewer";
 
 function Categories() {
-  
-
-  const CategoryUrl="/categories"
+  const CategoryUrl = "/categories";
 
   const { subcatData, setData, setLoading, setError, categoryId, setcatId } =
     UsesubcategoriesContext();
@@ -84,11 +84,10 @@ function Categories() {
 
     event.preventDefault();
 
-    addData(params , CategoryUrl)
-      
+    addData(params, CategoryUrl);
   };
 
-  console.log(params , CategoryUrl);
+  console.log(params, CategoryUrl);
   // delete the particular Categories
   const { Delete } = useDeleteOne(
     `https://api.logicmitra.com:8086/api/categories/delete-cat?catId=`
@@ -97,7 +96,7 @@ function Categories() {
   // Handle deletion of a category
   const handleDelete = async (e) => {
     console.log("cate id is ", e.target.id);
-   Delete(e.target.id , CategoryUrl)
+    Delete(e.target.id, CategoryUrl);
   };
 
   // Fetch category data using a custom hook (useFetch)
@@ -117,20 +116,17 @@ function Categories() {
         </div>
       </section>
 
-    
-
       {/* Categories Table */}
       <div className="row space-y-5 lg:space-y-0">
         <div className="col col-lg-7">
           <div className="">
-            
-              {/* Display loading message while data is being fetched */}
-              {loading && <h1 className="text-white">Loading...</h1>}
-              {/* Display error message if there's an error */}
-              {error && <h1 className="text-white">{error.message}</h1>}
-              {/* Display Category data if available */}
-              {data.data && (
-                <div className="table-responsive Ttable">
+            {/* Display loading message while data is being fetched */}
+            {loading && <h1 className="text-white">Loading...</h1>}
+            {/* Display error message if there's an error */}
+            {error && <h1 className="text-white">{error.message}</h1>}
+            {/* Display Category data if available */}
+            {data.data && (
+              <div className="table-responsive Ttable">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
@@ -149,10 +145,27 @@ function Categories() {
                       <tr key={item.id} className="Tbody">
                         <td>{item.title}</td>
                         <td>
-                          <img
-                            src={`https://api.logicmitra.com/uploads/categories/${item.imageUrl}`}
-                            alt="image" className="w-10 h-10 rounded-md"
-                          />
+                          <Popup
+                            trigger={
+                              <button>
+                                {" "}
+                                <img
+                                  src={`https://api.logicmitra.com/uploads/categories/${item.imageUrl}`}
+                                  alt="image"
+                                  className="w-10 h-10 rounded-md"
+                                />
+                              </button>
+                            }
+                            modal
+                            nested
+                          >
+                            {(close) => (
+                              <ImageViewer
+                                url={`https://api.logicmitra.com/uploads/categories/${item.imageUrl}`}
+                                close={close}
+                              />
+                            )}
+                          </Popup>
                         </td>
 
                         <td>{item.status === 1 ? "Active " : "Inactive"}</td>
@@ -185,104 +198,102 @@ function Categories() {
                           >
                             <i id={item.id} className="bi bi-trash3"></i>
                           </Link>{" "}
-                         
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
-</div>
-              )}
-            
+              </div>
+            )}
           </div>
         </div>
         {data.data && (
-         
-         <div className="col-lg-5 lg:px-5">
-         <form
-            className="box   py-4 shadow-lg  lg:h-50"
-            onSubmit={handleSubmit}
-          >
-            <div className="">
-              <p className="text-white">Title</p>
-              <input
-                onChange={handleChange}
-                required
-                name="title"
-                value={params?.title}
-                type="text"
-                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-              />
-            </div>
-            <div className="">
-              <p className="text-white">Image Url</p>
-              <input
-                onChange={handleChange}
-                required
-                name="imageUrl"
-                // value={params?.imageUrl}
-                type="file"
-                multiple={true}
-                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-              />
-            </div>
+          <div className="col-lg-5 lg:px-5">
+            <form
+              className="box   py-4 shadow-lg  lg:h-50"
+              onSubmit={handleSubmit}
+            >
+              <div className="">
+                <p className="text-white">Title</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="title"
+                  value={params?.title}
+                  type="text"
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">Image Url</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="imageUrl"
+                  // value={params?.imageUrl}
+                  type="file"
+                  multiple={true}
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                />
+              </div>
 
-            <div className="">
-              <p className="text-white">Status</p>
+              <div className="">
+                <p className="text-white">Status</p>
 
-              <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
-                <div className=" ">
-                  <input
-                    
-                    type="radio"
-                    id="active"
-                    name="status"
-                    value={1}
-                    checked={params?.status == 1}
-                    onChange={handleChange}
-                  />
-                  Active
-                </div>
+                <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
+                  <div className=" ">
+                    <input
+                      type="radio"
+                      id="active"
+                      name="status"
+                      value={1}
+                      checked={params?.status == 1}
+                      onChange={handleChange}
+                    />
+                    Active
+                  </div>
 
-                <div className="">
-                  <input
-                    type="radio"
-                    id="inactive"
-                    value={0}
-                    name="status"
-                    onChange={handleChange}
-                    checked={params?.status == 0}
-                  />
-                  Inactive
+                  <div className="">
+                    <input
+                      type="radio"
+                      id="inactive"
+                      value={0}
+                      name="status"
+                      onChange={handleChange}
+                      checked={params?.status == 0}
+                    />
+                    Inactive
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="">
-              <p className="text-white">Sequence</p>
-              <input
-                onChange={handleChange}
-                required
-                name="sequence"
-                value={params?.sequence}
-                type="number"
-                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-              />
-            </div>
-            <div className="">
-              <p className="text-white">Description</p>
-              <textarea
-                type="text"
-                required
-                className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-                value={params?.description}
-                name="description"
-                onChange={handleChange}
-              ></textarea>
-            </div>
+              <div className="">
+                <p className="text-white">Sequence</p>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="sequence"
+                  value={params?.sequence}
+                  type="number"
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">Description</p>
+                <textarea
+                  type="text"
+                  required
+                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                  value={params?.description}
+                  name="description"
+                  onChange={handleChange}
+                ></textarea>
+              </div>
 
-            {/* {similar fields} */}
-            <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">Add Category</button>
-          </form>
+              {/* {similar fields} */}
+              <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">
+                Add Category
+              </button>
+            </form>
           </div>
         )}
       </div>

@@ -5,6 +5,8 @@ import swal from "sweetalert";
 import axios from "axios";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
 import { useAdd } from "../../hooks/useAdd";
+import Popup from "reactjs-popup";
+import ImageViewer from "../../components/ImageViewer";
 
 function HomeSlider() {
   const HomeUrl = "/home-slider";
@@ -89,11 +91,26 @@ function HomeSlider() {
                         <tr key={item.id} className="Tbody">
                           <td>{item.title}</td>
                           <td>
-                            <img
-                              src={`https://api.logicmitra.com/uploads/advertiseBanner/${item.bannerUrl}`}
-                              alt="image"
-                              className="w-10 h-10 rounded-md object-contain"
-                            />
+                            <Popup
+                              trigger={
+                                <button>
+                                  <img
+                                    src={`https://api.logicmitra.com/uploads/advertiseBanner/${item.bannerUrl}`}
+                                    alt="image"
+                                    className="w-10 h-10 rounded-md object-contain"
+                                  />
+                                </button>
+                              }
+                              modal
+                              nested
+                            >
+                              {(close) => (
+                                <ImageViewer
+                                  url={`https://api.logicmitra.com/uploads/advertiseBanner/${item.bannerUrl}`}
+                                  close={close}
+                                />
+                              )}
+                            </Popup>
                           </td>
                           <td>{item.position}</td>
                           <td>{item.status === 1 ? "Active " : "Inactive"}</td>
@@ -111,21 +128,6 @@ function HomeSlider() {
                             <Link
                               className="py-2 px-3 rounded-md edit-icon"
                               to={`/categories/edit/${item.id}`}
-                            >
-                              <i class="bi bi-pencil-square"></i>
-                            </Link>
-                            <Link
-                              id={item.id}
-                              className=" py-2 px-3 rounded-md delete-icon "
-                              onClick={handleDelete}
-                            >
-                              <i id={item.id} className="bi bi-trash3"></i>
-                            </Link>{" "}
-                          </td>
-                          <td>
-                            <Link
-                              className="py-2 px-3 rounded-md edit-icon"
-                              to={`/home-slider/edit/${item.id}`}
                             >
                               <i class="bi bi-pencil-square"></i>
                             </Link>

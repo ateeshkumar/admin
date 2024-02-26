@@ -9,8 +9,6 @@ const EditSubModule = () => {
     `https://api.logicmitra.com:8086/api/course-detail/get-submodule-detail?submoduleId=${id}`
   );
 
-  console.log(id);
-  console.log(data);
   return (
     <div>
       {/* Display error message if there's an error */}
