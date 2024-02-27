@@ -72,7 +72,7 @@ function HomeSlider() {
               {error && <h1 className="text-white">{error.message}</h1>}
               {/* Display Category data if available */}
               {data.data && (
-                <div className="table-responsive Ttable">
+                <div className="table-responsive Ttable h-[500px] overflow-y-auto">
                   <table className=" table-striped w-[100%]">
                     <thead>
                       <tr className="Thead">
@@ -127,7 +127,7 @@ function HomeSlider() {
                             {/* Action links for each trainer */}
                             <Link
                               className="py-2 px-3 rounded-md edit-icon"
-                              to={`/categories/edit/${item.id}`}
+                              to={`/home-slider/edit/${item.id}`}
                             >
                               <i class="bi bi-pencil-square"></i>
                             </Link>

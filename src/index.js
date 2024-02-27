@@ -44,6 +44,8 @@ import CreateBatches from "./layout/Batches/CreateBatches";
 import AddBatchesStudent from "./layout/Batches/AddBatchesStudent";
 import EditBatch from "./layout/Batches/EditBatch";
 import CreateEnrollment from "./layout/Enrollment/CreateEnrollment";
+import BatchesDetails from "./layout/Batches/BatchesDetails";
+import EnrollDetails from "./layout/Enrollment/EnrollDetails";
 
 const router = createBrowserRouter([
   {
@@ -192,6 +194,10 @@ const router = createBrowserRouter([
             path: "create",
             element: <CreateEnrollment />,
           },
+          {
+            path: "view/:id",
+            element: <EnrollDetails />,
+          },
         ],
       },
       {
@@ -204,6 +210,10 @@ const router = createBrowserRouter([
           {
             path: "create",
             element: <CreateBatches />,
+          },
+          {
+            path: "view/:id",
+            element: <BatchesDetails />,
           },
           {
             path: "edit/:id",

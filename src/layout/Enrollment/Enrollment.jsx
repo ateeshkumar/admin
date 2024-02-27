@@ -1,7 +1,6 @@
 import React from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { Link } from "react-router-dom";
-
 const Enrollment = () => {
   const [data, error, loading] = useFetch(
     `https://api.logicmitra.com:8086/api/enroll/enroll-list`
@@ -9,7 +8,7 @@ const Enrollment = () => {
   console.log(data);
   return (
     <>
-      <div className="py-3  sm:p-3 text-white w-[100%] overflow-x-auto">
+      <div className=" pl-3  p-md-3 text-white w-[100%]  relative courses-page">
         <section className="section py-3">
           <div className="text-xl font-medium   d-flex justify-between items-center">
             <h1>Enrollment Lists</h1>
@@ -103,11 +102,12 @@ const Enrollment = () => {
             {/* {loading && <h1 className="text-white">Loading...</h1>} */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {data && (
-              <div className="table-responsive Ttable mt-4  ">
+              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
                       <th scope="col">Student Name</th>
+                      <th scope="col">Trainer Name</th>
                       <th scope="col">Course Name</th>
                       <th scope="col">Enroll Date</th>
                       <th scope="col">Payment Amount</th>
@@ -120,6 +120,7 @@ const Enrollment = () => {
                     {data.data?.map((item, index) => (
                       <tr key={index} className="Tbody">
                         <td>{item.studentid?.sname}</td>
+                        <td>{item.trainerid?.sname}</td>
                         <td>{item?.courseid?.ctitle}</td>
                         <td> {item?.enrolldate.substring(0, 10)}</td>
                         <td> {item?.payamount} Rs</td>
@@ -128,23 +129,23 @@ const Enrollment = () => {
                         <td className="flex gap-2 items-cente justify-center">
                           <Link
                             className="  py-2 px-3 rounded-md view-icon"
-                            to={`/batches/view/${item.id}`}
+                            to={`/enrollment/view/${item.id}`}
                           >
                             <i className="bi bi-eye-fill"></i>
                           </Link>{" "}
-                          {/* <Link
+                          {/* {/* <Link
                             className=" py-2 px-3 rounded-md edit-icon"
                             to={`/batches/edit/${item.id}`}
                           >
                             <i className="bi bi-pencil-square"></i>
-                          </Link>
+                          </Link> */}
                           <Link
                             className="  py-2 px-3 rounded-md delete-icon "
                             // onClick={handleDelete}
                             id={item.id}
                           >
-                            <i id={item.id} className="bi bi-trash3"></i>
-                          </Link>{" "} */}
+                            Cancel
+                          </Link>{" "}
                         </td>
                       </tr>
                     ))}

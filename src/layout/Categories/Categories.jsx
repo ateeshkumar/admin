@@ -126,7 +126,7 @@ function Categories() {
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
             {data.data && (
-              <div className="table-responsive Ttable">
+              <div className="table-responsive Ttable h-[500px] overflow-y-auto">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">

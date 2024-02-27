@@ -114,7 +114,7 @@ const EditBatch = () => {
             </div>
             <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md m-6">
               <img
-                src={`https://api.logicmitra.com/uploads/batch/${params?.bimage}`}
+                src={`https://api.logicmitra.com:8086/uploads/batch/${params?.bimage}`}
                 alt="image"
                 className="w-[100%] h-[100%]  object-contain"
               />
@@ -146,7 +146,7 @@ const EditBatch = () => {
                     checked={params?.bstatus == 1}
                     onChange={handleChange}
                   />
-                  Active
+                  Running
                 </div>
 
                 <div className="">
@@ -158,7 +158,29 @@ const EditBatch = () => {
                     onChange={handleChange}
                     checked={params?.bstatus == 0}
                   />
-                  Inactive
+                  upcomming
+                </div>
+                <div className="">
+                  <input
+                    type="radio"
+                    id="inactive"
+                    value={2}
+                    name="bstatus"
+                    onChange={handleChange}
+                    checked={params?.bstatus == 2}
+                  />
+                  completed
+                </div>
+                <div className="">
+                  <input
+                    type="radio"
+                    id="inactive"
+                    value={3}
+                    name="bstatus"
+                    onChange={handleChange}
+                    checked={params?.bstatus == 3}
+                  />
+                  cancelled
                 </div>
               </div>
             </div>

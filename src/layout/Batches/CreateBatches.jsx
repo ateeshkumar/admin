@@ -27,9 +27,10 @@ const CreateBatches = () => {
       ...params,
       [name]: type === "file" ? files[0] : value,
     });
+
     try {
       const data1 = await axios.get(
-        `https://api.logicmitra.com:8086/api/courses//trainer-courses?trainId=${params.btrainer}`
+        `https://api.logicmitra.com:8086/api/courses/trainer-courses?trainId=${params.btrainer}`
       );
       setCourData(data1?.data?.data?.courses);
     } catch (error) {
@@ -205,23 +206,23 @@ const CreateBatches = () => {
                     type="radio"
                     id="active"
                     name="bstatus"
-                    value={1}
-                    checked={params?.bstatus == 1}
+                    value={0}
+                    checked={params?.bstatus == 0}
                     onChange={handleChange}
                   />
-                  Active
+                  upcomming
                 </div>
 
                 <div className="">
                   <input
                     type="radio"
                     id="inactive"
-                    value={0}
+                    value={1}
                     name="bstatus"
                     onChange={handleChange}
-                    checked={params?.bstatus == 0}
+                    checked={params?.bstatus == 1}
                   />
-                  Inactive
+                  running
                 </div>
               </div>
             </div>

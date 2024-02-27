@@ -15,8 +15,11 @@ function Home() {
      
 
        <Topbar setshow={setshow} show={show}/>
-      <div className="container-fluid flex items-start pl-0">
-         <Sidebar setshow={setshow} show={show}/>
+      <div className=" flex  pl-0 h-[100%]">
+        
+        <div>
+        <Sidebar setshow={setshow} show={show} />
+        </div>
         <Outlet />
        
       </div>

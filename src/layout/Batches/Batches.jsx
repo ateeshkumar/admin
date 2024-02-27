@@ -2,6 +2,7 @@ import React from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
+import BatchesDetails from "./BatchesDetails";
 
 const Batches = () => {
   const [data, loading, error] = useFetch(
@@ -17,7 +18,7 @@ const Batches = () => {
   console.log(data);
   return (
     <>
-      <div className="py-3  sm:p-3 text-white w-[100%] overflow-x-auto">
+      <div className="md:pl-3  p-3 text-white w-[100%]  relative courses-page">
         <section className="section py-3">
           <div className="text-xl font-medium   d-flex justify-between items-center">
             <h1>Batches Lists</h1>
@@ -39,7 +40,7 @@ const Batches = () => {
         </div>
         <div className="row">
           <div className="col">
-            <div className="box ">
+            <div className="box">
               <div className="card-body row">
                 <div className="border-bottom mb-3 border-black">
                   <h4 className="text-white heading">Filters</h4>
@@ -111,7 +112,7 @@ const Batches = () => {
             {/* {loading && <h1 className="text-white">Loading...</h1>} */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {data && (
-              <div className="table-responsive Ttable mt-4  ">
+              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">

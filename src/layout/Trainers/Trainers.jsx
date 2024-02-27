@@ -78,7 +78,7 @@ function Trainers() {
   };
 
   return (
-    <div className=" pl-3  p-md-3 text-white w-[100%] ">
+    <div className=" md:pl-3  p-3 text-white w-[100%] ">
       <section className="section py-3">
         <div className="text-xl font-medium   d-flex justify-between items-center">
           <h1>Trainers List</h1>

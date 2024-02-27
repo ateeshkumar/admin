@@ -78,7 +78,7 @@ function Students() {
   };
 
   return (
-    <div className="pl-3  p-md-3 text-white w-[100%] ">
+    <div className="md:pl-3  p-3 text-white w-[100%] ">
       <section className="section py-3">
         <div className="text-xl font-medium   d-flex justify-between items-center">
           <h1>Students List</h1>
@@ -172,7 +172,7 @@ function Students() {
           {error && <h1 className="text-white">{error.message}</h1>}
 
           {data?.data && (
-            <div className="table-responsive Ttable mt-4">
+            <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
               <table className=" table-striped  w-[100%]">
                 <thead>
                   <tr className="Thead">

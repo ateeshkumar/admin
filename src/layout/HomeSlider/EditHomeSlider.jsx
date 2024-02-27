@@ -44,7 +44,7 @@ function EditHomeSlider() {
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/advertise/update-advertise?`
+    `https://api.logicmitra.com:8086/api/advertise/update-advertise`
   );
 
   console.log(params);
@@ -56,9 +56,10 @@ function EditHomeSlider() {
 
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`adId==${e.target.id}`, params, CategoryUrl);
+    handleUpdate(`adId=${e.target.id}`, params, CategoryUrl);
   };
 
+  
   return (
     <>
       {/* Display error message if there's an error */}

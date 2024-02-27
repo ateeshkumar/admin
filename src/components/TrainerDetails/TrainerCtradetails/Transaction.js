@@ -39,8 +39,8 @@ console.log(data?.data?.walletTranscation)
   
              
           
-            <div className="table-responsive card">
-              <table className=" table-striped Ttable">
+            <div className="table-responsive Ttable h-[500px] overflow-y-auto">
+              <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >
                     <th scope="col">Sender</th>

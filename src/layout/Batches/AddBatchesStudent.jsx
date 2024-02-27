@@ -35,7 +35,7 @@ const AddBatchesStudent = () => {
   const coursefetchData = async (id) => {
     try {
       const data = await axios.get(
-        `https://api.logicmitra.com:8086/api/courses/course-detail?courseId=${id}`
+        `https://api.logicmitra.com:8086/api/enroll/batch-unassign-student?courId=${id}`
       );
       setCourData(data?.data?.data);
     } catch (error) {
@@ -70,7 +70,7 @@ const AddBatchesStudent = () => {
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Add Student In Batches</h1>
-          <div className="section-header-breadcrumb"></div>
+          <div></div>
         </div>
       </section>
 
@@ -78,6 +78,27 @@ const AddBatchesStudent = () => {
       <div className="row space-y-5 lg:space-y-0">
         <div className="col col-lg-7">
           <div className="">
+            <div className="section-header-breadcrumb m-50% flex flex-col justify-center">
+              <h2 className="text-lg font-medium text-center">
+                Batch Name : {data?.data?.btitle}
+              </h2>
+              <h2 className="text-lg font-medium text-center">
+                Course Name : {data?.data?.bcourse?.ctitle}
+              </h2>
+              <p className="text-lg font-medium text-center">
+                Batch Start Date : {data?.data?.bstartdate}
+              </p>
+              <p className="text-lg font-medium text-center">
+                Batch Time : {data?.data?.btime}
+              </p>
+              <p className="text-lg font-medium text-center">
+                Batch Seats : {data?.data?.bseats}
+              </p>
+              <p className="text-lg font-medium text-center">
+                Batch Seats Left :{" "}
+                {data?.data?.bseats - data?.data?.student?.length}
+              </p>
+            </div>
             {/* Display loading message while data is being fetched */}
             {loading && <h1 className="text-white">Loading...</h1>}
             {/* Display error message if there's an error */}
@@ -92,6 +113,7 @@ const AddBatchesStudent = () => {
                   <thead>
                     <tr className="Thead">
                       <th scope="col">Name</th>
+
                       <th scope="col">Remove</th>
                     </tr>
                   </thead>
@@ -129,14 +151,16 @@ const AddBatchesStudent = () => {
                 <thead>
                   <tr className="Thead">
                     <th scope="col">Name</th>
+                    <th scope="col">Enroll Date</th>
                     <th scope="col">Add</th>
                   </tr>
                 </thead>
                 <tbody className="table-group-divider">
                   {/* Map through trainers data and display in table rows */}
-                  {courseData?.enrollStudent?.map((item, index) => (
+                  {courseData?.map((item, index) => (
                     <tr key={index} className="Tbody">
                       <td>{item?.studentid?.sname}</td>
+                      <td>{item?.enrolldate.substring(0, 10)}</td>
                       <td className="flex gap-2 items-center justify-center">
                         <Link
                           className="py-2 px-3 rounded-md view-icon text-white"

@@ -37,6 +37,10 @@
 .sidebar{
   background-color: #04775A !important;
   transition: width 0.35s linear,  0.35s linear;
+  z-index:9999999;
+  box-sizing: border-box;
+ 
+ 
  
 }
 
@@ -606,4 +610,18 @@ border: 1px solid var(--box-border);
 
 .edit-icon:hover{
   color: var(--btn-backgrond);
+}
+
+
+
+
+/* ********************batch *********** */
+
+
+.Batch{
+  background: #FFFFFF;
+color:#013437;
+;
+
+
 }

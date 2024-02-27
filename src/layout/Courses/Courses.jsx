@@ -101,7 +101,7 @@ function Courses() {
   console.log(data);
   return (
     <>
-      <div className="py-3  sm:p-3 text-white w-[100%] overflow-x-auto courses-page">
+      <div className="md:pl-3  p-3 text-white w-[100%]  courses-page">
         <section className="section py-3">
           <div className="text-xl font-medium   d-flex justify-between items-center">
             <h1>Course List</h1>
@@ -197,7 +197,7 @@ function Courses() {
             {loading && <h1 className="text-white">Loading...</h1>}
             {error && <h1 className="text-white">{error.message}</h1>}
             {data && (
-              <div className="table-responsive Ttable mt-4  ">
+              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">

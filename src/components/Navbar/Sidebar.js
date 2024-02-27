@@ -5,18 +5,16 @@ import { Tooltip } from "@mui/material";
 
 const Sidebar = ({ setshow, show }) => {
 
-    const Handleclick=()=>{
-        setshow(!show)
-    }
+   
 
   return (
     <>
       <section
-        className={` text-white sidebar px-1 py-3  lg:static    fixed top-16 right-0 overscroll-y-scroll   h-[100%]  ${
-          show ? "" : "lg:w-14 -right-72"
+        className={` text-white sidebar px-1 py-3  lg:static fixed  top-16 h-[1000px]    ${
+         show ? "   right-0 " : "lg:w-14 -right-72"
         }`}
       >
-        <ul className=" space-y-3 overflow-y-scroll ">
+        <ul className=" space-y-3 ">
           <li className="">
             <NavLink
               className="border-none outline-none flex items-center gap-2 side-menu p-2 rounded-md "
@@ -35,7 +33,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Dashboard
               </span>
             </NavLink>
@@ -58,7 +56,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Students
               </span>
             </NavLink>
@@ -81,7 +79,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Trainers
               </span>
             </NavLink>
@@ -104,7 +102,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Courses
               </span>
             </NavLink>
@@ -127,7 +125,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Categories
               </span>
             </NavLink>
@@ -150,7 +148,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Home Slider
               </span>
             </NavLink>
@@ -173,7 +171,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Enrollment
               </span>
             </NavLink>
@@ -196,7 +194,7 @@ const Sidebar = ({ setshow, show }) => {
                   <CiGrid41 className="text-xl" />
                 </button>
               )}
-              <span className={` ${!show ? "d-lg-none" : "d-block"}`} onClick={Handleclick}>
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`} >
                 Batches
               </span>
             </NavLink>

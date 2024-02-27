@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { useAdd } from "../../hooks/useAdd";
+import axios from "axios";
 
 const CreateEnrollment = () => {
+  const [courseData, setCourseData] = useState([]);
   const [data, error, loading] = useFetch(
     "https://api.logicmitra.com:8086/api/courses/all-course"
   );
@@ -11,10 +13,11 @@ const CreateEnrollment = () => {
   );
   console.log(data);
   console.log(data1);
+  console.log(courseData);
   const [params, setParams] = useState({
     courseid: "",
     studentid: "",
-    trainerid: "65cbaadfa02a7f37ea7bb6ff",
+    trainerid: null,
     payamount: "",
     utrno: "",
     paystatus: 0,
@@ -34,8 +37,24 @@ const CreateEnrollment = () => {
       ...params,
       [name]: type === "file" ? files[0] : value,
     });
+    if (name === "courseid") {
+      try {
+        const data = await axios.get(
+          `https://api.logicmitra.com:8086/api/courses/course-detail?courseId=${value}`
+        );
+        setCourseData(data?.data?.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
-
+  useEffect(() => {
+    setParams({
+      ...params,
+      trainerid: courseData?.ctrainer?._id,
+      payamount: courseData?.cfees,
+    });
+  }, [courseData]);
   const [addData] = useAdd(
     `https://api.logicmitra.com:8086/api/enroll/enroll-student`
   );
@@ -86,7 +105,6 @@ const CreateEnrollment = () => {
                     data1?.data?.map((elm) => {
                       // const { _id, title } = elm.csubcategory;
                       // console.log(_id, title);
-
                       return (
                         <>
                           <option value={elm.id}>{elm?.sname}</option>
@@ -125,19 +143,6 @@ const CreateEnrollment = () => {
               </div>
             </div>
 
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                UTR No.
-              </label>
-              <input
-                type="text"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={params?.utrno}
-                name="utrno"
-                placeholder="Utr No."
-                onChange={handleChange}
-              />
-            </div>
             <div className="col-12 col-sm-4">
               <label className="text-white" htmlFor="exampleInputUsername1">
                 Apply Discount
@@ -200,6 +205,19 @@ const CreateEnrollment = () => {
                 value={params?.paymode}
                 name="paymode"
                 placeholder="Payment Mode"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">
+                UTR No.
+              </label>
+              <input
+                type="text"
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                value={params?.utrno}
+                name="utrno"
+                placeholder="Utr No."
                 onChange={handleChange}
               />
             </div>
