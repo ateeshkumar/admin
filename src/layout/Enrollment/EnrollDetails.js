@@ -11,12 +11,16 @@ const EnrollDetails = () => {
   console.log(data);
   return (
     <>
-      <section>
-        <div className="box p-0">
+     
+       
+      
+       <div className="box p-0 w-[100%] text-white sm:m-3 m-2">
           <EStudentInfo student={data?.data} />
           <ETrainerInfo trainer={data?.data} />
+         
         </div>
-      </section>
+      
+      
     </>
   );
 };

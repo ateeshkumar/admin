@@ -36,7 +36,12 @@ function ViewTrainerInfo() {
           {/* image profile */}
           <div className=" w-[100%] md:w-[30%]  box p-0  space-y-5 flex-col justify-center items-center content-center align-middle relative">
             <img
-              src="https://cdn.pixabay.com/photo/2016/02/13/00/26/dualism-1197153_640.jpg"
+             src={
+                    data?.data?.sbackgroundUrl === "" || ! data?.data?.sbackgroundUrl
+                      ? "https://img.freepik.com/free-photo/perspective-home-desk-white-frame_1258-255.jpg"
+                      : `https://api.logicmitra.com:8086/uploads/students/${data?.data?.sbackgroundUrl}`
+                  }
+              
               alt="image"
               className={`w-[100%] h-44 object-cover  border-b-2 border-yellow-500
                 `}
@@ -45,7 +50,11 @@ function ViewTrainerInfo() {
             <div className="py-4 md:py-6">
               <div className="w-40 h-40  mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                 <img
-                  src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+                 src={
+                    data?.data?.sprofilepicUrl === "" || !data?.data?.sprofilepicUrl
+                      ? "https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg"
+                      : `https://api.logicmitra.com:8086/uploads/students/${data?.data?.sprofilepicUrl}`
+                  }
                   alt="image"
                   className="w-100 h-100  rounded-full image1 object-cover"
                 />

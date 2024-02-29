@@ -12,12 +12,12 @@ const Topbar = ({setshow ,show}) => {
   return (
     <>
       <section>
-        <div className="flex justify-between items-center gap-3 py-2 px-2 text-white topnavbar ">
+        <div className="flex justify-between items-center gap-3  px-2 text-white topnavbar ">
           {/* ///left side */}
           <div className="flex items-center gap-3">
             
             <div className={`flex items-center justify-between gap-3  transition  ${!show ? "w-[100%]" : "w-52"}`}>
-            <div className="w-20 ">
+            <div className="w-32 ">
               <img
                 src="images/logicgyan.png"
                 alt="image"

@@ -39,7 +39,7 @@ function Courses() {
 
     try {
       const res = await axios.get(
-        `http://localhost:8086/api/course-detail/course-modules-list?courseId=${e.target.id}`
+        `https://api.logicmitra.com:8086/api/course-detail/course-modules-list?courseId=${e.target.id}`
       );
       console.log(res.data);
       if (res.status === 200) {

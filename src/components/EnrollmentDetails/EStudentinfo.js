@@ -27,9 +27,9 @@ const EStudentInfo = ({ student }) => {
           <div className="box p-0 relative sm:w-[40%] w-[100%]">
             <img
               src={
-                student?.studentid?.sbackgroundUrl !== ""
-                  ? `https://api.logicmitra.com:8086/uploads/students/${student?.studentid?.sbackgroundUrl}`
-                  : "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg"
+                student?.studentid?.sbackgroundUrl === "" || !student?.studentid?.sbackgroundUrl
+                  ? "https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg"
+                  : `https://api.logicmitra.com:8086/uploads/students/${student?.studentid?.sbackgroundUrl}`
               }
               alt="image"
               className="w-[100%] h-44 rounded-md object-cover border-b-2 border-yellow-500 "
@@ -38,7 +38,7 @@ const EStudentInfo = ({ student }) => {
               <div className="w-40 h-40  mx-auto absolute top- left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                 <img
                   src={
-                    student?.studentid?.sprofilepicUrl === ""
+                    student?.studentid?.sprofilepicUrl === "" || ! student?.studentid?.sprofilepicUrl
                       ? "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
                       : `https://api.logicmitra.com:8086/uploads/students/${student?.studentid?.sprofilepicUrl}`
                   }

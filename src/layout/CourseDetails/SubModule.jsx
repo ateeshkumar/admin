@@ -44,22 +44,7 @@ const SubModule = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios
-      .post(
-        "https://api.logicmitra.com:8086/api/course-detail/create-submodule",
-        params
-      )
-      .then((data) => {
-        swal({
-          title: "Good job!",
-          text: "Your data has been submitted",
-          icon: "success",
-        }).then(() => {
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000);
-        });
-      });
+    addData(params, "/courses/module/sub-module");
     console.log(params);
   };
   const { Delete } = useDeleteOne(
@@ -138,7 +123,7 @@ const SubModule = () => {
                           </Link>{" "}
                           <Link
                             className="py-2 px-3 rounded-md bg-warning"
-                            to={`/categories/subcategories/edit/${item.id}`}
+                            to={`/courses/module/sub-module/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>
@@ -170,12 +155,35 @@ const SubModule = () => {
               </div>
 
               <div className="">
-                <p className="text-white">Image Url</p>
+                <p className="text-white">File Url</p>
                 <input
+                  value={params?.fileUrl}
                   onChange={handleChange}
                   required
-                  name="imageUrl"
-                  type="file"
+                  name="fileUrl"
+                  type="url"
+                  className="form-control my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">Video Url</p>
+                <input
+                  value={params?.videoUrl}
+                  onChange={handleChange}
+                  required
+                  name="videoUrl"
+                  type="url"
+                  className="form-control my-2"
+                />
+              </div>
+              <div className="">
+                <p className="text-white">Duration</p>
+                <input
+                  value={params?.duration}
+                  onChange={handleChange}
+                  required
+                  name="duration"
+                  type="text"
                   className="form-control my-2"
                 />
               </div>

@@ -10,7 +10,7 @@ const Sidebar = ({ setshow, show }) => {
   return (
     <>
       <section
-        className={` text-white sidebar px-1 py-3  lg:static fixed  top-16 h-[1000px]    ${
+        className={` text-white sidebar px-1 py-3  lg:static fixed  top-20 h-[1000px]    ${
          show ? "   right-0 " : "lg:w-14 -right-72"
         }`}
       >

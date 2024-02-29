@@ -39,7 +39,7 @@ const ETrainerInfo = ({ trainer }) => {
               <div className="w-40 h-40 ">
                 <img
                   src={
-                    trainer?.trainerid?.sprofilepicUrl === ""
+                    trainer?.trainerid?.sprofilepicUrl === "" || !trainer?.trainerid?.sprofilepicUrl
                       ? "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
                       : `https://api.logicmitra.com:8086/uploads/students/${trainer?.trainerid?.sprofilepicUrl}`
                   }
@@ -62,7 +62,7 @@ const ETrainerInfo = ({ trainer }) => {
                 </li>
                 <li className="flex  items-center gap-2">
                   <BsChatRightQuote className="text-xs " />{" "}
-                  {trainer?.trainerid?.courses.length} Courses{" "}
+                  {trainer?.trainerid?.courses?.length} Courses{" "}
                 </li>
                 <li className="flex  items-center gap-2">
                   <PiCertificateFill className="text-xs " /> 1750 Review
@@ -77,7 +77,7 @@ const ETrainerInfo = ({ trainer }) => {
                 <p>
                   {show
                     ? trainer?.trainerid?.sintro
-                    : `${trainer?.trainerid?.sintro.slice(0, 300)}...`}
+                    : `${trainer?.trainerid?.sintro?.slice(0, 300)}...`}
                 </p>
 
                 <button className="" onClick={() => showmoreclick()}>

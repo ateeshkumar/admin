@@ -29,7 +29,7 @@ setdata(CourseData)
     console.log(data1?.data);
     return (
         <>
-             <section className='py-3 sm:p-3 text-white'>
+             <section className='py-3 sm:p-3 text-white lg:mt-14'>
                  
                  {/* accordian course content */}
                 <div className="space-y-4 lg:mt-32">
@@ -90,7 +90,10 @@ setdata(CourseData)
         </AccordionDetails>
           </>
         )
-       }) : null
+       }) 
+       : (<>
+  <div className="text-white"> there is no data</div>
+ </>)
        }
        
       </Accordion>
@@ -108,7 +111,9 @@ setdata(CourseData)
 
   </> )
 
- : null
+ : (<>
+  <div className="text-white"> there is no data</div>
+ </>)
      }
 
    

@@ -40,7 +40,11 @@ console.log(data?.data?.courses)
        
             <div className="box p-0 space-y-1">
               <img
-                src="https://www.shutterstock.com/image-vector/full-stack-developer-programmer-who-260nw-2273927175.jpg"
+                src={
+                    elm.ccoverimage === "" || ! elm.ccoverimage
+                      ? "https://img.freepik.com/free-photo/perspective-home-desk-white-frame_1258-255.jpg"
+                      : `https://api.logicmitra.com:8086/uploads/students/${elm.ccoverimage}`
+                  }
                 alt="image"
                 className="w-[100%] h-44 border-b-2  border-yellow-500 "
               />
@@ -60,11 +64,11 @@ console.log(data?.data?.courses)
                   <ul className="flex justify-between items-center border-t-2 border-yellow-500 w-[100%] mt-2 p-1">
                     <li className=" gap-2 flex justify-between items-center">
                      
-                      23 Topics
+                    {elm?.cmodules?.length} Topics
                     </li>
                     <li className=" gap-2 flex justify-between items-center">
                      
-                      23 Months
+                    {elm.cduration} Months
                     </li>
                     <li className=" gap-2 flex justify-between items-center">
                      
