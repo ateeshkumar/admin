@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useAdd } from "../../hooks/useAdd";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { useFetch } from "../../hooks/useFetch";
 
 function AddTrainer() {
-  const navigate = useNavigate();
+  
+  const TrainerUrl= "/trainers"
   const initialFormData = {
     userType: "trainer",
     sname: "",
@@ -47,33 +49,39 @@ function AddTrainer() {
   const [addData] = useAdd(
     "https://api.logicmitra.com:8086/api/user/create_user"
   );
+
   const handleSubmit = (e) => {
     const formdata = new FormData();
     formdata.append("image", formData.sprofilepicUrl);
     formdata.append("banner-image", formData.sbackgroundUrl);
     e.preventDefault();
-    addData(formData)
-      .then(() => {
-        swal({
-          title: "Good job!",
-          text: "Your data has been submitted",
-          icon: "success",
-        }).then(() => {
-          navigate("/trainers");
-        });
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-        swal({
-          icon: "error",
-          title: "Oops...",
-          text: "An error occurred while submitting the form",
-        });
-      });
-    console.log("Form submitted:", formData);
+    addData(formData , TrainerUrl)
+      
   };
 
   console.log(formData);
+
+
+     // fetching all country , state, and country data for showing on dropdown
+
+  const [Citydata, error1, loading1] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/city-list",
+    true
+  );
+
+  const [Countrydata, error2, loading2] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/country-list",
+    true
+  );
+
+  const [Statedata, error3, loading3] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/state-list",
+    true
+  );
+
+console.log(Countrydata , Statedata , Citydata)
+
+
   return (
     <>
       <div className="w-[100%] py-3 sm:p-3 ">
@@ -174,44 +182,73 @@ function AddTrainer() {
                   onChange={handleChange}
                 />
               </div>
+             
               <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  City
-                </label>
-                <input
-                  type="text"
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.scity}
-                  name="scity"
-                  placeholder="City"
-                  onChange={handleChange}
-                />
+            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+              
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+               onChange={handleChange} name="scity" value={formData?.scity}>
+               <option> select city</option>
+               {
+                Citydata?.data?.map(elm=>{
+                    
+                    return (
+                        <>
+                            <option value={elm.title}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
               </div>
+
+             
               <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  State
-                </label>
-                <input
-                  type="text"
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.sstate}
-                  name="sstate"
-                  placeholder="State"
-                  onChange={handleChange}
-                />
+            <label className="text-white" htmlFor="exampleInputDOB">State</label>
+              
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+               onChange={handleChange} name="sstate" value={formData?.sstate}>
+               <option> select state</option>
+               {
+                Statedata?.data?.map(elm=>{
+                    
+                    return (
+                        <>
+                            <option value={elm.title}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
               </div>
+
+             
               <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  Country
-                </label>
-                <input
-                  type="text"
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.scountry}
-                  name="scountry"
-                  placeholder="Country"
-                  onChange={handleChange}
-                />
+            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+              
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+               onChange={handleChange} name="scountry" value={formData?.scountry}>
+               <option> select country</option>
+               {
+                Countrydata?.data?.map(elm=>{
+                    
+                    return (
+                        <>
+                            <option value={elm.title}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
               </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">

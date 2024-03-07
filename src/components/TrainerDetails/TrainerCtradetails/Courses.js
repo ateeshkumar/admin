@@ -43,7 +43,7 @@ console.log(data?.data?.courses)
                 src={
                     elm.ccoverimage === "" || ! elm.ccoverimage
                       ? "https://img.freepik.com/free-photo/perspective-home-desk-white-frame_1258-255.jpg"
-                      : `https://api.logicmitra.com:8086/uploads/students/${elm.ccoverimage}`
+                      : `https://api.logicmitra.com:8086/uploads/courses/${elm.ccoverimage}`
                   }
                 alt="image"
                 className="w-[100%] h-44 border-b-2  border-yellow-500 "

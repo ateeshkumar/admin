@@ -108,7 +108,7 @@ function Categories() {
   console.log(data);
 
   return (
-    <div className="pl-3  p-md-3 text-white w-[100%]  relative">
+    <div className="p-3  p-md-3 text-white w-[100%]  relative">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Category List</h1>

@@ -6,8 +6,7 @@ import swal from "sweetalert";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
 
 function Trainers() {
-  const navigate = useNavigate();
-  // State to store filter parameters
+  const TrainerUrl= "/trainers"
   const [params, setParams] = useState({
     name: "",
     startDate: "",
@@ -58,23 +57,7 @@ function Trainers() {
 
   // Handle deletion of a trainer
   const handleDelete = async (e) => {
-    swal({
-      title: "Are you sure?",
-      text: "you want to delete this data!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      console.log(willDelete);
-      if (willDelete) {
-        Delete(e.target.id);
-        setParams((prev) => prev);
-        navigate("/trainers");
-        window.location.reload();
-      } else {
-        swal("Your data is safe");
-      }
-    });
+    Delete(e.target.id ,TrainerUrl )
   };
 
   return (

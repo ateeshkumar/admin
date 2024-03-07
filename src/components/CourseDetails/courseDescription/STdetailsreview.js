@@ -32,13 +32,13 @@ setdata(CourseData)
           <h1 className=" ">Trainer Details:</h1>
         </div>
         <div className="box space-y-4">
-          <div className="flex  items-center gap-4">
+          <div className="flex-col space-y-2 sm:space-y-0 sm:flex sm:flex-row  items-center gap-4">
             <div className="w-40 h-40">
               <img
                 src={
                     data?.data?.ctrainer?.sprofilepicUrl === "" || !data?.data?.ctrainer?.sprofilepicUrl
                       ? "https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg"
-                      : `https://api.logicmitra.com:8086/uploads/students/${data?.data?.ctrainer?.sprofilepicUrl}`
+                      : `https://api.logicmitra.com:8086/uploads/user/${data?.data?.ctrainer?.sprofilepicUrl}`
                   }
                 alt="image"
                 className="w-[100%] h-[100%] rounded-full image1 object-cover"

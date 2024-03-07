@@ -5,6 +5,9 @@ import { HomeSlider } from "./layout";
 import Topbar from "./components/Navbar/Topbar";
 import Sidebar from "./components/Navbar/Sidebar";
 import { useState } from "react";
+import LocationCity from "./layout/Location/City/City";
+import LocationCountry from "./layout/Location/Country/Country";
+import LocationState from "./layout/Location/State/State";
 
 function Home() {
 
@@ -21,7 +24,7 @@ function Home() {
         <Sidebar setshow={setshow} show={show} />
         </div>
         <Outlet />
-       
+      
       </div>
     </>
   );

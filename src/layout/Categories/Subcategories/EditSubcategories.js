@@ -91,7 +91,7 @@ function EditSubcategories() {
                       <input
                         type="text"
                         required
-                        className="form-control w-[100%]"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         value={formdata1?.title}
                         name="title"
                         placeholder="title"
@@ -107,7 +107,7 @@ function EditSubcategories() {
                       </label>
                       <input
                         type="file"
-                        className="form-control w-[100%]"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         // value={formdata1?.imageUrl[0]}
                         name="imageUrl"
                         placeholder="imageUrl"
@@ -124,7 +124,7 @@ function EditSubcategories() {
                       </label>
                       <input
                         type="text"
-                        className="form-control w-[100%]"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         value={formdata1?.sequence}
                         name="sequence"
                         placeholder="sequence"
@@ -179,7 +179,7 @@ function EditSubcategories() {
                     type="text"
                     cols="10"
                     rows="10"
-                    className="form-control w-[100%]"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     value={formdata1?.descprition}
                     name="description"
                     placeholder="Description"

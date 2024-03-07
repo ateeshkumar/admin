@@ -264,10 +264,10 @@ function EditCourses() {
               {/* Submit and cancel buttons */}
 
               <div className="flex items-center justify-between mt-3">
-                <button type="submit" className="btn my-2 Add-btn px-5">
+                <button type="submit" className="rounded-md py-2 Add-btn px-5">
                   Submit
                 </button>
-                <button type="reset" className="btn my-2 Cancel-btn px-5">
+                <button type="reset" className="rounded-md py-2 Cancel-btn px-5">
                   Cancel
                 </button>
               </div>

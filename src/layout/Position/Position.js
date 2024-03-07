@@ -1,13 +1,16 @@
+// api/subscription/assigned-positions
+
 import React, { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
 import swal from "sweetalert";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
+import moment from "moment";
+function Position() {
+ 
 
-function Students() {
-  
-  const StudentUrl= "/students"
+    const PositionUrl = "/position"
   //setting parameters for future requests
   const [params, setParams] = useState({
     name: "",
@@ -18,34 +21,12 @@ function Students() {
 
   //fetching student data
   const [data, error, loading] = useFetch(
-    "https://api.logicmitra.com:8086/api/user/list?userType=student",
+    "https://api.logicmitra.com:8086/api/subscription/assigned-positions",
     params
   );
 
-  console.log("sutdetadat", data);
-  //setting student categories count
-  const [totalStudents, setTotalStudents] = useState(0);
-  const [organizationStudents, setOrganisationStudents] = useState(0);
-  const [inactiveStudents, setInactiveStudents] = useState(0);
-  const [blockedStudents, setBlockedStudents] = useState(0);
-  useEffect(() => {
-    setTotalStudents(0);
-    setBlockedStudents(0);
-    setInactiveStudents(0);
-    setOrganisationStudents(0);
-    data?.data?.map((item) => {
-      setTotalStudents((prevTotal) => prevTotal + 1);
-      if (item.status === "blocked") {
-        setBlockedStudents((blockedStudents) => blockedStudents + 1);
-      } else if (item.status === "1") {
-        setOrganisationStudents(
-          (organisationStudents) => organisationStudents + 1
-        );
-      } else if (item.status === "0") {
-        setInactiveStudents((inactiveStudents) => inactiveStudents + 1);
-      }
-    });
-  }, [data, params]);
+  console.log("positiondata", data);
+ 
 
   //handling filters
   const handleChange = (e) => {
@@ -59,29 +40,32 @@ function Students() {
   //handling delete student request
   const handleDelete = async (e) => {
     console.log(e.target.id);
-    
-   Delete(e.target.id ,StudentUrl )
+   
+        Delete(e.target.id , PositionUrl);
+
+     
   };
+
+  const SortPosData =data?.data?.sort((a ,b)=>{ 
+    return b.position - a.position
+  })
+
+  
 
   return (
     <div className="md:pl-3  p-3 text-white w-[100%] ">
       <section className="section py-3">
         <div className="text-xl font-medium   d-flex justify-between items-center">
-          <h1>Students List</h1>
-          <div className="">
+          <h1>Position List</h1>
+          {/* <div className="">
             <Link to="/students/add" className="Add-btn py-2 px-3 rounded-md hover:border-none hover:outline-none">
               Add Student
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
 
-      <div className="row ">
-        <Card title="Total Students" value={totalStudents} />
-        <Card title="Organization Students" value={organizationStudents} />
-        <Card title="Inactive Students" value={inactiveStudents} />
-        <Card title="Blocked Students" value={blockedStudents} />
-      </div>
+    
 
       <div className="row">
         <div className="col">
@@ -162,36 +146,29 @@ function Students() {
               <table className=" table-striped  w-[100%]">
                 <thead>
                   <tr className="Thead">
-                    <th scope="col">Name</th>
-                    <th scope="col"> Number</th>
-                    <th scope="col">Email</th>
                     <th scope="col">City</th>
-                    {/* <th scope="col">D.O.B</th> */}
-                    {/* <th scope="col">Start Date</th> */}
-                    {/* <th scope="col">Status</th> */}
-                    <th scope="col">Enrolled</th>
-                    <th scope="col">Wallet</th>
-
+                    <th scope="col"> Position</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Start Date</th>
+                   
+                    <th scope="col">End Date</th>
                     <th scope="col">Options</th>
+                   
                   </tr>
                 </thead>
 
                 <tbody className="table-group-divider ">
-                  {data?.data?.map((item) => (
+                  {SortPosData?.map((item) => (
                     <tr key={item.id} className="Tbody ">
-                      {/* {console.log(item.id)} */}
-                      {/* <td className="py-1">
-                            <img src="../../images/faces/face1.jpg" alt="image"/>
-                          </td> */}
-                      <td>{item.sname}</td>
-                      <td>{item.smobile}</td>
-                      <td> {item.semail}</td>
-                      <td>{item.scity}</td>
-                      {/* <td>{item.sdob}</td>
-                      <td>{item.createdAt}</td> */}
-                      {/* <td>{item.status}</td> */}
-                      <td>{item.enrollCourse.length}</td>
-                      <td>{item.walletAmt}</td>
+                     
+                      <td>{item.city.title}</td>
+                      <td>{item.position}</td>
+                      <td> {item.fees}</td>
+                      <td>{ item.startedOn ==null ? "null" : moment(item.startedOn).format('DD/MM/YYYY')}</td>
+                      <td>{item.endsOn ==null  ? "null" : moment(item.endsOn).format('DD/MM/YYYY')}</td>
+                     
+                    
+                     
                       <td className="flex gap-2 items-center justify-center">
                         <Link
                           className=" px-3 py-2 rounded-md  view-icon"
@@ -225,4 +202,4 @@ function Students() {
   );
 }
 
-export default Students;
+export default Position;

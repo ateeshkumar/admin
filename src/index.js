@@ -46,6 +46,14 @@ import EditBatch from "./layout/Batches/EditBatch";
 import CreateEnrollment from "./layout/Enrollment/CreateEnrollment";
 import BatchesDetails from "./layout/Batches/BatchesDetails";
 import EnrollDetails from "./layout/Enrollment/EnrollDetails";
+import LocationCountry from "./layout/Location/Country/Country";
+import LocationState from "./layout/Location/State/State";
+import LocationCity from "./layout/Location/City/City";
+import EditCountry from "./layout/Location/Country/EditCountry";
+import EditLocationState from "./layout/Location/State/EditState";
+import Subscription from "./layout/Subscription/Subscription";
+import Position from "./layout/Position/Position";
+import EditCity from "./layout/Location/City/EditCity";
 
 const router = createBrowserRouter([
   {
@@ -225,8 +233,58 @@ const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "country",
+        children: [
+          {
+            path: "",
+            element: <LocationCountry/>,
+          },
+          {
+            path: "edit/:id",
+            element: <EditCountry/>,
+          },
+        ],
+      },
+      {
+        path: "state",
+        children: [
+          {
+            path: "",
+            element: <LocationState/>,
+          },
+          {
+            path: "edit/:id",
+            element: <EditLocationState />,
+          },
+         
+        ],
+      },
+      {
+        path: "city",
+        children: [
+          {
+            path: "",
+            element: <LocationCity/>,
+          },
+          {
+            path: "edit/:id",
+            element: <EditCity/>,
+          },
+         
+        ],
+      },
+      {
+        path :"subscription",
+        element:<Subscription/>
+      },
+      {
+        path :"position",
+        element:<Position/>
+      }
     ],
   },
+ 
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -17,7 +17,7 @@ function ViewCourses() {
   console.log(data);
   return (
     <>
-      <div className="">
+      <div className="p-3  p-md-3 text-white w-[100%]">
         <div className="">
           
           <CourseEnroll CourseData={data}/>

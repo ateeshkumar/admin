@@ -15,8 +15,14 @@ import { Categories, ViewCategories, EditCategories } from "./Categories";
 import { HomeSlider, ViewHomeSlider, EditHomeSlider } from "./HomeSlider";
 import { Courses, AddCourses, ViewCourses, EditCourses } from "./Courses";
 import { AddModules } from "./CourseDetails";
+import LocationCity from "./Location/City/City";
+import LocationCountry from "./Location/Country/Country";
+import LocationState from "./Location/State/State";
 
 export {
+  LocationCountry,
+  LocationCity,
+  LocationState,
   Dashboard,
   Students,
   ViewStudentInfo,

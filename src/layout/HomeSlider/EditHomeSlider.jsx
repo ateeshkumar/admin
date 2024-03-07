@@ -92,7 +92,7 @@ function EditHomeSlider() {
                       <input
                         type="text"
                         required
-                        className="form-control w-[100%]"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         value={params?.title}
                         name="title"
                         placeholder="title"
@@ -108,7 +108,7 @@ function EditHomeSlider() {
                       </label>
                       <input
                         type="file"
-                        className="form-control w-[100%]"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         
                         name="bannerUrl"
                         placeholder="imageUrl"
@@ -125,7 +125,7 @@ function EditHomeSlider() {
                       </label>
                       <input
                         type="text"
-                        className="form-control w-[100%]"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         value={params?.sequence}
                         name="sequence"
                         placeholder="sequence"
@@ -180,7 +180,7 @@ function EditHomeSlider() {
                     type="text"
                     cols="10"
                     rows="10"
-                    className="form-control w-[100%]"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     value={params?.descprition}
                     name="description"
                     placeholder="Description"

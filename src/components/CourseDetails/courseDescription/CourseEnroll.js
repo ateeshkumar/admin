@@ -15,6 +15,7 @@ const CourseEnroll = ({ CourseData }) => {
     setdata(CourseData);
   }, [CourseData]);
 
+ 
   return (
     <>
       <section className="text-white py-3 sm:p-3 space-y-4 relative">
@@ -105,11 +106,11 @@ const CourseEnroll = ({ CourseData }) => {
         <div className="box space-y-1 md:w-[100%]  lg:w-[30%] lg:absolute lg:top-0 lg:right-5">
           <div className="">
             <img
-               src={
-                    data?.data?.ccoverimage === "" || ! data?.data?.ccoverimage
-                      ? "https://img.freepik.com/free-photo/perspective-home-desk-white-frame_1258-255.jpg"
-                      : `https://api.logicmitra.com:8086/uploads/courses/${data?.data?.ccoverimage}`
-                  }
+              src={
+                data?.data?.ccoverimage === "" || !data?.data?.ccoverimage
+                  ? "https://img.freepik.com/free-photo/perspective-home-desk-white-frame_1258-255.jpg"
+                  : `https://api.logicmitra.com:8086/uploads/courses/${data?.data?.ccoverimage}`
+              }
               alt="iimage "
               className="w-[100%] h-[100%] rounded-lg  border-2 border-yellow-500"
             />

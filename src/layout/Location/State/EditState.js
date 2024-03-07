@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
+import { useFetch } from "../../../hooks/useFetch";
+import useUpdate from "../../../hooks/useUpdate";
 
-import useUpdate from "../../hooks/useUpdate";
-import { useFetch } from "../../hooks/useFetch";
 
-function EditCategories() {
-  const CategoryUrl = "/categories";
+function EditLocationState() {
+  const StateUrl = "/state";
 
   const { id } = useParams();
-  const catId = id;
-
+ 
   // Fetch category data using a custom hook (useFetch)
 
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/categories/cat-detail?catId=${catId}`,
-    catId
+    `https://api.logicmitra.com:8086/api/address/state-detail?stateID=${id}`,
+    id
   );
 
+ 
   // State to store form parameters
   const [params, setParams] = useState({});
 
@@ -40,23 +40,21 @@ function EditCategories() {
     }));
   };
 
-  console.log(params);
+
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/categories/update-cat`
+    `https://api.logicmitra.com:8086/api/address/update-state`
   );
 
-  console.log(params);
+
   // Handles form submission
   const handleSubmit = (e) => {
-    console.log(e);
-    const formData = new FormData();
-    formData.append("image", params.imageUrl);
+   
 
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`catId=${e.target.id}`, params, CategoryUrl);
+    handleUpdate(`addId=${e.target.id}`, params , StateUrl);
   };
 
   return (
@@ -69,7 +67,7 @@ function EditCategories() {
 
       {/* Render the form if data is available */}
       {data.data && (
-        <div className="w-[100%] py-3 sm:p-3">
+        <div className="w-[100%] py-3 sm:p-3 ">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -81,7 +79,7 @@ function EditCategories() {
               {/* Form group for title */}
               <div className="form-group">
                 <div className="flex flex-col-reverse md:flex-row md:flex items-center justify-between ">
-                  <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] ">
+                  <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] ">
                     <div className=" ">
                       <label
                         className="text-white"
@@ -99,22 +97,7 @@ function EditCategories() {
                         onChange={handleChange}
                       />
                     </div>
-                    <div className=" ">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        ImageUrl
-                      </label>
-                      <input
-                        type="file"
-                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        // value={formdata1?.imageUrl[0]}
-                        name="imageUrl"
-                        placeholder="imageUrl"
-                        onChange={handleChange}
-                      />
-                    </div>
+                   
 
                     <div className=" ">
                       <label
@@ -163,30 +146,10 @@ function EditCategories() {
                     </div>
                   </div>
 
-                  <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
-                    <img
-                      src={`https://api.logicmitra.com/uploads/categories/${params?.imageUrl}`}
-                      alt="image"
-                      className="w-[100%] h-[100%]  object-contain"
-                    />
-                  </div>
+                 
                 </div>
 
-                <div className="col-12">
-                  <label className="text-white" htmlFor="exampleInputUsername1">
-                    Description
-                  </label>
-                  <textarea
-                    type="text"
-                    cols="10"
-                    rows="10"
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    value={params?.descprition}
-                    name="description"
-                    placeholder="Description"
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
+               
               </div>
             </div>
 
@@ -213,4 +176,5 @@ function EditCategories() {
   );
 }
 
-export default EditCategories;
+
+export default EditLocationState;

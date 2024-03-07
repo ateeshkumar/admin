@@ -2,42 +2,34 @@ import React, { useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import axios from "axios";
 
-import { useAdd } from "../../../hooks/useAdd";
-import { useDeleteOne } from "../../../hooks/useDeleteOne";
-
-import { UsesubcategoriesContext } from "../../../context/SubcatContext";
 import Popup from "reactjs-popup";
 import ImageViewer from "../../../components/ImageViewer";
+import { useAdd } from "../../../hooks/useAdd";
+import { useDeleteOne } from "../../../hooks/useDeleteOne";
+import { useFetch } from "../../../hooks/useFetch";
 
-const SubCategories = () => {
-  const SubCatUrl = "/categories/subcategories";
-
-  // Fetch subcategory data using a custom hook (useFetch)
-
-  const { subcatData, loading, error, categoryId } = UsesubcategoriesContext();
-
-  console.log(subcatData);
-  console.log(categoryId);
+function LocationState() {
+  const StateUrl = "/state";
 
   const [params, setparams] = useState({
     title: "",
-    imageUrl: "",
-    category: categoryId,
+
     sequence: "",
     status: "1",
-    description: "",
+    country: "",
   });
   console.log(
     params.title,
-    params.imageUrl,
-    params.description,
+
+    params.country,
     params.sequence,
-    params.status,
-    params.category
+    params.status
   );
   //handle addition of category
   const handleChange = (event) => {
+    console.log(event.target);
     const { name, value, type, files } = event.target;
     setparams({
       ...params,
@@ -46,47 +38,72 @@ const SubCategories = () => {
   };
 
   const [addData] = useAdd(
-    `https://api.logicmitra.com:8086/api/categories/create-subcat`
+    `https://api.logicmitra.com:8086/api/address/create-state`
   );
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    addData(params, SubCatUrl);
+    
+    
+
+    addData(params);
   };
+
+ 
   // delete the particular Categories
   const { Delete } = useDeleteOne(
-    `https://api.logicmitra.com:8086/api/categories/delete-subcat?subcatId=`
+    `https://api.logicmitra.com:8086/api/address/delete-state?stateId=`
   );
 
   // Handle deletion of a category
   const handleDelete = async (e) => {
-    Delete(e.target.id, SubCatUrl);
+    console.log("cate id is ", e.target.id);
+    Delete(e.target.id, StateUrl);
   };
 
+  // Fetch category data using a custom hook (useFetch)
+  const [data, error, loading] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/state-list    ",
+    true
+  );
+
+  console.log(data);
+
+  // Fetch category data using a custom hook (useFetch)
+  const [data1, error1, loading1] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/country-list",
+    true
+  );
+
+  console.log(data1);
+
+ 
+
   return (
-    <div className="p-3  p-md-3 text-white w-[100%]  relative">
+    <div className="pl-3  p-md-3 text-white w-[100%]  relative">
       <section className="section py-3">
-        <div className="text-xl font-medium">
-          <h1>Sub Category List</h1>
+        <div className="text-xl font-medium ">
+          <h1>State List</h1>
           <div className="section-header-breadcrumb"></div>
         </div>
       </section>
 
       {/* Categories Table */}
-      <div className="row  space-y-5 lg:space-y-0">
+      <div className="row space-y-5 lg:space-y-0">
         <div className="col col-lg-7">
-          <div className=" ">
+          <div className="">
             {/* Display loading message while data is being fetched */}
             {loading && <h1 className="text-white">Loading...</h1>}
             {/* Display error message if there's an error */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
-            {subcatData.data && (
+            {data.data && (
               <div className="table-responsive Ttable h-[500px] overflow-y-auto">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
                       <th scope="col">Title</th>
-                      <th scope="col">Image</th>
+                      <th scope="col">Country</th>
 
                       <th scope="col">Status</th>
                       <th scope="col">Sequence</th>
@@ -96,51 +113,43 @@ const SubCategories = () => {
                   </thead>
                   <tbody className="table-group-divider">
                     {/* Map through trainers data and display in table rows */}
-                    {subcatData?.data.map((item) => (
-                      <tr key={item.title} className="Tbody">
+                    {data.data.map((item) => (
+                      <tr key={item.id} className="Tbody">
                         <td>{item.title}</td>
                         <td>
-                          <Popup
-                            trigger={
-                              <button>
-                                <img
-                                  src={`https://api.logicmitra.com/uploads/subcategories/${item.imageUrl}`}
-                                  alt="image"
-                                  className="w-10 h-10 rounded-md"
-                                />
-                              </button>
-                            }
-                            modal
-                            nested
-                          >
-                            {(close) => (
-                              <ImageViewer
-                                url={`https://api.logicmitra.com/uploads/subcategories/${item.imageUrl}`}
-                                close={close}
-                              />
-                            )}
-                          </Popup>
+                          {
+                            data1?.data?.filter((elm) => {
+                              return elm.id === item.country;
+                            }).map(elm=>{
+                                return (
+                                    <>
+                                        <div className="" key={elm.id}>
+                                            {elm.title}
+                                        </div>
+                                    </>
+                                )
+                            })
+                          }
                         </td>
 
                         <td>{item.status === 1 ? "Active " : "Inactive"}</td>
                         <td>{item.sequence}</td>
 
-                        <td className="flex gap-2 items-center">
+                        <td className="flex gap-2 items-center justify-center">
                           {/* Action links for each trainer */}
                           <Link
                             className="py-2 px-3 rounded-md edit-icon"
-                            to={`/categories/subcategories/edit/${item.id}`}
+                            to={`/state/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>
                           <Link
                             id={item.id}
-                            className="py-2 px-3 rounded-md delete-icon "
+                            className=" py-2 px-3 rounded-md delete-icon "
                             onClick={handleDelete}
                           >
                             <i id={item.id} className="bi bi-trash3"></i>
                           </Link>{" "}
-                         
                         </td>
                       </tr>
                     ))}
@@ -150,34 +159,41 @@ const SubCategories = () => {
             )}
           </div>
         </div>
-        {subcatData?.data && (
+        {data.data && (
           <div className="col-lg-5 lg:px-5">
             <form
               className="box   py-4 shadow-lg  lg:h-50"
               onSubmit={handleSubmit}
             >
               <div className="">
-                <p className="text-white">Title</p>
+                <p className="text-white">State</p>
                 <input
                   onChange={handleChange}
                   required
                   name="title"
-                  placeholder="Title"
                   value={params?.title}
                   type="text"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
               </div>
-
               <div className="">
-                <p className="text-white">Image Url</p>
-                <input
-                  onChange={handleChange}
+                <p className="text-white">Country</p>
+                <select
                   required
-                  name="imageUrl"
-                  type="file"
-                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-                />
+                  className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+                  onChange={handleChange}
+                  name="country"
+                  value={params?.country}
+                >
+                  <option> select country</option>
+                  {data1?.data?.map((elm) => {
+                    return (
+                      <>
+                        <option value={elm.id}> {elm.title} </option>
+                      </>
+                    );
+                  })}
+                </select>
               </div>
 
               <div className="">
@@ -186,7 +202,6 @@ const SubCategories = () => {
                 <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
                   <div className=" ">
                     <input
-                      defaultChecked
                       type="radio"
                       id="active"
                       name="status"
@@ -216,35 +231,23 @@ const SubCategories = () => {
                   onChange={handleChange}
                   required
                   name="sequence"
-                  placeholder="Sequence"
                   value={params?.sequence}
                   type="number"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
               </div>
-              <div className="">
-                <p className="text-white">Description</p>
-                <textarea
-                  type="text"
-                  required
-                  className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-                  value={params?.description}
-                  name="description"
-                  placeholder="Description"
-                  onChange={handleChange}
-                ></textarea>
-              </div>
 
               {/* {similar fields} */}
               <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">
-                Add Subcategory
+                Add State
               </button>
             </form>
           </div>
         )}
       </div>
+      {/* Card to show and add subcategories */}
     </div>
   );
-};
+}
 
-export default SubCategories;
+export default LocationState;

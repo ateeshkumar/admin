@@ -4,11 +4,14 @@ const CourseDetails = ({CourseData}) => {
 
   const [data , setdata]=useState()
 
+
+  
   useEffect(()=>{
 setdata(CourseData)
   },[CourseData])
   
   const [courselist, setcourse] = useState("all");
+
   return (
     <>
       <div className="overflow-hidden">

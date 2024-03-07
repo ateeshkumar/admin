@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 
-import useUpdate from "../../hooks/useUpdate";
-import { useFetch } from "../../hooks/useFetch";
 
-function EditCategories() {
-  const CategoryUrl = "/categories";
+
+import useUpdate from "../../../hooks/useUpdate";
+import { useFetch } from "../../../hooks/useFetch";
+
+function EditCountry() {
+  const CountryUrl = "/country";
 
   const { id } = useParams();
-  const catId = id;
+ 
 
   // Fetch category data using a custom hook (useFetch)
 
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/categories/cat-detail?catId=${catId}`,
-    catId
+    `https://api.logicmitra.com:8086/api/address/country-detail?countryID=${id}`,
+    id
   );
 
   // State to store form parameters
@@ -44,25 +46,24 @@ function EditCategories() {
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/categories/update-cat`
+    `https://api.logicmitra.com:8086/api/address/update-country`
   );
 
-  console.log(params);
+  
   // Handles form submission
   const handleSubmit = (e) => {
-    console.log(e);
-    const formData = new FormData();
-    formData.append("image", params.imageUrl);
-
+    
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`catId=${e.target.id}`, params, CategoryUrl);
+    handleUpdate(`addId=${e.target.id}`, params , CountryUrl);
   };
 
+  
   return (
     <>
       {/* Display error message if there's an error */}
-      {error && error.message}
+      {error && 
+      <div className="text-white">{error.message}</div>}
 
       {/* Display loading message while data is being fetched */}
       {loading && "Loading..."}
@@ -99,22 +100,25 @@ function EditCategories() {
                         onChange={handleChange}
                       />
                     </div>
+
                     <div className=" ">
                       <label
                         className="text-white"
                         htmlFor="exampleInputUsername1"
                       >
-                        ImageUrl
+                        Currency
                       </label>
                       <input
-                        type="file"
+                        type="text"
+                        required
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        // value={formdata1?.imageUrl[0]}
-                        name="imageUrl"
-                        placeholder="imageUrl"
+                        value={params?.currency}
+                        name="currency"
+                        placeholder="currency"
                         onChange={handleChange}
                       />
                     </div>
+                   
 
                     <div className=" ">
                       <label
@@ -163,30 +167,10 @@ function EditCategories() {
                     </div>
                   </div>
 
-                  <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
-                    <img
-                      src={`https://api.logicmitra.com/uploads/categories/${params?.imageUrl}`}
-                      alt="image"
-                      className="w-[100%] h-[100%]  object-contain"
-                    />
-                  </div>
+                 
                 </div>
 
-                <div className="col-12">
-                  <label className="text-white" htmlFor="exampleInputUsername1">
-                    Description
-                  </label>
-                  <textarea
-                    type="text"
-                    cols="10"
-                    rows="10"
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    value={params?.descprition}
-                    name="description"
-                    placeholder="Description"
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
+              
               </div>
             </div>
 
@@ -213,4 +197,7 @@ function EditCategories() {
   );
 }
 
-export default EditCategories;
+
+
+
+export default EditCountry;

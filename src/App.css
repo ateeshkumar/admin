@@ -44,6 +44,24 @@
  
 }
 
+.sidebar-overflow::-webkit-scrollbar{
+width: 1px;
+background-color: green;
+}
+.sidebar-overflow::-webkit-scrollbar-button{
+  width: 1px;
+  background-color: green;
+  }
+
+  .sidebar-overflow::-webkit-scrollbar-corner{
+    width: 1px;
+    background-color: green;
+    }
+.sidebar-overflow::-webkit-scrollbar-thumb{
+      width: 1px;
+      background-color: green;
+      }
+
 .side-menu{
   background-color: var(--box-background);
 }
@@ -76,6 +94,10 @@ body{
   background-color: var(--small-box-background);
   border: 1px solid var(--input-border);
   color: white;
+}
+
+.input::placeholder{
+  color:white
 }
 
 .App {
@@ -351,7 +373,7 @@ line-height:24.2px
 
       top: 31px;
      left: 0;
-      width: 40%;
+      width: 20%;
       padding: 5px;
       border-bottom: 2px solid var(--text-border1);
   }
@@ -361,8 +383,8 @@ line-height:24.2px
     position: absolute;
   
         top: 31px;
-        left:18%;
-        width: 40%;
+        left:22%;
+        width: 20%;
         padding: 5px;
         border-bottom: 2px solid var(--text-border1);
     }
@@ -370,8 +392,8 @@ line-height:24.2px
   
       position: absolute;
           top: 31px;
-          right: 27%;
-          width: 40%;
+          right: 38%;
+          width: 20%;
           padding: 5px;
           border-bottom: 2px solid var(--text-border1);
       }
@@ -380,8 +402,8 @@ line-height:24.2px
         position: absolute;
       
             top: 31px;
-           left: 53%;
-            width: 40%;
+           left: 61%;
+            width: 20%;
             padding: 5px;
             border-bottom: 2px solid var(--text-border1);
         }
@@ -392,7 +414,7 @@ line-height:24.2px
         
               top: 31px;
              right: 0;
-              width: 40%;
+              width: 20%;
               padding: 5px;
               border-bottom: 2px solid var(--text-border1);
           }
@@ -571,8 +593,19 @@ background-color:var(--box-background);
 .Add-btn{
   background:var(--btn-backgrond);
 color: #013437;
-font-weight: 700
+font-weight: 700;
+font-size: 15px
 ;
+}
+
+a{
+  border: none;
+  outline: none;
+}
+.Add-btn:hover{
+  color: #013437;
+  border: none;
+  outline: none;
 }
 
 .Cancel-btn{
@@ -625,3 +658,8 @@ color:#013437;
 
 
 }
+
+.locationdropdown:hover{
+ background-color:var(--small-box-background);
+}
+

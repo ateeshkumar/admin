@@ -32,12 +32,16 @@ const AboutTrainer = ({TrainerData}) => {
           <h1 className=" heading ">About</h1>
         </div>
         <div className="box space-y-4">
-          <div className="flex  items-center gap-4">
-            <div className="w-40 h-40">
+          <div className="flex-col  space-y-2 sm:space-y-0 sm:flex sm:flex-row  items-center gap-4">
+        <div className="w-40 h-40 ">
               <img
-                src="https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+               src={
+                    data?.data?.sprofilepicUrl === "" || !data?.data?.sprofilepicUrl
+                      ? "https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg"
+                      : `https://api.logicmitra.com:8086/uploads/user/${data?.data?.sprofilepicUrl}`
+                  }
                 alt="image"
-                className="w-[100%] h-[100%] rounded-full image1 object-cover"
+                className="w-[100%] h-[100%] rounded-full image1 object-cover "
               />
             </div>
 

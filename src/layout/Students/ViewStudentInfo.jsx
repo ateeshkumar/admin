@@ -49,7 +49,7 @@ function ViewStudentInfo() {
               src={
                     data?.data?.sbackgroundUrl === "" || ! data?.data?.sbackgroundUrl
                       ? "https://img.freepik.com/free-photo/perspective-home-desk-white-frame_1258-255.jpg"
-                      : `https://api.logicmitra.com:8086/uploads/students/${data?.data?.sbackgroundUrl}`
+                      : `https://api.logicmitra.com:8086/uploads/user/${data?.data?.sbackgroundUrl}`
                   }
               alt="image"
               className={`w-[100%] h-44 object-cover  border-b-2 border-yellow-500
@@ -62,7 +62,7 @@ function ViewStudentInfo() {
                  src={
                     data?.data?.sprofilepicUrl === "" || !data?.data?.sprofilepicUrl
                       ? "https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg"
-                      : `https://api.logicmitra.com:8086/uploads/students/${data?.data?.sprofilepicUrl}`
+                      : `https://api.logicmitra.com:8086/uploads/user/${data?.data?.sprofilepicUrl}`
                   }
                   
                   alt="image"

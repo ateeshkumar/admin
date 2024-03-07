@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFetchOnce } from "../../hooks/useFetchOnce";
 
 function EditTrainerInfo() {
-  const navigate = useNavigate();
+  const TrainerUrl= "/trainers"
   // Extracts student ID from URL parameters
   const { id } = useParams();
 
@@ -58,12 +58,8 @@ function EditTrainerInfo() {
     formdata.append("banner-image", params.sbackgroundUrl);
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`userId=${e.target.id}`, params).then(() => {
-      // Displays a success message using SweetAlert library
-      swal("Good job!", "Student Updated Successfully", "success");
-      navigate("/trainers");
-      // window.location.reload();
-    });
+    handleUpdate(`userId=${e.target.id}`, params , TrainerUrl)
+    
   };
   console.log(params);
   return (
@@ -85,10 +81,10 @@ function EditTrainerInfo() {
             <div className="w-100 d-flex gap-3">
               <div className="form-group  row">
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputUsername1">Trainer Name</label>
+                  <label className="text-white" htmlFor="exampleInputUsername1">Trainer Name</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sname"
                     value={params?.sname}
                     placeholder="Trainers Name"
@@ -96,10 +92,10 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputEmail1">Gender</label>
+                  <label className="text-white" htmlFor="exampleInputEmail1">Gender</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sgender"
                     value={params?.sgender}
                     placeholder="Gender"
@@ -107,20 +103,20 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputMobile">Date Of Birth</label>
+                  <label className="text-white" htmlFor="exampleInputMobile">Date Of Birth</label>
                   <input
                     type="date"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sdob"
                     value={params?.sdob}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputMobile">Address</label>
+                  <label className="text-white" htmlFor="exampleInputMobile">Address</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="address"
                     value={params?.address}
                     placeholder="Address"
@@ -128,10 +124,10 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputMobile">City</label>
+                  <label className="text-white" htmlFor="exampleInputMobile">City</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="scity"
                     value={params?.scity}
                     placeholder="City"
@@ -139,10 +135,10 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Pin code</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Pin code</label>
                   <input
                     type="number"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="spincode"
                     value={params?.spincode}
                     placeholder="Pincode"
@@ -150,109 +146,109 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Profile Pic</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Profile Pic</label>
                   <input
                     type="file"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sprofilepicUrl"
                     placeholder="picture"
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">About</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">About</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sabout"
                     value={params?.sabout}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Status</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Status</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sstatus"
                     value={params?.sstatus}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Country</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Country</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="scountry"
                     value={params?.scountry}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">State</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">State</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sstate"
                     value={params?.sstate}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Whatsapp</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Whatsapp</label>
                   <input
                     type="number"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="swhatsapp"
                     value={params?.swhatsapp}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Lattitude</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Lattitude</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="slattitude"
                     value={params?.slattitude}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Longitude</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Longitude</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="slongitude"
                     value={params?.slongitude}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB"> intro</label>
+                  <label className="text-white" htmlFor="exampleInputDOB"> intro</label>
                   <input
                     type="text"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sintro"
                     value={params?.sintro}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Banner</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Banner</label>
                   <input
                     type="file"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sbackgroundUrl"
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col col-sm-4">
-                  <label htmlFor="exampleInputDOB">Rating </label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Rating </label>
                   <input
                     type="number"
-                    className="form-control"
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="srating"
                     value={params?.srating}
                     onChange={handleChange}
@@ -266,7 +262,7 @@ function EditTrainerInfo() {
              <button type="submit" className="px-5 py-2 Add-btn rounded-md">
                 Submit
               </button>
-              <button type="reset" className=" py-2 Cancel-btn px-5">
+              <button type="reset" className=" py-2 Cancel-btn px-5 rounded-md">
                 Cancel
               </button>
              </div>
