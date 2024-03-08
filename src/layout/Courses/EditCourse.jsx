@@ -5,8 +5,8 @@ import useUpdate from "../../hooks/useUpdate";
 import swal from "sweetalert";
 
 function EditCourses() {
-  const navigate = useNavigate();
-  //get current details of the cource
+ 
+  const CourseUrl = "/courses"
   const { id } = useParams();
 
   const courseId = id;
@@ -60,35 +60,26 @@ function EditCourses() {
     formdata.append("video", formData.cdemovideo);
 
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`courseId=${e.target.id}`, formData).then(() => {
-      // Displays a success message using SweetAlert library
-      // navigate("/courses");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    });
+    handleUpdate(`courseId=${e.target.id}`, formData , CourseUrl)
     // console.log("form submitted", formData);
   };
 
   console.log(formData);
   return (
     <>
-      {/* Display error message if there's an error */}
-      {error && error.message}
-
       {/* Display loading message while data is being fetched */}
-      {/* {loading && "Loading..."} */}
-
-      {/* Render the form if data is available */}
-
+      {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
       {!data.data ? (
         <>loading...</>
       ) : (
         <>
-          <div className="w-100 py-3 sm:p-3 ">
+          <div className="w-100 py-3 p-3 ">
             <form
               // Form for Adding Course information
-              className="forms-sample w-100 m-2 p-4 box"
+              className="forms-sample   p-4 box"
               onSubmit={handleSubmit}
               id={formData?.id}
             >
@@ -264,10 +255,10 @@ function EditCourses() {
               {/* Submit and cancel buttons */}
 
               <div className="flex items-center justify-between mt-3">
-                <button type="submit" className="rounded-md py-2 Add-btn px-5">
+                <button type="submit" className="rounded-md py-2 Add-btn px-4">
                   Submit
                 </button>
-                <button type="reset" className="rounded-md py-2 Cancel-btn px-5">
+                <button type="reset" className="rounded-md py-2 Cancel-btn px-4">
                   Cancel
                 </button>
               </div>

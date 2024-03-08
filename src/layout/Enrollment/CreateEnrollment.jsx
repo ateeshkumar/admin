@@ -297,13 +297,13 @@ const CreateEnrollment = () => {
           <div className="flex justify-between items-center">
             <button
               type="submit"
-              className="Add-btn rounded-sm py-2 my-2  px-5"
+              className="Add-btn rounded-sm py-2 my-2  px-4"
             >
               Submit
             </button>
             <button
               type="reset"
-              className="Cancel-btn  py-2  rounded-sm my-2 px-5"
+              className="Cancel-btn  py-2  rounded-sm my-2 px-4"
             >
               Cancel
             </button>

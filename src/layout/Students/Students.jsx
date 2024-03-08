@@ -101,7 +101,7 @@ function Students() {
                   name="name"
                   onChange={handleChange}
                   aria-describedby="emailHelp"
-                  placeholder="search "
+                  placeholder="Search "
                 />
               </div>
               <div className="col-12 col-sm-3 text-white">
@@ -135,7 +135,7 @@ function Students() {
                 </label>
                 <select
                   id="filters"
-                  className="form-select py-2 input focus-within:bg-none focus:bg-none focus-within:border-none outline-none"
+                  className="form-select  input focus-within:bg-none focus:bg-none focus-within:border-none outline-none py-[10px]"
                   value={params.filter}
                   onChange={handleChange}
                   name="filter"
@@ -158,7 +158,7 @@ function Students() {
           {error && <h1 className="text-white">{error.message}</h1>}
 
           {data?.data && (
-            <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
+            <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto Table-overflow">
               <table className=" table-striped  w-[100%]">
                 <thead>
                   <tr className="Thead">

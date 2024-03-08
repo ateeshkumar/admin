@@ -22,7 +22,7 @@ console.log(data?.data)
         <div className="">
        
        <div className="flex justify-between items-center my-2"> 
-       <h1 className="heading "> Transaction Details</h1>
+       <h1 className="heading "> Enroll Courses</h1>
        <button className="btn-seeAll px-4 py-1 text-sm"> See All</button>
         </div>
         <div className="card-body ">
@@ -35,7 +35,7 @@ console.log(data?.data)
   
              
           
-            <div className="table-responsive Ttable h-[500px] overflow-y-auto">
+            <div className="table-responsive Ttable h-[500px] overflow-y-auto Table-overflow">
               <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >

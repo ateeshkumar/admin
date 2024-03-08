@@ -99,7 +99,7 @@ function Trainers() {
                   name="name"
                   onChange={handleChange}
                   aria-describedby="emailHelp"
-                  placeholder=""
+                  placeholder="Search"
                 />
               </div>
               <div className="col-12 col-sm-3 text-white">
@@ -154,12 +154,12 @@ function Trainers() {
       <div className=" w-100">
         <div className=" ">
           {/* Display loading message while data is being fetched */}
-          {loading && <h1 className="text-black">Loading...</h1>}
+          {loading && <h1 className="text-white">Loading...</h1>}
           {/* Display error message if there's an error */}
-          {error && <h1 className="text-black">{error.message}</h1>}
+          {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
-          {data.data && (
-            <div className="table-responsive Ttable mt-4">
+          {data?.data && (
+            <div className="table-responsive Ttable mt-4 h-[500px] overflow-y-auto Table-overflow">
               <table className=" table-striped w-[100%]">
                 <thead>
                   <tr className="Thead">
@@ -175,7 +175,7 @@ function Trainers() {
                 </thead>
                 <tbody className="table-group-divider">
                   {/* Map through trainers data and display in table rows */}
-                  {data.data?.map((item) => (
+                  {data?.data?.map((item) => (
                     <tr key={item.id} className="Tbody">
                       <td>{item.sname}</td>
                       <td>{item.smobile}</td>

@@ -34,7 +34,7 @@ const Topbar = ({ setshow, show }) => {
         >
 
 
-        
+
           {/* ///left side */}
           <div className="flex items-center gap-3">
             <div
@@ -70,7 +70,8 @@ const Topbar = ({ setshow, show }) => {
                 <IoSearchSharp />
                 <input
                   type="search"
-                  placeholder="search Now"
+                  
+                  placeholder="Search Now"
                   className="  px-2 border-none outline-none text-white bg-none "
                 />
               </div>

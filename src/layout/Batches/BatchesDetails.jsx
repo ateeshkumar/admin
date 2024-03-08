@@ -36,11 +36,11 @@ const BatchesDetails = () => {
           </div>
         </section>
 
-        {/* Display error message if there's an error */}
-        {error && error.message}
-
         {/* Display loading message while data is being fetched */}
-        {loading && "Loading..."}
+        {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
 
         {!data?.data ? null : (
           <>

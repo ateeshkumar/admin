@@ -77,15 +77,29 @@ function Categories() {
     `https://api.logicmitra.com:8086/api/categories/create-cat`
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("image", params.imageUrl);
+    formData.append("imageUrl", params.imageUrl);
 
-    event.preventDefault();
-
-    addData(params, CategoryUrl);
+    
+  console.log(params)
+   try{
+    const res = await axios.post("https://api.logicmitra.com:8086/api/categories/create-cat",
+    params,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    })
+    const data = res.data
+    console.log(data)
+   }catch(error){
+    console.log(error)
+   }
   };
+
 
   console.log(params, CategoryUrl);
   // delete the particular Categories
@@ -126,7 +140,7 @@ function Categories() {
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
             {data.data && (
-              <div className="table-responsive Ttable h-[500px] overflow-y-auto">
+              <div className="table-responsive Ttable h-[550px] overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
@@ -228,7 +242,7 @@ function Categories() {
                 <p className="text-white">Image Url</p>
                 <input
                   onChange={handleChange}
-                  required
+                  
                   name="imageUrl"
                   // value={params?.imageUrl}
                   type="file"

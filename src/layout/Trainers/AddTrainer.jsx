@@ -36,6 +36,17 @@ function AddTrainer() {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const[ Checkbtn , Setcheckbtn]= useState(0)
+
+
+
+  // to select the mobile or whatsap using checked input
+
+  const handleChackchange=(e)=>{
+   
+Setcheckbtn(e.target.checked)
+  }
+
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -84,13 +95,13 @@ console.log(Countrydata , Statedata , Citydata)
 
   return (
     <>
-      <div className="w-[100%] py-3 sm:p-3 ">
+      <div className="w-[100%] py-3 p-3 ">
         <form
-          className="forms-sample w-[100%] m-2 p-4 box"
+          className="forms-sample w-[100%]  p-4 box"
           onSubmit={handleSubmit}
         >
           <div className=" ">
-            <div className="form-group grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="form-group grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
               <div className="">
                 <label className="text-white" htmlFor="exampleInputUsername1">
                   Trainer Name
@@ -100,7 +111,7 @@ console.log(Countrydata , Statedata , Citydata)
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.sname}
                   name="sname"
-                  placeholder="Trainers Name"
+                  placeholder="Your Name"
                   onChange={handleChange}
                 />
               </div>
@@ -126,7 +137,7 @@ console.log(Countrydata , Statedata , Citydata)
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData?.semail}
                   name="semail"
-                  placeholder="Email"
+                  placeholder="Your Email"
                   onChange={handleChange}
                 />
               </div>
@@ -143,6 +154,7 @@ console.log(Countrydata , Statedata , Citydata)
                   onChange={handleChange}
                 />
               </div>
+
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
                   Phone Number
@@ -152,23 +164,50 @@ console.log(Countrydata , Statedata , Citydata)
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.smobile}
                   name="smobile"
+                
+              
+               
                   placeholder="Phone number"
                   onChange={handleChange}
                 />
               </div>
-              <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  Whatsapp Number
-                </label>
-                <input
-                  type="number"
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.swhatsapp}
-                  name="swhatsapp"
-                  placeholder="Whatsapp number"
-                  onChange={handleChange}
-                />
-              </div>
+             
+ <div className="">
+              <label className="text-white " htmlFor="exampleInputMobile">
+             
+             <div className="flex gap-2 items-center  ">
+             <p> Whatsap</p>
+             
+            
+             <input
+                type="checkbox"
+                className="text-xs"
+              
+               checked={Checkbtn}
+                onChange={handleChackchange}
+              />
+              <span className="text-xs text-red-300"> (same as contact no.)</span>
+          
+             </div>
+              
+              
+              </label>
+              <input
+                type="number"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                value={Checkbtn ? formData?.smobile : formData?.swhatsapp}
+                name="swhatsapp"
+               max={10}
+               
+
+                placeholder="Whatsapp"
+                onChange={handleChange}
+              />
+              
+            </div>
+
+             
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
                   D.O.B
@@ -184,15 +223,15 @@ console.log(Countrydata , Statedata , Citydata)
               </div>
              
               <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
               
                <select 
                required
-               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-               onChange={handleChange} name="scity" value={formData?.scity}>
-               <option> select city</option>
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
+               onChange={handleChange} name="scountry" value={formData?.scountry}>
+               <option> select country</option>
                {
-                Citydata?.data?.map(elm=>{
+                Countrydata?.data?.map(elm=>{
                     
                     return (
                         <>
@@ -211,7 +250,7 @@ console.log(Countrydata , Statedata , Citydata)
               
                <select 
                required
-               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="sstate" value={formData?.sstate}>
                <option> select state</option>
                {
@@ -228,17 +267,16 @@ console.log(Countrydata , Statedata , Citydata)
                </select>
               </div>
 
-             
               <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+            <label className="text-white" htmlFor="exampleInputDOB">City</label>
               
                <select 
                required
-               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
-               onChange={handleChange} name="scountry" value={formData?.scountry}>
-               <option> select country</option>
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
+               onChange={handleChange} name="scity" value={formData?.scity}>
+               <option> select city</option>
                {
-                Countrydata?.data?.map(elm=>{
+                Citydata?.data?.map(elm=>{
                     
                     return (
                         <>
@@ -250,6 +288,8 @@ console.log(Countrydata , Statedata , Citydata)
                
                </select>
               </div>
+
+             
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
                   Address
@@ -339,28 +379,7 @@ console.log(Countrydata , Statedata , Citydata)
                 />
               </div>
 
-              <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  Intro
-                </label>
-                <textarea
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.sintro}
-                  name="sintro"
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  About
-                </label>
-                <textarea
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.sabout}
-                  name="sabout"
-                  onChange={handleChange}
-                />
-              </div>
+             
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
                   Experience
@@ -426,14 +445,38 @@ console.log(Countrydata , Statedata , Citydata)
                   onChange={handleChange}
                 />
               </div>
+
+              
             </div>
+            <div className="">
+                <label className="text-white" htmlFor="exampleInputMobile">
+                  Intro
+                </label>
+                <textarea
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
+                  value={formData.sintro}
+                  name="sintro"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="">
+                <label className="text-white" htmlFor="exampleInputMobile">
+                  About
+                </label>
+                <textarea
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
+                  value={formData.sabout}
+                  name="sabout"
+                  onChange={handleChange}
+                />
+              </div>
           </div>
 
-          <div className="flex items-center justify-between my-4">
-            <button type="submit" className=" px-5 py-2 Add-btn rounded-md ">
+          <div className="flex items-center justify-between mt-3">
+            <button type="submit" className=" px-4 py-2 Add-btn rounded-md ">
               Submit
             </button>
-            <button type="reset" className="px-5 py-2 Cancel-btn rounded-md ">
+            <button type="reset" className="px-4 py-2 Cancel-btn rounded-md ">
               Cancel
             </button>
           </div>

@@ -18,13 +18,13 @@ function EditSubcategories() {
   );
 
   // State to store form parameters
-  const [params, setParams] = useState({});
+ 
   const [formdata1, setformdata] = useState({});
 
   // Updates params when data is fetched
   useEffect(() => {
     if (data) {
-      setParams(data.data);
+     
       setformdata(data.data);
     }
   }, [data, loading, error]);
@@ -37,7 +37,7 @@ function EditSubcategories() {
       [name]: type === "file" ? files[0] : value,
     });
   };
-  console.log(params);
+ 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
     `http://localhost:8086/api/categories/update-subcat`
@@ -48,25 +48,24 @@ function EditSubcategories() {
 
     formdata.append(
       "image",
-      formdata1?.imageUrl === "" ? params?.imageUrl : formdata1?.imageUrl
+      formdata1?.imageUrl 
     );
+    
     console.log(e);
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`subcatId=${e.target.id}`, params, SubcatUrl);
+    handleUpdate(`subcatId=${e.target.id}`, formdata1, SubcatUrl);
   };
 
   console.log(formdata1);
 
   return (
     <>
-      {/* Display error message if there's an error */}
-      {error && error.message}
-
       {/* Display loading message while data is being fetched */}
-      {loading && "Loading..."}
-
-      {/* Render the form if data is available */}
+      {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
       {data?.data && (
         <div className="w-[100%] py-3 sm:p-3">
           <form

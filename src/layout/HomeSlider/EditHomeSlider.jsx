@@ -62,12 +62,11 @@ function EditHomeSlider() {
   
   return (
     <>
-      {/* Display error message if there's an error */}
-      {error && error.message}
-
-      {/* Display loading message while data is being fetched */}
-      {loading && "Loading..."}
-      {/* Render the form if data is available */}
+       {/* Display loading message while data is being fetched */}
+       {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
       {data.data && (
         <div className="w-[100%] py-3 sm:p-3">
           <form

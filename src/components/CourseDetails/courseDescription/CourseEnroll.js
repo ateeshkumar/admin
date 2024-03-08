@@ -104,7 +104,7 @@ const CourseEnroll = ({ CourseData }) => {
         {/* enroll now box car  */}
 
         <div className="box space-y-1 md:w-[100%]  lg:w-[30%] lg:absolute lg:top-0 lg:right-5">
-          <div className="">
+          <div className="h-52">
             <img
               src={
                 data?.data?.ccoverimage === "" || !data?.data?.ccoverimage

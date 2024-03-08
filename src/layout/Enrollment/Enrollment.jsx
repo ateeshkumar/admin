@@ -99,10 +99,13 @@ const Enrollment = () => {
 
         <div className=" w-[100%]">
           <div className=" ">
-            {/* {loading && <h1 className="text-white">Loading...</h1>} */}
-            {error && <h1 className="text-white">{error.message}</h1>}
-            {data && (
-              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
+            {/* Display loading message while data is being fetched */}
+          {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
+            {data?.data && (
+              <div className="table-responsive Ttable mt-4  h-[550px] overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">

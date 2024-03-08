@@ -17,7 +17,13 @@ function ViewCourses() {
   console.log(data);
   return (
     <>
-      <div className="p-3  p-md-3 text-white w-[100%]">
+
+{loading && <h1 className="text-white ">Loading...</h1>}
+          {error && <h1 className="text-white ">{error.message}</h1>}
+
+          {data?.data && (
+            <>
+            <div className="p-3  p-md-3 text-white w-[100%] h-[900px] overflow-y-auto Table-overflow">
         <div className="">
           
           <CourseEnroll CourseData={data}/>
@@ -31,6 +37,8 @@ function ViewCourses() {
           <STdetails CourseData={data}/>
         </div>
       </div>
+     </> )
+          }
     </>
   );
 }

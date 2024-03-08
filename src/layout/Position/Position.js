@@ -47,7 +47,7 @@ function Position() {
   };
 
   const SortPosData =data?.data?.sort((a ,b)=>{ 
-    return b.position - a.position
+    return a.position - b.position
   })
 
   
@@ -142,7 +142,7 @@ function Position() {
           {error && <h1 className="text-white">{error.message}</h1>}
 
           {data?.data && (
-            <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
+            <div className="table-responsive Ttable mt-4   h-[550px] overflow-y-auto Table-overflow">
               <table className=" table-striped  w-[100%]">
                 <thead>
                   <tr className="Thead">

@@ -83,11 +83,11 @@ const SubModule = () => {
       <div className="row  space-y-5 lg:space-y-0">
         <div className="col col-lg-7">
           <div className=" ">
-            {/* Display loading message while data is being fetched */}
-            {/* {loading && <h1 className="text-white">Loading...</h1>} */}
-            {/* Display error message if there's an error */}
-            {error && <h1 className="text-white">{error.message}</h1>}
-            {/* Display Category data if available */}
+             {/* Display loading message while data is being fetched */}
+          {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
             {data.data && (
               <div className="table-responsive Ttable ">
                 <table className=" table-striped w-[100%]">

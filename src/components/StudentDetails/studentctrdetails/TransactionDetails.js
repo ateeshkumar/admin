@@ -26,7 +26,7 @@ console.log(data?.data)
        <h1 className="heading "> Transaction Details</h1>
        <button className="btn-seeAll px-4 py-1 text-sm"> See All</button>
         </div>
-        <div className="card-body ">
+        <div className=" ">
           {/* {loading && <h1 className="text-black">Loading...</h1>}
           {error && <h1 className="text-black">{error.message}</h1>}
           
@@ -36,7 +36,7 @@ console.log(data?.data)
   
              
           
-            <div className="table-responsive Ttable h-[500px] overflow-y-auto">
+            <div className="table-responsive Ttable h-[500px] overflow-y-auto Table-overflow">
               <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >

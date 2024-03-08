@@ -38,7 +38,13 @@ function ViewStudentInfo() {
   };
   return (
     <>
-      <div className="text-white py-3 sm:p-3 col space-y-4">
+
+{loading && <h1 className="text-white ">Loading...</h1>}
+          {error && <h1 className="text-white ">{error.message}</h1>}
+
+          {data?.data && (
+           <>
+           <div className="text-white py-3 p-3 col space-y-4">
         <h1 className="heading">Student Profile</h1>
 
         <div className="  md:flex md:space-x-4 space-y-4 md:space-y-0">
@@ -219,7 +225,9 @@ function ViewStudentInfo() {
             ) : null}
           </div>
         </div>
-      </div>
+      </div> 
+           </>)
+          }
     </>
   );
 }

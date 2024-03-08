@@ -46,7 +46,7 @@ console.log(data?.data?.courses)
                       : `https://api.logicmitra.com:8086/uploads/courses/${elm.ccoverimage}`
                   }
                 alt="image"
-                className="w-[100%] h-44 border-b-2  border-yellow-500 "
+                className="w-[100%] h-44 border-b-2 rounded-md  border-yellow-500 "
               />
 
               <div className="px-3 py-1">

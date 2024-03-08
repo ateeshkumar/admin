@@ -196,8 +196,8 @@ function Courses() {
           <div className=" ">
             {loading && <h1 className="text-white">Loading...</h1>}
             {error && <h1 className="text-white">{error.message}</h1>}
-            {data && (
-              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
+            {data?.data && (
+              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
@@ -215,7 +215,7 @@ function Courses() {
                     </tr>
                   </thead>
                   <tbody className="table-group-divider">
-                    {data.data?.map((item) => (
+                    {data?.data?.map((item) => (
                       <tr key={item.id} className="Tbody">
                         <td>{item.ctitle}</td>
                         <td>

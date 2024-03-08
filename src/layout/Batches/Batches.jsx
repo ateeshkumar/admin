@@ -5,7 +5,7 @@ import { useDeleteOne } from "../../hooks/useDeleteOne";
 import BatchesDetails from "./BatchesDetails";
 
 const Batches = () => {
-  const [data, loading, error] = useFetch(
+  const [data,error, loading] = useFetch(
     `https://api.logicmitra.com:8086/api/batches/list`
   );
   const { Delete } = useDeleteOne(
@@ -109,10 +109,10 @@ const Batches = () => {
 
         <div className=" w-[100%]">
           <div className=" ">
-            {/* {loading && <h1 className="text-white">Loading...</h1>} */}
+            {loading && <h1 className="text-white">Loading...</h1>}
             {error && <h1 className="text-white">{error.message}</h1>}
-            {data && (
-              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto">
+            {data?.data && (
+              <div className="table-responsive Ttable mt-4   h-[550px] overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">

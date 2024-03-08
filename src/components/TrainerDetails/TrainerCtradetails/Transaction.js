@@ -39,7 +39,8 @@ console.log(data?.data?.walletTranscation)
   
              
           
-            <div className="table-responsive Ttable h-[500px] overflow-y-auto">
+            <div className="table-responsive Ttable h-[500px] overflow-y-auto Table-overflow
+            ">
               <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >

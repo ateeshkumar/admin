@@ -73,19 +73,27 @@ function AddCourses() {
       const data = await axios.post(
         `https://api.logicmitra.com:8086/api/courses/create-course`,
         formData
-      );
+     ,{
+
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+     } );
       if (data?.data?.response === "success") {
         toast.success("Course Created Successfully");
         setTimeout(() => {
           navigate("/courses");
-          // window.location.reload();
+          
         }, 1000);
+
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 2000);
       } else {
         toast.warn("error while creating course");
       }
-      //logic to submit data
-      // addData(formData).then((data) => {
-      //   console.log(data);
+      
     } catch (error) {
       console.error("Error occurred:", error);
       toast.error("Something Went wrong!!");
@@ -126,7 +134,7 @@ function AddCourses() {
                   value={formData.ccategory}
                   onChange={handleChange}
                   id="category"
-                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-2"
+                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]"
                 >
                   <option selected>Open this select menu</option>
                   {data?.data &&
@@ -152,7 +160,7 @@ function AddCourses() {
                     value={formData.csubcategory}
                     onChange={handleChange}
                     id="subcategory"
-                    className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                    className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]"
                   >
                     <option selected>Open this select menu</option>
                     {subCat?.data &&
@@ -213,7 +221,7 @@ function AddCourses() {
                   value={formData.ctrainer}
                   onChange={handleChange}
                   id="ctrainer"
-                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-2"
+                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]"
                 >
                   <option selected>Open this select menu</option>
                   {data2?.data &&
@@ -293,13 +301,13 @@ function AddCourses() {
          <div className="flex justify-between items-center"> 
          <button
             type="submit"
-            className="Add-btn rounded-sm py-2 my-2  px-5"
+            className="Add-btn rounded-sm py-2 my-2  px-4"
           >
             Submit
           </button>
           <button
             type="reset"
-            className="Cancel-btn  py-2  rounded-sm my-2 px-5"
+            className="Cancel-btn  py-2  rounded-sm my-2 px-4"
           >
             Cancel
           </button>

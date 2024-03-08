@@ -57,22 +57,20 @@ function EditStudentInfo() {
   console.log(params);
   return (
     <>
-      {/* Display error message if there's an error */}
-      {error && error.message}
-
       {/* Display loading message while data is being fetched */}
-      {loading && "Loading..."}
-
-      {/* Render the form if data is available */}
+      {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
       {data.data && (
-        <div className="w-100 py-3 sm:p-3 ">
+        <div className=" py-3 p-3 ">
           <form
-            className="forms-sample w-100 m-2 p-4 box"
+            className="forms-sample w-100  p-4 box"
             onSubmit={handleSubmit}
           >
             <div className="w-100 d-flex ">
               <div className="form-group  row">
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputUsername1">Student Name</label>
                   <input
                     type="text"
@@ -84,7 +82,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
                   <input
                     type="text"
@@ -95,7 +93,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputEmail1">Email</label>
                   <input
                     type="email"
@@ -107,7 +105,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputMobile">Password</label>
                   <input
                     type="text"
@@ -119,31 +117,39 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputMobile">Mobile</label>
                   <input
                     type="number"
                     required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="smobile"
+                    min={10}  // Provide numeric value for min
+                max={10}  // Provide numeric value for max
+                maxLength={10}
+                minLength={10}
                     value={params?.smobile}
                     placeholder="Mobile"
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputMobile">Whatsapp</label>
                   <input
                     type="number"
                     required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="swhatsapp"
+                    min={10}  // Provide numeric value for min
+                max={10}  // Provide numeric value for max
+                maxLength={10}
+                minLength={10}
                     value={params?.swhatsapp}
                     placeholder="Whatsapp"
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Date of Birth</label>
                   <input
                     type="date"
@@ -154,7 +160,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Status</label>
                   <input
                     type="text"
@@ -165,7 +171,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">City</label>
                   <input
                     type="text"
@@ -176,7 +182,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Address</label>
                   <input
                     type="text"
@@ -187,7 +193,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Country</label>
                   <input
                     type="text"
@@ -199,7 +205,7 @@ function EditStudentInfo() {
                   />
                 </div>
 
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Verified</label>
                   <input
                     type="text"
@@ -210,7 +216,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Profile Pic</label>
                   <input
                     type="file"
@@ -220,7 +226,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Background Image</label>
                   <input
                     type="file"
@@ -230,7 +236,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
                   <input
                     type="number"
@@ -241,7 +247,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Level of Education</label>
                   <input
                     type="text"
@@ -252,7 +258,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Pass Out Year</label>
                   <input
                     type="number"
@@ -263,7 +269,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">State</label>
                   <input
                     type="text"
@@ -275,7 +281,7 @@ function EditStudentInfo() {
                   />
                 </div>
 
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Fcm</label>
                   <input
                     type="text"
@@ -286,7 +292,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Lattitude</label>
                   <input
                     type="text"
@@ -297,7 +303,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col col-sm-4">
+                <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Longitude</label>
                   <input
                     type="text"
@@ -313,12 +319,12 @@ function EditStudentInfo() {
 
                
                 <div className="flex items-center justify-between mt-3">
-             <button type="submit" className="py-2 my-2 Add-btn px-5 rounded-md"
+             <button type="submit" className="py-2 my-2 Add-btn px-4 rounded-md"
               id={params?.id || ""}
                   onClick={handleSubmit}>
                 Submit
               </button>
-              <button type="reset" className="py-2 my-2 Cancel-btn px-5 rounded-md">
+              <button type="reset" className="py-2 my-2 Cancel-btn px-4 rounded-md">
                 Cancel
               </button>
              </div>
