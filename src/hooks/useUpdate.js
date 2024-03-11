@@ -16,15 +16,16 @@ const useUpdate = (updateUrl) => {
       const res = await axios.put(`${updateUrl}?${id}`, updateData, {
         headers: {
           "Content-Type": "multipart/form-data",
+          
         },
       });
       console.log(res);
       if (res.status === 200) {
         toast.success(res?.data?.message || "Data updated Successfully");
-        navigate(redirectUrl);
-        setTimeout(() => {
-          // window.location.reload()
-        }, 2000);
+        // navigate(redirectUrl);
+        // setTimeout(() => {
+        //   // window.location.reload()
+        // }, 2000);
       }
     } catch (error) {
       setError(error);

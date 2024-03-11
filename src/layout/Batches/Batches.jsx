@@ -32,7 +32,17 @@ const Batches = () => {
             </div>
           </div>
         </section>
-        <div className="row ">
+      
+      
+<div className="w-[100%]">
+
+{loading && <h1 className="text-white">Loading...</h1>}
+            {error && <h1 className="text-white">{error.message}</h1>}
+  {
+    data?.data && (
+      <>
+
+      <div className="row ">
           {/* <Card title="Total Courses" value={totalCourses} />
           <Card title="Active Courses" value={activeCourses} />
           <Card title="Inactive Courses" value={inactiveCourses} />
@@ -188,6 +198,14 @@ const Batches = () => {
             )}
           </div>
         </div>
+
+
+      </>
+    )
+  }
+</div>
+
+
       </div>
     </>
   );

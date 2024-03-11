@@ -61,7 +61,7 @@ function Trainers() {
   };
 
   return (
-    <div className=" md:pl-3  p-3 text-white w-[100%] ">
+    <div className=" md:pl-3  p-3 text-white w-[100%] mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium   d-flex justify-between items-center">
           <h1>Trainers List</h1>
@@ -73,8 +73,19 @@ function Trainers() {
         </div>
       </section>
 
-      {/* Statistics Cards */}
-      <div className="row">
+      <div className=" w-[100%]">
+          {/* Display loading message while data is being fetched */}
+          {loading && <h1 className="text-white">Loading...</h1>}
+          {/* Display error message if there's an error */}
+          {error && <h1 className="text-white">{error.message}</h1>}
+          {/* Display trainers data if available */}
+
+          {
+           data?.data &&(
+              <>
+
+ {/* Statistics Cards */}
+ <div className="row">
         <Card title="Total Trainers" value={totalTrainers} />
         <Card title="Organization Trainers" value={organizationTrainers} />
         <Card title="Inactive Trainers" value={inactiveTrainers} />
@@ -159,7 +170,7 @@ function Trainers() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
           {data?.data && (
-            <div className="table-responsive Ttable mt-4 h-[500px] overflow-y-auto Table-overflow">
+            <div className="table-responsive Ttable mt-4  overflow-y-auto Table-overflow">
               <table className=" table-striped w-[100%]">
                 <thead>
                   <tr className="Thead">
@@ -215,6 +226,13 @@ function Trainers() {
           )}
         </div>
       </div>
+
+              </>
+            )
+          }
+
+          </div>
+     
     </div>
   );
 }

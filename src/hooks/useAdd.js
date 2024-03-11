@@ -10,7 +10,7 @@ const useAdd = (url) => {
       const res = await axios.post(url, params, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "Content-Type": "application/x-www-form-urlencoded",
+         
         },
       }); //Adding the data
       console.log(res);

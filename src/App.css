@@ -39,8 +39,8 @@
   transition: width 0.35s linear,  0.35s linear;
   z-index:9999999;
   box-sizing: border-box;
- 
- 
+  min-height: 100vh;
+  height: 100%;
  
 }
 
@@ -110,11 +110,21 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+
+
+
+
+
 
 .input{
   background-color: var(--small-box-background);
   border: 1px solid var(--input-border);
   color: white;
+  /* font-size: 15px; */
 }
 
 .input:focus{
@@ -132,6 +142,20 @@ input[type="date"]::-webkit-calendar-picker-indicator{
   color:white;
   font-size: small;
 }
+
+option{
+  font-size: small;
+}
+select , option{
+  font-size: small;
+  appearance: none;
+  -webkit-appearance: none;
+
+  
+}
+
+
+
 
 
 

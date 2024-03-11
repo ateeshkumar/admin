@@ -76,7 +76,7 @@ function EditCourses() {
         <>loading...</>
       ) : (
         <>
-          <div className="w-100 py-3 p-3 ">
+          <div className="w-100 py-3 p-3 mb-16">
             <form
               // Form for Adding Course information
               className="forms-sample   p-4 box"

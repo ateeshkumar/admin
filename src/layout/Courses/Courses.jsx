@@ -101,7 +101,7 @@ function Courses() {
   console.log(data);
   return (
     <>
-      <div className="md:pl-3  p-3 text-white w-[100%]  courses-page">
+      <div className="md:pl-3  p-3 text-white w-[100%]  courses-page mb-16">
         <section className="section py-3">
           <div className="text-xl font-medium   d-flex justify-between items-center">
             <h1>Course List</h1>
@@ -116,7 +116,14 @@ function Courses() {
           </div>
         </section>
 
-        <div className="row ">
+        <div className=" ">
+            {loading && <h1 className="text-white">Loading...</h1>}
+            {error && <h1 className="text-white">{error.message}</h1>}
+        {
+          data?.data && (
+            <>
+
+            <div className="row ">
           <Card title="Total Courses" value={totalCourses} />
           <Card title="Active Courses" value={activeCourses} />
           <Card title="Inactive Courses" value={inactiveCourses} />
@@ -197,7 +204,7 @@ function Courses() {
             {loading && <h1 className="text-white">Loading...</h1>}
             {error && <h1 className="text-white">{error.message}</h1>}
             {data?.data && (
-              <div className="table-responsive Ttable mt-4  h-[500px] overflow-y-auto Table-overflow">
+              <div className="table-responsive Ttable mt-4  overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
@@ -283,6 +290,12 @@ function Courses() {
             )}
           </div>
         </div>
+            </>
+          )
+        }
+            </div>
+
+       
       </div>
     </>
   );

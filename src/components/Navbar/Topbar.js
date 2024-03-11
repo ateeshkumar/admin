@@ -95,7 +95,7 @@ const Topbar = ({ setshow, show }) => {
                 </div>
               </li>
               <li className="d-lg-none d-block">
-                {!show ? (
+                {show ? (
                   <IoMdList
                     className="text-2xl cursor-pointer"
                     onClick={Handleclick}

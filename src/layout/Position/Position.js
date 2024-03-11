@@ -66,8 +66,15 @@ function Position() {
       </section>
 
     
+      <div className="w-[100%] ">
+          {loading && <h1 className="text-white">Loading...</h1>}
+          {error && <h1 className="text-white">{error.message}</h1>}
 
-      <div className="row">
+          {
+            data?.data && (
+              <>
+
+              <div className="row">
         <div className="col">
           <div className="box ">
             <div className="card-body row">
@@ -198,6 +205,13 @@ function Position() {
           )}
         </div>
       </div>
+
+              </>
+            )
+          }
+     </div>     
+
+     
     </div>
   );
 }

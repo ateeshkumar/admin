@@ -87,9 +87,9 @@ function AddCourses() {
           
         }, 1000);
 
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 2000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       } else {
         toast.warn("error while creating course");
       }
@@ -103,7 +103,7 @@ function AddCourses() {
 
   console.log(formData);
   return (
-    <div className="w-[100%] py-3 sm:p-3">
+    <div className="w-[100%] py-3 sm:p-3 mb-16">
       <form
         // Form for Adding Course information
         className="forms-sample  m-2 p-4 box "
@@ -301,13 +301,13 @@ function AddCourses() {
          <div className="flex justify-between items-center"> 
          <button
             type="submit"
-            className="Add-btn rounded-sm py-2 my-2  px-4"
+            className="Add-btn rounded-sm py-2 my-2 px-5 sm:px-4"
           >
             Submit
           </button>
           <button
             type="reset"
-            className="Cancel-btn  py-2  rounded-sm my-2 px-4"
+            className="Cancel-btn  py-2  rounded-sm my-2 px-5 sm:px-4"
           >
             Cancel
           </button>

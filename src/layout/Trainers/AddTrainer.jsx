@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAdd } from "../../hooks/useAdd";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { useFetch } from "../../hooks/useFetch";
+import axios from "axios";
 
 function AddTrainer() {
   
@@ -45,6 +46,21 @@ function AddTrainer() {
   const handleChackchange=(e)=>{
    
 Setcheckbtn(e.target.checked)
+if(!Checkbtn){
+  setFormData(prevdata=>(
+    {
+      ...prevdata,
+      swhatsapp:formData.smobile
+    }
+  ))
+  }else{
+    setFormData(prevdata=>(
+      {
+        ...prevdata,
+        swhatsapp:""
+      }
+    ))
+  }
   }
 
 
@@ -90,12 +106,50 @@ Setcheckbtn(e.target.checked)
     true
   );
 
+
+  useEffect(()=>{
+    const fetchcitydata=async()=>{
+    try{
+    
+      const res = await axios.get(`https://api.logicmitra.com:8086/api/address/city-detail?cityID=${formData.scity}`)
+     const data = res.data
+     console.log(data?.data?.state)
+    
+      
+    
+     const datastate= Statedata?.data?.filter(elm=>elm.id===data?.data?.state)
+     console.log(datastate)
+     const UniquStatename= datastate.map(elm=>elm.title)
+     console.log(...UniquStatename)
+    
+     setFormData((predata)=>({
+      ...predata,
+      sstate:UniquStatename.toString()  
+       }))
+    
+    
+     console.log(datastate)
+    
+    }catch(error){
+      console.log(error)
+    }
+    
+    
+    
+    }
+    
+    fetchcitydata()
+    
+      },[formData.scity])
+    
+
 console.log(Countrydata , Statedata , Citydata)
 
+console.log(formData)
 
   return (
     <>
-      <div className="w-[100%] py-3 p-3 ">
+      <div className="w-[100%] py-3 p-3 mb-16">
         <form
           className="forms-sample w-[100%]  p-4 box"
           onSubmit={handleSubmit}
@@ -129,6 +183,21 @@ console.log(Countrydata , Statedata , Citydata)
                 />
               </div>
               <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+             
+             <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+               value={formData.sgender}
+                name="sgender"
+                
+                onChange={handleChange}>
+                <option>Select gender</option>
+              <option value="male">
+                male
+              </option>
+              <option value="female">female</option>
+             </select>
+            </div>
+              <div className="">
                 <label className="text-white" htmlFor="exampleInputEmail1">
                   Email
                 </label>
@@ -141,19 +210,7 @@ console.log(Countrydata , Statedata , Citydata)
                   onChange={handleChange}
                 />
               </div>
-              <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  Gender
-                </label>
-                <input
-                  type="text"
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.sgender}
-                  name="sgender"
-                  placeholder="Gender"
-                  onChange={handleChange}
-                />
-              </div>
+              
 
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
@@ -194,11 +251,11 @@ console.log(Countrydata , Statedata , Citydata)
               </label>
               <input
                 type="number"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={Checkbtn ? formData?.smobile : formData?.swhatsapp}
+                value={formData?.swhatsapp}
                 name="swhatsapp"
-               max={10}
+               
                
 
                 placeholder="Whatsapp"
@@ -280,7 +337,7 @@ console.log(Countrydata , Statedata , Citydata)
                     
                     return (
                         <>
-                            <option value={elm.title}> {elm.title} </option>
+                            <option value={elm.id}> {elm.title} </option>
                         </>
                     )
                 })
@@ -317,18 +374,19 @@ console.log(Countrydata , Statedata , Citydata)
                 />
               </div>
               <div className="">
-                <label className="text-white" htmlFor="exampleInputMobile">
-                  Status
-                </label>
-                <input
-                  type="text"
-                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
-                  value={formData.sstatus}
-                  name="sstatus"
-                  placeholder="Status"
-                  onChange={handleChange}
-                />
-              </div>
+              <label className="text-white" htmlFor="exampleInputDOB">Status</label>
+              <select onChange={handleChange} value={formData.sstatus} name="sstatus"
+               className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]">
+                <option>Select option</option>
+               
+                <option value={1}>Active</option>
+                <option value="blocked">Blocked</option>
+                <option value={0}>Inactive</option>
+                
+                
+              </select>
+              
+            </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
                   Longitude
@@ -473,10 +531,10 @@ console.log(Countrydata , Statedata , Citydata)
           </div>
 
           <div className="flex items-center justify-between mt-3">
-            <button type="submit" className=" px-4 py-2 Add-btn rounded-md ">
+            <button type="submit" className=" sm:px-4  px-5 py-2 Add-btn rounded-md ">
               Submit
             </button>
-            <button type="reset" className="px-4 py-2 Cancel-btn rounded-md ">
+            <button type="reset" className="sm:px-4  px-5 py-2 Cancel-btn rounded-md ">
               Cancel
             </button>
           </div>

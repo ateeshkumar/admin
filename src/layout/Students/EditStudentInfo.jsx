@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import { useFetchOnce } from "../../hooks/useFetchOnce";
 import useUpdate from "../../hooks/useUpdate";
+import { useFetch } from "../../hooks/useFetch";
+import axios from "axios";
 
 function EditStudentInfo() {
   const StudentUrl="/students"
@@ -55,6 +57,66 @@ function EditStudentInfo() {
   };
 
   console.log(params);
+
+
+
+// fetching all country , state, and country data for showing on dropdown
+
+const [Citydata, error1, loading1] = useFetch(
+  "https://api.logicmitra.com:8086/api/address/city-list",
+  true
+);
+
+const [Countrydata, error2, loading2] = useFetch(
+  "https://api.logicmitra.com:8086/api/address/country-list",
+  true
+);
+
+const [Statedata, error3, loading3] = useFetch(
+  "https://api.logicmitra.com:8086/api/address/state-list",
+  true
+);
+
+
+// choose the city after state and coutnry clicked 
+
+
+useEffect(()=>{
+const fetchcitydata=async()=>{
+try{
+
+const res = await axios.get(`https://api.logicmitra.com:8086/api/address/city-detail?cityID=${params?.scity}`)
+const data = res.data
+console.log(data?.data?.state)
+
+
+
+const datastate= Statedata?.data?.filter(elm=>elm.id===data?.data?.state)
+console.log(datastate)
+const UniquStatename= datastate.map(elm=>elm.title)
+console.log(...UniquStatename)
+
+setParams((predata)=>({
+...predata,
+sstate:UniquStatename.toString()
+}))
+
+
+console.log(datastate)
+
+}catch(error){
+console.log(error)
+}
+
+
+
+}
+
+fetchcitydata()
+
+},[params?.scity])
+
+
   return (
     <>
       {/* Display loading message while data is being fetched */}
@@ -63,14 +125,14 @@ function EditStudentInfo() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data.data && (
-        <div className=" py-3 p-3 ">
+        <div className=" py-3 p-3 mb-16">
           <form
             className="forms-sample w-100  p-4 box"
             onSubmit={handleSubmit}
           >
             <div className="w-100 d-flex ">
-              <div className="form-group  row">
-                <div className="col-12 col-sm-4">
+              <div className="form-group  row items-center">
+                <div className="col-12 col-sm-4 items-center">
                   <label className="text-white" htmlFor="exampleInputUsername1">Student Name</label>
                   <input
                     type="text"
@@ -82,17 +144,23 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
+               
+
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
-                  <input
-                    type="text"
-                    required
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    name="sgender"
-                    value={params?.sgender}
-                    onChange={handleChange}
-                  />
-                </div>
+              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+             
+             <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+               value={params?.sgender}
+                name="sgender"
+                
+                onChange={handleChange}>
+                <option>Select gender</option>
+              <option value="male">
+                male
+              </option>
+              <option value="female">female</option>
+             </select>
+            </div>
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputEmail1">Email</label>
                   <input
@@ -124,10 +192,7 @@ function EditStudentInfo() {
                     required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="smobile"
-                    min={10}  // Provide numeric value for min
-                max={10}  // Provide numeric value for max
-                maxLength={10}
-                minLength={10}
+                   
                     value={params?.smobile}
                     placeholder="Mobile"
                     onChange={handleChange}
@@ -140,10 +205,7 @@ function EditStudentInfo() {
                     required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="swhatsapp"
-                    min={10}  // Provide numeric value for min
-                max={10}  // Provide numeric value for max
-                maxLength={10}
-                minLength={10}
+                  
                     value={params?.swhatsapp}
                     placeholder="Whatsapp"
                     onChange={handleChange}
@@ -161,27 +223,84 @@ function EditStudentInfo() {
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Status</label>
-                  <input
-                    type="text"
-                    required
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    name="status"
-                    value={params?.status}
-                    onChange={handleChange}
-                  />
-                </div>
+              <label className="text-white" htmlFor="exampleInputDOB">Status</label>
+              <select onChange={handleChange} value={params?.status} name="status"
+               className="form-select  input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]">
+                 <option>Open Select</option>
+               
+                <option value={1}>Active</option>
+                <option value="blocked">Blocked</option>
+                <option value={0}>Inactive</option>
+                
+                
+              </select>
+              
+            </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">City</label>
-                  <input
-                    type="text"
-                    required
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    name="scity"
-                    value={params?.scity}
-                    onChange={handleChange}
-                  />
-                </div>
+            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+              
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
+               onChange={handleChange} name="scountry" value={params?.scountry}>
+               <option> Select country</option>
+               {
+                Countrydata?.data?.map(elm=>{
+                    
+                    return (
+                        <>
+                            <option value={elm.title}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
+              </div>
+            <div className="col-12 col-sm-4">
+            <label className="text-white" htmlFor="exampleInputDOB">State</label>
+              
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
+               onChange={handleChange} name="sstate" value={params?.sstate}>
+              <optoin>Select state</optoin>
+               {
+                Statedata?.data?.map(elm=>{
+                    
+                    return (
+                        <>
+                            <option value={elm.title}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
+              </div>
+           
+              <div className="col-12 col-sm-4">
+            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+              
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2 py-[10px]"
+               onChange={handleChange} name="scity" value={params?.scity}>
+               <option> Select city</option>
+               {
+                Citydata?.data?.map(elm=>{
+                    console.log(elm.id)
+                    return (
+                        <>
+                            <option value={`${elm.id}`}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
+              </div>
+               
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Address</label>
                   <input
@@ -194,13 +313,13 @@ function EditStudentInfo() {
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
                   <input
-                    type="text"
+                    type="number"
                     required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    name="scountry"
-                    value={params?.scountry}
+                    name="spincode"
+                    value={params?.spincode}
                     onChange={handleChange}
                   />
                 </div>
@@ -236,17 +355,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
-                  <input
-                    type="number"
-                    required
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    name="spincode"
-                    value={params?.spincode}
-                    onChange={handleChange}
-                  />
-                </div>
+               
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Level of Education</label>
                   <input
@@ -269,17 +378,7 @@ function EditStudentInfo() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">State</label>
-                  <input
-                    type="text"
-                    required
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    name="sstate"
-                    value={params?.sstate}
-                    onChange={handleChange}
-                  />
-                </div>
+               
 
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Fcm</label>
@@ -319,12 +418,12 @@ function EditStudentInfo() {
 
                
                 <div className="flex items-center justify-between mt-3">
-             <button type="submit" className="py-2 my-2 Add-btn px-4 rounded-md"
+             <button type="submit" className="py-2 my-2 Add-btn sm:px-4  px-5 rounded-md"
               id={params?.id || ""}
                   onClick={handleSubmit}>
                 Submit
               </button>
-              <button type="reset" className="py-2 my-2 Cancel-btn px-4 rounded-md">
+              <button type="reset" className="py-2 my-2 Cancel-btn sm:px-4  px-5 rounded-md">
                 Cancel
               </button>
              </div>

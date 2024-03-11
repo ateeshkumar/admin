@@ -37,7 +37,7 @@ function ViewTrainerInfo() {
           {data?.data && (
             <>
 
-            <div className="text-white py-3 sm:p-3 col space-y-4">
+            <div className="text-white py-3 sm:p-3 col space-y-4 mb-16">
         <h1 className="heading">Trainer's Profile</h1>
 
         <div className="  md:flex md:space-x-4 space-y-4 md:space-y-0">

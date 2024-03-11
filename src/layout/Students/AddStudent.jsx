@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import axios from "axios";
 import { toast } from "react-toastify";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function AddStudent() {
   const StudentUrl="/students";
@@ -49,7 +54,25 @@ function AddStudent() {
   const handleChackchange=(e)=>{
    
 Setcheckbtn(e.target.checked)
+console.log(e.target.value)
+
+if(!Checkbtn){
+  setFormData(prevdata=>(
+    {
+      ...prevdata,
+      swhatsapp:formData.smobile
+    }
+  ))
+  }else{
+    setFormData(prevdata=>(
+      {
+        ...prevdata,
+        swhatsapp:""
+      }
+    ))
   }
+  }
+
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -70,7 +93,7 @@ Setcheckbtn(e.target.checked)
   );
 
 
-  console.log(formData)
+  console.log(formData.sgender)
 
 
 
@@ -88,12 +111,12 @@ Setcheckbtn(e.target.checked)
      ,{
       headers: {
         "Content-Type": "multipart/form-data",
-        "Content-Type": "application/x-www-form-urlencoded",
+        
       },
      }
       );
       if (data?.data?.response === "success") {
-        toast.success("Course Created Successfully");
+        toast.success("Student Created Successfully");
         setTimeout(() => {
           navigate(StudentUrl);
         
@@ -114,6 +137,7 @@ Setcheckbtn(e.target.checked)
   };
 
  
+  console.log(formData)
 
 
 
@@ -134,13 +158,7 @@ Setcheckbtn(e.target.checked)
     true
   );
 
-  const [statedata1 , setcontrystatedata]=useState()
-
-
-  console.log(statedata1)
   
-
-
   // choose the city after state and coutnry clicked 
 
 
@@ -148,16 +166,25 @@ Setcheckbtn(e.target.checked)
 const fetchcitydata=async()=>{
 try{
 
-  const res = await axios.get(`https://api.logicmitra.com:8086/api/address/city-detail?cityID=${formData.scity}`,{
-    headers: {
-      "Content-Type": "multipart/form-data",
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  })
+  const res = await axios.get(`https://api.logicmitra.com:8086/api/address/city-detail?cityID=${formData.scity}`)
  const data = res.data
- console.log(data)
+ console.log(data?.data?.state)
 
-setcontrystatedata(data)
+  
+
+ const datastate= Statedata?.data?.filter(elm=>elm.id===data?.data?.state)
+ console.log(datastate)
+ const UniquStatename= datastate.map(elm=>elm.title)
+ console.log(...UniquStatename)
+
+ setFormData((predata)=>({
+  ...predata,
+  sstate:UniquStatename.toString()
+ }))
+
+
+ console.log(datastate)
+
 }catch(error){
   console.log(error)
 }
@@ -168,12 +195,14 @@ setcontrystatedata(data)
 
 fetchcitydata()
 
-  },[])
+  },[formData.scity])
 
 
+  console.log(formData.sstate)
+  console.log(`<h1> ${formData.sstate} </h1>`)
 
   return (
-    <div className="w-[100%] py-3 p-3 ">
+    <div className="w-[100%] py-3 p-3 mb-16">
       <form className="forms-sample w-[100%]  p-4 box" onSubmit={handleSubmit}>
         <div className="  ">
           <div className="form-group w-[100%] grid grid-cols-1 sm:grid-cols-3 gap-2 items-center ">
@@ -202,6 +231,22 @@ fetchcitydata()
               />
             </div>
             <div className="">
+              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+             
+             <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+               value={formData.sgender}
+                name="sgender"
+                
+                onChange={handleChange}>
+                <option>Select gender</option>
+              <option value="male">
+                male
+              </option>
+              <option value="female">female</option>
+             </select>
+            </div>
+
+            <div className="">
               <label className="text-white" htmlFor="exampleInputEmail1">Email</label>
               <input
                 type="email"
@@ -222,7 +267,7 @@ fetchcitydata()
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.smobile}
                 name="smobile"
-                max={10}
+               
                 placeholder="Mobile"
                 onChange={handleChange}
               />
@@ -252,9 +297,9 @@ fetchcitydata()
                 type="number"
                 required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={Checkbtn ? formData?.smobile : formData?.swhatsapp}
+                value={formData?.swhatsapp}
                 name="swhatsapp"
-               max={10}
+             
                
 
                 placeholder="Whatsapp"
@@ -275,17 +320,23 @@ fetchcitydata()
                 onChange={handleChange}
               />
             </div>
+
+          
+         
+
             <div className="">
               <label className="text-white" htmlFor="exampleInputDOB">Status</label>
-              <input
-                type="text"
-                required
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={formData.sstatus}
-                name="sstatus"
-                placeholder="Status"
-                onChange={handleChange}
-              />
+              <select onChange={handleChange} value={formData.sstatus} name="sstatus"
+               className="form-select  input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]">
+                 <option>Open Select</option>
+               
+                <option value={1}>Active</option>
+                <option value="blocked">Blocked</option>
+                <option value={0}>Inactive</option>
+                
+                
+              </select>
+              
             </div>
            
            
@@ -299,7 +350,7 @@ fetchcitydata()
                required
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="scountry" value={formData?.scountry}>
-               <option> select country</option>
+               <option> Select country</option>
                {
                 Countrydata?.data?.map(elm=>{
                     
@@ -320,7 +371,7 @@ fetchcitydata()
                required
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="sstate" value={formData.sstate}>
-               <option> select state</option>
+              <optoin>Select state</optoin>
                {
                 Statedata?.data?.map(elm=>{
                     
@@ -342,7 +393,7 @@ fetchcitydata()
                required
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2 py-[10px]"
                onChange={handleChange} name="scity" value={formData?.scity}>
-               <option> select city</option>
+               <option> Select city</option>
                {
                 Citydata?.data?.map(elm=>{
                     console.log(elm.id)
@@ -404,18 +455,8 @@ fetchcitydata()
             </div>
            
 
-            <div className="">
-              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
-              <input
-                type="text"
-                required
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={formData.sgender}
-                name="sgender"
-                placeholder="Gender"
-                onChange={handleChange}
-              />
-            </div>
+           
+
 
            
             <div className="">
@@ -462,7 +503,7 @@ fetchcitydata()
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.passOutYear}
                 name="passOutYear"
-                placeholder="pass out year"
+                placeholder="Pass out year"
                 onChange={handleChange}
               />
             </div>
@@ -504,7 +545,7 @@ fetchcitydata()
             </div>
           
           </div>
-          <div className="col-12">
+          <div className="">
               <label className="text-white" htmlFor="exampleInputMobile">Intro</label>
               <textarea
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
@@ -516,7 +557,7 @@ fetchcitydata()
               />
             </div>
 
-            <div className="col-12">
+            <div className="">
               <label className="text-white" htmlFor="exampleInputMobile">About</label>
               <textarea
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
@@ -536,11 +577,11 @@ fetchcitydata()
       <div className="flex justify-between items-center mt-3">
       <button
           type="submit"
-          className="my-2 Add-btn py-2 px-4  rounded-md  "
+          className="my-2 Add-btn py-2 sm:px-4 px-5  rounded-md  "
         >
           Submit
         </button>
-        <button type="reset"  className="my-2 Cancel-btn px-4 py-2 rounded-md  ">
+        <button type="reset"  className="my-2 Cancel-btn sm:px-4 px-5 py-2 rounded-md  ">
           Cancel
         </button>
       </div>

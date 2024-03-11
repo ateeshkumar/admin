@@ -3,8 +3,26 @@ import { NavLink } from "react-router-dom";
 import { CiGrid41 } from "react-icons/ci";
 import { Tooltip } from "@mui/material";
 import Dropdown from "react-bootstrap/Dropdown";
+import { PiStudentBold } from "react-icons/pi";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { useState } from "react";
+import { MdDashboard } from "react-icons/md";
+
+
+import { MdPersonOutline } from "react-icons/md";
+
+import { MdOutlineAssignment } from "react-icons/md";
+import { IoLocationOutline } from "react-icons/io5";
+import { TbCategoryPlus } from "react-icons/tb";
+import { MdOutlineSubscriptions } from "react-icons/md";
+import { MdOutlineEditLocation } from "react-icons/md";
+import { PiSlidersHorizontalBold } from "react-icons/pi";
+import { SiBackstage } from "react-icons/si";
+import { FiUserPlus } from "react-icons/fi";
+import { TbBuildingEstate } from "react-icons/tb";
+import { GiModernCity } from "react-icons/gi";
+import { BsPinMap } from "react-icons/bs";
+
 const Sidebar = ({ setshow, show }) => {
   const [showdrop, setshowdrop] = useState(false);
   const Dropclick = () => {
@@ -16,11 +34,11 @@ const Sidebar = ({ setshow, show }) => {
   return (
     <>
       <section
-        className={` text-white  sidebar px-1 py-3  lg:static fixed  top-20 h-[1000px]    ${
+        className={`d-none d-lg-block text-white  sidebar px-1 py-3  lg:static fixed  top-20     ${
           show ? "   right-0 " : "lg:w-14 -right-72"
         }`}
       >
-        <ul className=" space-y-3 overflow-y-scroll sidebar-overflow h-[50%] lg:h-[100%]">
+        <ul className=" space-y-3 overflow-y-scroll sidebar-overflow h-[80%] lg:h-[100%]">
           <li className="">
             <NavLink
               className="border-none outline-none flex items-center gap-2 side-menu p-2 rounded-md "
@@ -28,7 +46,8 @@ const Sidebar = ({ setshow, show }) => {
               to="/"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+                
+                <MdDashboard  className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -36,7 +55,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Dashboard"
                 >
-                  <CiGrid41 className="text-xl" />
+                  <MdDashboard  className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -51,7 +70,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/students"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+                <PiStudentBold  className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -59,7 +78,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Students"
                 >
-                  <CiGrid41 className="text-xl" />
+                 <PiStudentBold  className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -74,7 +93,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/trainers"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+                <MdPersonOutline className="text-xl" />
               ) : (
                 <button
                   className=""
@@ -82,7 +101,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Trainers"
                 >
-                  <CiGrid41 className="text-xl" />
+                   <MdPersonOutline className="text-xl" />
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -97,7 +116,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/courses"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+                <MdOutlineAssignment className="text-xl" />
               ) : (
                 <button
                   className=""
@@ -105,7 +124,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Courses"
                 >
-                  <CiGrid41 className="text-xl" />
+                  <MdOutlineAssignment className="text-xl" />
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -120,7 +139,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/categories"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+               <TbCategoryPlus className="text-xl" />
               ) : (
                 <button
                   className=""
@@ -128,7 +147,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Categories"
                 >
-                  <CiGrid41 className="text-xl" />
+                 <TbCategoryPlus className="text-xl" />
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -143,7 +162,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/home-slider"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+              <PiSlidersHorizontalBold className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -151,7 +170,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Home-slider"
                 >
-                  <CiGrid41 className="text-xl" />
+                <PiSlidersHorizontalBold className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -166,7 +185,8 @@ const Sidebar = ({ setshow, show }) => {
               to="/enrollment"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+               <FiUserPlus className="text-xl
+               "/>
               ) : (
                 <button
                   className=""
@@ -174,7 +194,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Enrollment"
                 >
-                  <CiGrid41 className="text-xl" />
+                 <FiUserPlus className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -189,7 +209,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/batches"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+                <SiBackstage className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -197,7 +217,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Batch"
                 >
-                  <CiGrid41 className="text-xl" />
+                  <SiBackstage className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -210,7 +230,7 @@ const Sidebar = ({ setshow, show }) => {
              
              <div className="border-none outline-none flex items-center gap-2 side-menu p-2 rounded-md cursor-pointer w-[100%]">
              {show ? (
-                <CiGrid41 className="text-xl" />
+               <IoLocationOutline  className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -218,7 +238,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Batch"
                 >
-                  <CiGrid41 className="text-xl" />
+                 <IoLocationOutline className="text-xl"/>
                 </button>
               )}
 
@@ -243,20 +263,19 @@ const Sidebar = ({ setshow, show }) => {
                 <ul className=" border-none outline-none gap-2 side-menu p-2 rounded-md mt-2 space-y-1">
                   <li>
                   <NavLink className="locationdropdown p-1 cursor-pointer flex gap-2 items-center rounded-md" to="/country" style={{ color: "white" }}>
-                    <CiGrid41 className="text-xl" />
-                  
+                  <BsPinMap className="text-xl" />
                       
                       Country
                     </NavLink>
                   </li>
                   <li>
                   <NavLink className="locationdropdown p-1 cursor-pointer flex gap-2 items-center rounded-md" to="/state"  style={{ color: "white" }}>
-                    <CiGrid41 className="text-xl" /> 
+                  <TbBuildingEstate className="text-xl"/>
                     State</NavLink>
                   </li>
                   <li>
                   <NavLink  className="locationdropdown p-1 cursor-pointer flex gap-2 items-center rounded-md" to="/city"  style={{ color: "white" }}>
-                    <CiGrid41 className="text-xl" /> 
+                  <GiModernCity className="text-xl"/>
                     City</NavLink>
                   </li>
                 </ul>
@@ -270,7 +289,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/subscription"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+               <MdOutlineSubscriptions className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -278,7 +297,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Batch"
                 >
-                  <CiGrid41 className="text-xl" />
+                 <MdOutlineSubscriptions className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
@@ -294,7 +313,7 @@ const Sidebar = ({ setshow, show }) => {
               to="/position"
             >
               {show ? (
-                <CiGrid41 className="text-xl" />
+                <MdOutlineEditLocation className="text-xl"/>
               ) : (
                 <button
                   className=""
@@ -302,7 +321,7 @@ const Sidebar = ({ setshow, show }) => {
                   data-placement="right"
                   title="Batch"
                 >
-                  <CiGrid41 className="text-xl" />
+                  <MdOutlineEditLocation className="text-xl"/>
                 </button>
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
