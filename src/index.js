@@ -153,7 +153,7 @@ const router = createBrowserRouter([
             element: <Categories />,
           },
           {
-            path: "subcategories",
+            path: ":id/subcategories",
             children: [
               {
                 path: "",

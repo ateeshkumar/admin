@@ -5,10 +5,16 @@ import { useFetch } from "../../../hooks/useFetch";
 import useUpdate from "../../../hooks/useUpdate";
 
 function EditSubcategories() {
-  const SubcatUrl = "/categories/subcategories/list";
-
+ 
   const { id } = useParams();
   const subcatId = id;
+
+  const Url= window.location.href;
+
+ const SubCatUrl1 = Url.substring(0, Url.lastIndexOf('/edit/'));
+ const SubCatUrl= SubCatUrl1.substring(SubCatUrl1.indexOf("/categories/"))
+ console.log(SubCatUrl)
+
 
   // Fetch category data using a custom hook (useFetch)
 
@@ -54,7 +60,7 @@ function EditSubcategories() {
     console.log(e);
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`subcatId=${e.target.id}`, formdata1, SubcatUrl);
+    handleUpdate(`subcatId=${e.target.id}`, formdata1, SubCatUrl);
   };
 
   console.log(formdata1);
@@ -68,7 +74,7 @@ function EditSubcategories() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data?.data && (
-        <div className="w-[100%] py-3 sm:p-3 mb-16">
+        <div className="w-[100%] py-3 p-2 mb-16">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -166,7 +172,7 @@ function EditSubcategories() {
                     <img
                       src={`https://api.logicmitra.com/uploads/subcategories/${formdata1?.imageUrl}`}
                       alt="image"
-                      className="w-[100%] h-[100%]  object-contain"
+                      className="w-[100%] h-[100%]  object-cover"
                     />
                   </div>
                 </div>
@@ -194,7 +200,7 @@ function EditSubcategories() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="submi Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
+                className=" Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
               >
                 Update
               </button>

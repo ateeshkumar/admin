@@ -1,38 +1,96 @@
 import React, { useEffect, useState } from "react";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useAdd } from "../../../hooks/useAdd";
 import { useDeleteOne } from "../../../hooks/useDeleteOne";
 
-import { UsesubcategoriesContext } from "../../../context/SubcatContext";
+
 import Popup from "reactjs-popup";
 import ImageViewer from "../../../components/ImageViewer";
 import axios from "axios";
 import { useFetch } from "../../../hooks/useFetch";
+import { useFetchOnce } from "../../../hooks/useFetchOnce";
+import { UsesubcategoriesContext } from "../../../context/SubcatContext";
 
 const SubCategories = () => {
-  const SubCatUrl = "/categories/subcategories/list";
 
-  // Fetch subcategory data using a custom hook (useFetch)
+  const {id}=useParams()
+console.log(id)
+ const Url= window.location.href;
 
-  const { subcatData, loading, error, categoryId } = UsesubcategoriesContext();
+ const SubCatUrl = Url.substring(Url.indexOf('/categories'));
+ console.log(SubCatUrl)
+  //  Fetch subcategory data using a custom hook (useFetch)
+
+ 
+const { subcatData, setData,
+loading, setLoading,
+error, setError ,categoryId, setcatId}=UsesubcategoriesContext()
+
+
+  
+
+  
+
+ 
+
+
+
+ 
+
+ 
+  
+
+
+useEffect(()=>{
+
+  const fetchdata=async()=>{
+
+    try{
+      setLoading(true);
+      const res =await  axios.get(`https://api.logicmitra.com:8086/api/categories/sub-cat?catg=${id}`)
+      console.log(res.data)
+      
+      if(res.status===200){
+        console.log(res.data)
+        setLoading(false);
+              setData(await res.data);
+      }else{
+        console.log("somethidng wen wrong")
+      }
+    }catch(error){
+      console.log(error)
+      setError({
+              status: true,
+              error: error.message,
+            });
+    }
+  }
+  
+
+  fetchdata()
+},[id, setData ])
+
+
+console.log(subcatData,)
+
+
+
+
 
 
 
   const [params, setparams] = useState({
     title: "",
     imageUrl: "",
-    category: categoryId,
+    category: id,
     sequence: "",
     status: "1",
     description: "",
   });
 
-  console.log(
-    params
-  );
-  //handle addition of category
+  console.log(params)
   const handleChange = (event) => {
     const { name, value, type, files } = event.target;
     setparams({
@@ -41,19 +99,22 @@ const SubCategories = () => {
     });
   };
 
+
+
+
+
+
   const [addData] = useAdd(
     `https://api.logicmitra.com:8086/api/categories/create-subcat`
   );
 
-
-
-  
-  
-
-  
   const handleSubmit =async(e)=>{
+console.log(e.target.id)
+
+// 65ecbfa6437e1a85a26d7ea1
 
     e.preventDefault();
+    
     const formData = new FormData();
     formData.append("image", params.imageUrl);
 
@@ -76,15 +137,9 @@ const SubCategories = () => {
     Delete(e.target.id, SubCatUrl);
   };
 
-  // sub-cat
-  const [subcatlistdata, error4, loading4] = useFetch(
-    "https://api.logicmitra.com:8086/api/categories/sabcat-list",
-    true
-  );
-
-  console.log(subcatlistdata)
+  
   return (
-    <div className="p-3  p-md-3 text-white w-[100%]  relative mb-16">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium">
           <h1>Sub Category List</h1>
@@ -92,8 +147,8 @@ const SubCategories = () => {
         </div>
       </section>
 
-      {/* Categories Table */}
-      <div className="row  space-y-5 lg:space-y-0">
+ {/* Categories Table */}
+ <div className="row  space-y-5 lg:space-y-0">
         <div className="col col-lg-7">
           <div className=" ">
             {/* Display loading message while data is being fetched */}
@@ -101,7 +156,7 @@ const SubCategories = () => {
             {/* Display error message if there's an error */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
-            {subcatData?.data && (
+            {!subcatData?.data ==[] && (
               <div className="table-responsive Ttable  overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
@@ -150,7 +205,7 @@ const SubCategories = () => {
                           {/* Action links for each trainer */}
                           <Link
                             className="py-2 px-3 rounded-md edit-icon"
-                            to={`/categories/subcategories/edit/${item.id}`}
+                            to={`${SubCatUrl}/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>
@@ -265,6 +320,7 @@ const SubCategories = () => {
           </div>
         }
        </div>
+    
     </div>
   );
 };

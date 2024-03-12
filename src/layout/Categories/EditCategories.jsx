@@ -67,7 +67,7 @@ function EditCategories() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data.data && (
-        <div className="w-[100%] py-3 sm:p-3 mb-16">
+        <div className="w-[100%] py-3 p-3 mb-16">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"

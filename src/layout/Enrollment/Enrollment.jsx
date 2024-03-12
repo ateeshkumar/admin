@@ -118,7 +118,7 @@ const Enrollment = () => {
           {/* Display error message if there's an error */}
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
-            {data?.data && (
+            {!data?.data ==[] && (
               <div className="table-responsive Ttable mt-4   overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>

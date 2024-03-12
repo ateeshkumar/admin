@@ -80,7 +80,7 @@ function LocationState() {
  
 
   return (
-    <div className="pl-3  p-md-3 text-white w-[100%]  relative">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>State List</h1>
@@ -97,7 +97,7 @@ function LocationState() {
             {/* Display error message if there's an error */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
-            {data.data && (
+            {!data?.data ==[] && (
               <div className="table-responsive Ttable   overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
@@ -113,7 +113,7 @@ function LocationState() {
                   </thead>
                   <tbody className="table-group-divider">
                     {/* Map through trainers data and display in table rows */}
-                    {data.data.map((item) => (
+                    {data?.data?.map((item) => (
                       <tr key={item.id} className="Tbody">
                         <td>{item.title}</td>
                         <td>

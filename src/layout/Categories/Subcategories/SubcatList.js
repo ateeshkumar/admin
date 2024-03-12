@@ -79,7 +79,7 @@ const SubcatList = () => {
 
   console.log(subcatlistdata)
   return (
-    <div className="p-3  p-md-3 text-white w-[100%]  relative mb-16">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium">
           <h1>Sub Category List</h1>

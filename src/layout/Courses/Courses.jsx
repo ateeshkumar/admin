@@ -109,7 +109,7 @@ function Courses() {
             {loading && <h1 className="text-white">Loading...</h1>}
             {error && <h1 className="text-white">{error.message}</h1>}
         {
-          data?.data && (
+          !data?.data ==[] && (
             <>
 
             <div className="row ">

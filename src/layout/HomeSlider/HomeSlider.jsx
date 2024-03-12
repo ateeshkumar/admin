@@ -46,6 +46,7 @@ function HomeSlider() {
   const handleDelete = async (e) => {
     Delete(e.target.id, HomeUrl);
   };
+
   // Fetch category data using a custom hook (useFetch)
   const [data, error, loading] = useFetch(
     "https://api.logicmitra.com:8086/api/advertise/advertise-list",
@@ -54,7 +55,7 @@ function HomeSlider() {
   console.log(data);
   return (
     <>
-      <div className="pl-3  p-md-3 text-white w-[100%]  relative">
+      <div className="pl-3  p-3 text-white w-[100%]  relative mb-16">
         <section className="section py-3">
           <div className="text-xl font-medium ">
             <h1>Home Slider</h1>
@@ -71,7 +72,7 @@ function HomeSlider() {
               {/* Display error message if there's an error */}
               {error && <h1 className="text-white">{error.message}</h1>}
               {/* Display Category data if available */}
-              {data.data && (
+              {!data?.data ==[]  && (
                 <div className="table-responsive Ttable   overflow-y-auto Table-overflow">
                   <table className=" table-striped w-[100%]">
                     <thead>
@@ -230,7 +231,7 @@ function HomeSlider() {
 
                 {/* {similar fields} */}
                 <button className="Add-btn px-3 py-2 rounded-md mt-3 w-[100%]">
-                  Add Category
+                  Add Slider
                 </button>
               </form>
             </div>

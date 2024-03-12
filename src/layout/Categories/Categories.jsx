@@ -7,49 +7,14 @@ import useUpdate from "../../hooks/useUpdate";
 import { useFetchOnce } from "../../hooks/useFetchOnce";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
 import { useAdd } from "../../hooks/useAdd";
-import {
-  SubcatContext,
-  UsesubcategoriesContext,
-} from "../../context/SubcatContext";
+
 import Popup from "reactjs-popup";
 import ImageViewer from "../../components/ImageViewer";
 
 function Categories() {
   const CategoryUrl = "/categories";
 
-  const { subcatData, setData, setLoading, setError, categoryId, setcatId } =
-    UsesubcategoriesContext();
-
-   console.log(subcatData)
-  // fetching the subcategory data for particcular category data
-  const getSubcategories = async (e) => {
-    e.preventDefault();
-    console.log("event ka data is " + e.target.id);
-    setcatId(e.target.id);
-
-   
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        `https://api.logicmitra.com:8086/api/categories/sub-cat?catg=${e.target.id}`
-      );
-      console.log(res.data);
-      if (res.status === 200) {
-        console.log(await res.data);
-        setLoading(false);
-        setData(await res.data);
-        
-      } else {
-        console.log("somethind fizzt");
-      }
-    } catch (error) {
-      console.log(error);
-      setError({
-        status: true,
-        error: error.message,
-      });
-    }
-  };
+ 
 
   const [params, setparams] = useState({
     title: "",
@@ -111,7 +76,7 @@ function Categories() {
   console.log(data);
 
   return (
-    <div className="p-3  p-md-3 text-white w-[100%]  relative mb-16">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Category List</h1>
@@ -128,7 +93,7 @@ function Categories() {
             {/* Display error message if there's an error */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
-            {data.data && (
+            {!data?.data ==[] && (
               <div className="table-responsive Ttable  overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
@@ -176,9 +141,9 @@ function Categories() {
 
                         <td className="w-full">
                           {/* This button will show te subcatehory card */}
-                          <button className="btn " onClick={getSubcategories}>
+                          <button className="btn ">
                             <Link
-                              to={"/categories/subcategories"}
+                              to={`/categories/${item.id}/subcategories`}
                               className="py-2 px-3 rounded-md view-icon text-white"
                               id={item.id}
                             >

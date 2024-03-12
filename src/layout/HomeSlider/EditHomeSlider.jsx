@@ -6,7 +6,7 @@ import useUpdate from "../../hooks/useUpdate";
 import { useFetch } from "../../hooks/useFetch";
 
 function EditHomeSlider() {
-  const CategoryUrl = "/home-slider";
+  const HomeSliderUrl = "/home-slider";
 
   const { id } = useParams();
 
@@ -56,7 +56,7 @@ function EditHomeSlider() {
 
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`adId=${e.target.id}`, params, CategoryUrl);
+    handleUpdate(`adId=${e.target.id}`, params, HomeSliderUrl);
   };
 
   
@@ -68,7 +68,7 @@ function EditHomeSlider() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data.data && (
-        <div className="w-[100%] py-3 sm:p-3">
+        <div className="w-[100%] py-3 p-3 mb-16">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -166,12 +166,12 @@ function EditHomeSlider() {
                     <img
                       src={`https://api.logicmitra.com/uploads/advertiseBanner/${params?.bannerUrl}`}
                       alt="image"
-                      className="w-[100%] h-[100%]  object-contain"
+                      className="w-[100%] h-[100%]  object-cover"
                     />
                   </div>
                 </div>
 
-                <div className="col-12">
+                <div className="">
                   <label className="text-white" htmlFor="exampleInputUsername1">
                     Description
                   </label>
@@ -194,13 +194,13 @@ function EditHomeSlider() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="Add-btn mr-2  rounded-md px-5 py-2"
+                className="Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
               >
-                Submit
+                Update
               </button>
               <button
                 type="reset"
-                className="Cancel-btn   rounded-md px-5 py-2"
+                className="Cancel-btn   rounded-md sm:px-4 px-5 py-2"
               >
                 Cancel
               </button>

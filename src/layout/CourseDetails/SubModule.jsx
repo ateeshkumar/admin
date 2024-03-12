@@ -12,7 +12,7 @@ const SubModule = () => {
   const { moduleId, setModuleId } = UseCourseContext();
   const { courseId, setCourseId, trainerId, setTrainerId } =
     UsesubcategoriesContext();
-  const [data, loading, error] = useFetch(
+  const [data,error, loading,] = useFetch(
     `https://api.logicmitra.com:8086/api/course-detail/course-submodule?moduleId=${moduleId}`,
     moduleId
   );
