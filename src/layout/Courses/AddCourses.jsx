@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAdd } from "../../hooks/useAdd";
 import { useFetch } from "../../hooks/useFetch";
 import swal from "sweetalert";
@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 function AddCourses() {
   const navigate = useNavigate();
-  const [subCat, setSubCat] = useState();
+ 
   //fetching the category data for specific id and title
 
   const [data, error, loading] = useFetch(
@@ -16,6 +16,7 @@ function AddCourses() {
     true
   );
 
+ 
   console.log(data);
   const initialFormData = {
     cslug: "",
@@ -41,11 +42,39 @@ function AddCourses() {
 
   const [formData, setFormData] = useState(initialFormData);
 
-  console.log(subCat);
+  // const [subCat , error1 , loading1]=useFetch( `https://api.logicmitra.com:8086/api/categories/sub-cat?catg=${formData?.ccategory}`)
+  // console.log(subCat);
+
+  const [subCat , setsubCat]=useState()
+
+console.log(subCat)
+
+  useEffect(()=>{
+  
+   const fetchdata= async()=>{
+   
+    try{
+      const res = await axios.get(`https://api.logicmitra.com:8086/api/categories/sub-cat?catg=${formData?.ccategory}`)
+      const data = res.data
+console.log(data)
+      if(res.status===200){
+        const data = res.data
+        console.log(data?.data)
+        setsubCat(data?.data)
+      }
+    }catch(error){
+      console.log(error)
+    }
+   }
+
+   fetchdata()
+  },[formData?.ccategory ])
+
   const [data2, error2, loading2] = useFetch(
     `https://api.logicmitra.com:8086/api/trainers/list`
   );
   console.log(data2);
+  
   const handleChange = async (e) => {
     const { name, value, type, files } = e.target;
 
@@ -53,14 +82,7 @@ function AddCourses() {
       ...prevData,
       [name]: type === "file" ? files[0] : value,
     }));
-    try {
-      const data = await axios.get(
-        `https://api.logicmitra.com:8086/api/categories/sub-cat?catg=${formData.ccategory}`
-      );
-      setSubCat(data?.data);
-    } catch (error) {
-      console.log(error);
-    }
+   
   };
 
   //add courses to the database
@@ -77,7 +99,7 @@ function AddCourses() {
 
       headers: {
         "Content-Type": "multipart/form-data",
-        "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "application/x-www-form-urlencoded",
       },
      } );
       if (data?.data?.response === "success") {
@@ -113,10 +135,23 @@ function AddCourses() {
         <div className="w-100  gap-3">
           {/* Form group for coursename*/}
           <div className="form-group  row">
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">Course Title</label>
+          <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">* Course Slug</label>
               <input
                 type="text"
+                required
+                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                value={formData?.cslug}
+                name="cslug"
+                placeholder="Course Slug"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-12 col-sm-4">
+              <label className="text-white" htmlFor="exampleInputUsername1">* Course Title</label>
+              <input
+                type="text"
+                required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.ctitle}
                 name="ctitle"
@@ -126,7 +161,7 @@ function AddCourses() {
             </div>
 
             <div className="col-12 col-sm-4  flex flex-col">
-              <label className="text-white" htmlFor="category">Category</label>
+              <label className="text-white" htmlFor="category">* Category</label>
 
               <div>
                 <select
@@ -150,9 +185,9 @@ function AddCourses() {
                 </select>
               </div>
             </div>
-            {subCat && (
+            
               <div className="col-12 col-sm-4  flex flex-col">
-                <label className="text-white" htmlFor="subcategory">Subcategory</label>
+                <label className="text-white" htmlFor="subcategory">* Subcategory</label>
 
                 <div>
                   <select
@@ -163,21 +198,21 @@ function AddCourses() {
                     className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-[10px]"
                   >
                     <option selected>Open this select menu</option>
-                    {subCat?.data &&
-                      subCat?.data?.map((elm) => {
-                        // const { _id, title } = elm.csubcategory;
-                        // console.log(_id, title);
+                   {
+                      subCat?.map((elm) => {
+                        
 
                         return (
                           <>
                             <option value={elm.id}>{elm.title}</option>
                           </>
                         );
-                      })}
+                      })
+                   }
                   </select>
                 </div>
               </div>
-            )}
+          
 
             <div className="col-12 col-sm-4">
               <label className="text-white" htmlFor="exampleInputUsername1">Course Duration</label>
@@ -213,11 +248,12 @@ function AddCourses() {
               />
             </div>
             <div className="col-12 col-sm-4  flex flex-col">
-              <label className="text-white" htmlFor="ctrainer">Course Trainer</label>
+              <label className="text-white" htmlFor="ctrainer">* Course Trainer</label>
 
               <div>
                 <select
                   name="ctrainer"
+
                   value={formData.ctrainer}
                   onChange={handleChange}
                   id="ctrainer"

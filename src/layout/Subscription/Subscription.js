@@ -18,9 +18,9 @@ function Subscription() {
  
 
   const [params, setparams] = useState({
-    city : {},
+    city :"",
     position: "",
-    amount: "",
+    fees: "",
     status: "1",
    
   });
@@ -28,7 +28,7 @@ function Subscription() {
     params.city,
     params.position,
   
-    params.amount,
+    params.fees,
     params.status
   );
   //handle addition of category
@@ -45,18 +45,28 @@ function Subscription() {
     `https://api.logicmitra.com:8086/api/subscription/create`
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", params.state);
+    
+console.log(params)
+    
 
-    event.preventDefault();
+    // addData(params);
+try{
+  const res = await axios.post("https://api.logicmitra.com:8086/api/subscription/create",
+  params)
+  console.log(res.data)
+  if(res.status===200){
+    console.log(res.data)
+  }
+}catch(error){
+  console.log(error)
+}
 
-    addData(params);
   };
 
  
- 
+ console.log(params)
 
 
   // Fetch category data using a custom hook (useFetch)
@@ -71,13 +81,14 @@ function Subscription() {
 
 
  // fetch tha city data 
- const [data1, error1, loading1] = useFetch(
+ const [Citydata, error1, loading1] = useFetch(
     "https://api.logicmitra.com:8086/api/address/city-list",
     true
   );
 
-  console.log(data1);
+  console.log(Citydata);
 
+ 
 
   return (
     <div className="pl-3  p-md-3 text-white w-[100%]  relative">
@@ -115,13 +126,20 @@ function Subscription() {
                     {/* Map through trainers data and display in table rows */}
                     {data.data.map((item) => (
                       <tr key={item.id} className="Tbody">
-                        <td>{item.city.title}</td>
+                        <td>{
+                          
+                          Citydata?.data?.filter(elm=>elm.id===item?.city).map(elm=>elm.title)
+
+                      
+                        }
+                          
+                          </td>
                         <td>
-                         {item.position}
+                         {item?.position}
                         </td>
 
-                        <td>{item.status === 1 ? "Active " : "Inactive"}</td>
-                        <td>{item.fees}</td>
+                        <td>{item?.status === 1 ? "Active " : "Inactive"}</td>
+                        <td>{item?.fees}</td>
 
                        
                         <td className="flex gap-2 items-center justify-center">
@@ -157,7 +175,7 @@ function Subscription() {
                onChange={handleChange} name="city" value={params?.city}>
                <option> select city</option>
                {
-                data1?.data?.map(elm=>{
+                Citydata?.data?.map(elm=>{
                    
                     
                     return (
@@ -218,8 +236,8 @@ function Subscription() {
                 <input
                   onChange={handleChange}
                   required
-                  name="amount"
-                  value={params?.amount}
+                  name="fees"
+                  value={params?.fees}
                   placeholder="Amount"
                   type="number"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"

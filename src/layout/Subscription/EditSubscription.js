@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
-
-import useUpdate from "../../hooks/useUpdate";
 import { useFetch } from "../../hooks/useFetch";
+import useUpdate from "../../hooks/useUpdate";
 
-function EditCategories() {
-  const CategoryUrl = "/categories";
+
+
+function EditSubscription() {
+  const SubscriptionUrl = "/subscription";
 
   const { id } = useParams();
   const catId = id;
@@ -14,7 +15,7 @@ function EditCategories() {
   // Fetch category data using a custom hook (useFetch)
 
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/categories/cat-detail?catId=${catId}`,
+    `/api/subscription/detail-subscription?subId=?${catId}`,
     catId
   );
 
@@ -44,19 +45,16 @@ function EditCategories() {
 
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
-    `https://api.logicmitra.com:8086/api/categories/update-cat`
+    `http://api/subscription/update-subscription`
   );
 
   console.log(params);
   // Handles form submission
   const handleSubmit = (e) => {
-    console.log(e);
-    const formData = new FormData();
-    formData.append("image", params.imageUrl);
-
+   
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`catId=${e.target.id}`, params, CategoryUrl);
+    handleUpdate(`subId==${e.target.id}`, params, SubscriptionUrl);
   };
 
   return (
@@ -67,7 +65,7 @@ function EditCategories() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data.data && (
-        <div className="w-[100%] py-3 sm:p-3 mb-16">
+        <div className="w-[100%] py-3 sm:p-3">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -91,28 +89,13 @@ function EditCategories() {
                         type="text"
                         required
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={params?.title}
-                        name="title"
+                        value={params?.city}
+                        name="city"
                         placeholder="title"
                         onChange={handleChange}
                       />
                     </div>
-                    <div className=" ">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        ImageUrl
-                      </label>
-                      <input
-                        type="file"
-                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        // value={formdata1?.imageUrl[0]}
-                        name="imageUrl"
-                        placeholder="imageUrl"
-                        onChange={handleChange}
-                      />
-                    </div>
+                   
 
                     <div className=" ">
                       <label
@@ -124,8 +107,24 @@ function EditCategories() {
                       <input
                         type="text"
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={params?.sequence}
-                        name="sequence"
+                        value={params?.position}
+                        name="position"
+                        placeholder="sequence"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className=" ">
+                      <label
+                        className="text-white"
+                        htmlFor="exampleInputUsername1"
+                      >
+                        Sequence
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                        value={params?.fees}
+                        name="fees"
                         placeholder="sequence"
                         onChange={handleChange}
                       />
@@ -161,30 +160,10 @@ function EditCategories() {
                     </div>
                   </div>
 
-                  <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
-                    <img
-                      src={`https://api.logicmitra.com/uploads/categories/${params?.imageUrl}`}
-                      alt="image"
-                      className="w-[100%] h-[100%] object-cover"
-                    />
-                  </div>
+                 
                 </div>
 
-                <div className="">
-                  <label className="text-white" htmlFor="exampleInputUsername1">
-                    Description
-                  </label>
-                  <textarea
-                    type="text"
-                    cols="10"
-                    rows="10"
-                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    value={params?.description}
-                    name="description"
-                    placeholder="Description"
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
+               
               </div>
             </div>
 
@@ -193,13 +172,13 @@ function EditCategories() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="submit Add-btn mr-2  rounded-md sm:px-4  px-5 py-2"
+                className="submit Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
               >
-                Update
+                Submit
               </button>
               <button
                 type="reset"
-                className="Cancel-btn  rounded-md sm:px-4  px-5 py-2"
+                className="Cancel-btn  rounded-md sm:px-4 px-5 py-2"
               >
                 Cancel
               </button>
@@ -211,4 +190,4 @@ function EditCategories() {
   );
 }
 
-export default EditCategories;
+export default EditSubscription;

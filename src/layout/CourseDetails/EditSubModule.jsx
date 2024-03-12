@@ -141,7 +141,7 @@ const EditSubModule = () => {
                 type="submit"
                 className="Add-btn rounded-sm py-2 my-2  px-5"
               >
-                Submit
+                Update
               </button>
               <button
                 type="reset"

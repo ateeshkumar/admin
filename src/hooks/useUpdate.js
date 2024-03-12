@@ -22,10 +22,10 @@ const useUpdate = (updateUrl) => {
       console.log(res);
       if (res.status === 200) {
         toast.success(res?.data?.message || "Data updated Successfully");
-        // navigate(redirectUrl);
-        // setTimeout(() => {
-        //   // window.location.reload()
-        // }, 2000);
+        navigate(redirectUrl);
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
       }
     } catch (error) {
       setError(error);

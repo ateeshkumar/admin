@@ -9,7 +9,7 @@ import { UsesubcategoriesContext } from "../../context/SubcatContext";
 import axios from "axios";
 
 function Courses() {
-  const navigate = useNavigate();
+  const CourseUrl="/courses"
 
   const [params, setParams] = useState({
     name: "",
@@ -81,21 +81,10 @@ function Courses() {
 
   const handleDelete = async (e) => {
     console.log("course id is", e.target.id);
-    swal({
-      title: "Are you sure?",
-      text: "you want to delete this data!",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        Delete(e.target.id);
+   
+        Delete(e.target.id , CourseUrl);
 
-        window.location.reload();
-      } else {
-        swal("Your data is safe");
-      }
-    });
+      
   };
 
   console.log(data);

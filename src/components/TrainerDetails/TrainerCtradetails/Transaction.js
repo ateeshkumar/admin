@@ -20,7 +20,7 @@ console.log(data?.data?.walletTranscation)
 
 {
   data?.data?.walletTranscation?.length===0 ? (<>
-        <div className="text-white px-2 py-3 "> There is no Transaction Data</div>
+        <div className="text-white px-2 py-3 "> No Transaction Data Found</div>
         </>) : (
           <div className="px-2 py-3 "> 
         <div className="">

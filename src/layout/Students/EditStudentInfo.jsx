@@ -136,7 +136,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputUsername1">Student Name</label>
                   <input
                     type="text"
-                    required
+                   required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sname"
                     value={params?.sname}
@@ -177,7 +177,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputMobile">Password</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="spassword"
                     value={params?.spassword}
@@ -188,26 +188,34 @@ fetchcitydata()
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputMobile">Mobile</label>
                   <input
-                    type="number"
-                    required
+                    type="tel"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="123-456-7890"
+                maxLength={12}
+                minLength={12}
+                required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="smobile"
                    
                     value={params?.smobile}
-                    placeholder="Mobile"
+                    
                     onChange={handleChange}
                   />
                 </div>
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputMobile">Whatsapp</label>
                   <input
-                    type="number"
-                    required
+                   type="tel"
+                   pattern= "[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                placeholder="123-456-7890"
+                maxLength={10}
+                minLength={10}
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="swhatsapp"
                   
                     value={params?.swhatsapp}
-                    placeholder="Whatsapp"
+                   
                     onChange={handleChange}
                   />
                 </div>
@@ -215,7 +223,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Date of Birth</label>
                   <input
                     type="date"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sdob"
                     value={params?.sdob}
@@ -240,7 +248,7 @@ fetchcitydata()
             <label className="text-white" htmlFor="exampleInputDOB">Country</label>
               
                <select 
-               required
+              
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="scountry" value={params?.scountry}>
                <option> Select country</option>
@@ -261,7 +269,7 @@ fetchcitydata()
             <label className="text-white" htmlFor="exampleInputDOB">State</label>
               
                <select 
-               required
+              
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="sstate" value={params?.sstate}>
               <optoin>Select state</optoin>
@@ -283,7 +291,7 @@ fetchcitydata()
             <label className="text-white" htmlFor="exampleInputDOB">City</label>
               
                <select 
-               required
+              
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2 py-[10px]"
                onChange={handleChange} name="scity" value={params?.scity}>
                <option> Select city</option>
@@ -305,7 +313,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Address</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="saddress"
                     value={params?.saddress}
@@ -316,7 +324,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
                   <input
                     type="number"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="spincode"
                     value={params?.spincode}
@@ -328,7 +336,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Verified</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="varified"
                     value={params?.varified}
@@ -339,7 +347,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Profile Pic</label>
                   <input
                     type="file"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sprofilepicUrl"
                     onChange={handleChange}
@@ -349,7 +357,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Background Image</label>
                   <input
                     type="file"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sbackgroundUrl"
                     onChange={handleChange}
@@ -360,7 +368,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Level of Education</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="levelOfeducation"
                     value={params?.levelOfeducation}
@@ -371,7 +379,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Pass Out Year</label>
                   <input
                     type="number"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="passOutYear"
                     value={params?.passOutYear}
@@ -384,7 +392,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Fcm</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sfcm"
                     value={params?.sfcm}
@@ -395,7 +403,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Lattitude</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="slattitude"
                     value={params?.slattitude}
@@ -406,7 +414,7 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputDOB">Longitude</label>
                   <input
                     type="text"
-                    required
+                   
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="slongitude"
                     value={params?.slongitude}
@@ -421,7 +429,7 @@ fetchcitydata()
              <button type="submit" className="py-2 my-2 Add-btn sm:px-4  px-5 rounded-md"
               id={params?.id || ""}
                   onClick={handleSubmit}>
-                Submit
+                Update
               </button>
               <button type="reset" className="py-2 my-2 Cancel-btn sm:px-4  px-5 rounded-md">
                 Cancel

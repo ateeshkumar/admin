@@ -5,7 +5,7 @@ import { useFetch } from "../../../hooks/useFetch";
 import useUpdate from "../../../hooks/useUpdate";
 
 function EditSubcategories() {
-  const SubcatUrl = "/categories/subcategories";
+  const SubcatUrl = "/categories/subcategories/list";
 
   const { id } = useParams();
   const subcatId = id;
@@ -59,6 +59,7 @@ function EditSubcategories() {
 
   console.log(formdata1);
 
+
   return (
     <>
       {/* Display loading message while data is being fetched */}
@@ -67,7 +68,7 @@ function EditSubcategories() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data?.data && (
-        <div className="w-[100%] py-3 sm:p-3">
+        <div className="w-[100%] py-3 sm:p-3 mb-16">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -170,7 +171,7 @@ function EditSubcategories() {
                   </div>
                 </div>
 
-                <div className="col-12">
+                <div className="">
                   <label className="text-white" htmlFor="exampleInputUsername1">
                     Description
                   </label>
@@ -179,7 +180,7 @@ function EditSubcategories() {
                     cols="10"
                     rows="10"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    value={formdata1?.descprition}
+                    value={formdata1?.description}
                     name="description"
                     placeholder="Description"
                     onChange={handleChange}
@@ -193,11 +194,11 @@ function EditSubcategories() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="submi Add-btn mr-2  rounded-md px-5 py-2"
+                className="submi Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
               >
-                Submit
+                Update
               </button>
-              <button type="reset" className="Cancel-btn  rounded-md px-5 py-2">
+              <button type="reset" className="Cancel-btn  rounded-md  sm:px-4 px-5 py-2">
                 Cancel
               </button>
             </div>

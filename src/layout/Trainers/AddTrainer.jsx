@@ -158,10 +158,11 @@ console.log(formData)
             <div className="form-group grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
               <div className="">
                 <label className="text-white" htmlFor="exampleInputUsername1">
-                  Trainer Name
+                  * Trainer Name
                 </label>
                 <input
                   type="text"
+                required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.sname}
                   name="sname"
@@ -171,10 +172,11 @@ console.log(formData)
               </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputUsername1">
-                  User Type
+                  * User Type
                 </label>
                 <input
                   type="text"
+                  required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.userType}
                   name="userType"
@@ -199,7 +201,7 @@ console.log(formData)
             </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputEmail1">
-                  Email
+                 * Email
                 </label>
                 <input
                   type="email"
@@ -214,17 +216,21 @@ console.log(formData)
 
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  Phone Number
+                 * Phone Number
                 </label>
                 <input
-                  type="number"
+                 type="tel"
+                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="123-456-7890"
+                maxLength={12}
+                minLength={12}
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.smobile}
                   name="smobile"
-                
+                required
               
                
-                  placeholder="Phone number"
+                  
                   onChange={handleChange}
                 />
               </div>
@@ -258,7 +264,10 @@ console.log(formData)
                
                
 
-                placeholder="Whatsapp"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="123-456-7890"
+                maxLength={12}
+                minLength={12}
                 onChange={handleChange}
               />
               
@@ -283,7 +292,7 @@ console.log(formData)
             <label className="text-white" htmlFor="exampleInputDOB">Country</label>
               
                <select 
-               required
+              
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="scountry" value={formData?.scountry}>
                <option> select country</option>
@@ -306,7 +315,7 @@ console.log(formData)
             <label className="text-white" htmlFor="exampleInputDOB">State</label>
               
                <select 
-               required
+               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="sstate" value={formData?.sstate}>
                <option> select state</option>
@@ -328,7 +337,7 @@ console.log(formData)
             <label className="text-white" htmlFor="exampleInputDOB">City</label>
               
                <select 
-               required
+               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="scity" value={formData?.scity}>
                <option> select city</option>

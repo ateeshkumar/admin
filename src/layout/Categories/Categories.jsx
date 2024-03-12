@@ -20,12 +20,14 @@ function Categories() {
   const { subcatData, setData, setLoading, setError, categoryId, setcatId } =
     UsesubcategoriesContext();
 
+   console.log(subcatData)
   // fetching the subcategory data for particcular category data
   const getSubcategories = async (e) => {
     e.preventDefault();
     console.log("event ka data is " + e.target.id);
     setcatId(e.target.id);
 
+   
     try {
       setLoading(true);
       const res = await axios.get(
@@ -36,7 +38,7 @@ function Categories() {
         console.log(await res.data);
         setLoading(false);
         setData(await res.data);
-        console.log(subcatData);
+        
       } else {
         console.log("somethind fizzt");
       }
@@ -84,20 +86,7 @@ function Categories() {
 
     
   console.log(params)
-   try{
-    const res = await axios.post("https://api.logicmitra.com:8086/api/categories/create-cat",
-    params,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-    const data = res.data
-    console.log(data)
-   }catch(error){
-    console.log(error)
-   }
+  addData(params , CategoryUrl)
   };
 
 
@@ -122,7 +111,7 @@ function Categories() {
   console.log(data);
 
   return (
-    <div className="p-3  p-md-3 text-white w-[100%]  relative">
+    <div className="p-3  p-md-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Category List</h1>
@@ -140,7 +129,7 @@ function Categories() {
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
             {data.data && (
-              <div className="table-responsive Ttable h-[550px] overflow-y-auto Table-overflow">
+              <div className="table-responsive Ttable  overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
@@ -228,21 +217,22 @@ function Categories() {
               onSubmit={handleSubmit}
             >
               <div className="">
-                <p className="text-white">Title</p>
+                <p className="text-white">* Title</p>
                 <input
                   onChange={handleChange}
-                  required
+                 required
                   name="title"
                   value={params?.title}
                   type="text"
+                  placeholder="Title"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
               </div>
               <div className="">
-                <p className="text-white">Image Url</p>
+                <p className="text-white"> * Image Url</p>
                 <input
                   onChange={handleChange}
-                  
+                  required
                   name="imageUrl"
                   // value={params?.imageUrl}
                   type="file"
@@ -284,9 +274,10 @@ function Categories() {
                 <p className="text-white">Sequence</p>
                 <input
                   onChange={handleChange}
-                  required
+                 
                   name="sequence"
                   value={params?.sequence}
+                  placeholder="Sequence"
                   type="number"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
@@ -295,7 +286,7 @@ function Categories() {
                 <p className="text-white">Description</p>
                 <textarea
                   type="text"
-                  required
+                  placeholder="Description"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                   value={params?.description}
                   name="description"

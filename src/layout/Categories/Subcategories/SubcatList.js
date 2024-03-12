@@ -2,28 +2,23 @@ import React, { useEffect, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAdd } from "../../../hooks/useAdd";
-import { useDeleteOne } from "../../../hooks/useDeleteOne";
 
-import { UsesubcategoriesContext } from "../../../context/SubcatContext";
 import Popup from "reactjs-popup";
 import ImageViewer from "../../../components/ImageViewer";
 import axios from "axios";
+import { useAdd } from "../../../hooks/useAdd";
+import { useDeleteOne } from "../../../hooks/useDeleteOne";
 import { useFetch } from "../../../hooks/useFetch";
 
-const SubCategories = () => {
+const SubcatList = () => {
   const SubCatUrl = "/categories/subcategories/list";
 
-  // Fetch subcategory data using a custom hook (useFetch)
-
-  const { subcatData, loading, error, categoryId } = UsesubcategoriesContext();
-
-
+ 
 
   const [params, setparams] = useState({
     title: "",
     imageUrl: "",
-    category: categoryId,
+    category:"",
     sequence: "",
     status: "1",
     description: "",
@@ -77,7 +72,7 @@ const SubCategories = () => {
   };
 
   // sub-cat
-  const [subcatlistdata, error4, loading4] = useFetch(
+  const [subcatlistdata, error, loading] = useFetch(
     "https://api.logicmitra.com:8086/api/categories/sabcat-list",
     true
   );
@@ -101,7 +96,7 @@ const SubCategories = () => {
             {/* Display error message if there's an error */}
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
-            {subcatData?.data && (
+            {subcatlistdata?.data && (
               <div className="table-responsive Ttable  overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
@@ -117,7 +112,7 @@ const SubCategories = () => {
                   </thead>
                   <tbody className="table-group-divider">
                     {/* Map through trainers data and display in table rows */}
-                    {subcatData?.data.map((item) => (
+                    {subcatlistdata?.data.map((item) => (
                       <tr key={item.title} className="Tbody">
                         <td>{item.title}</td>
                         <td>
@@ -172,7 +167,7 @@ const SubCategories = () => {
           </div>
         </div>
         
-        {subcatData?.data &&
+        {subcatlistdata?.data &&
           <div className="col-lg-5 lg:px-5">
             <form
               className="box   py-4 shadow-lg  lg:h-50"
@@ -271,4 +266,4 @@ const SubCategories = () => {
 
 
 
-export default SubCategories;
+export default SubcatList;

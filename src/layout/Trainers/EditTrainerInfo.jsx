@@ -148,7 +148,7 @@ function EditTrainerInfo() {
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputUsername1">Email</label>
                   <input
-                    type="text"
+                    type="email"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="semail"
                     value={params?.semail}
@@ -176,19 +176,26 @@ function EditTrainerInfo() {
                   Phone Number
                 </label>
                 <input
-                  type="number"
+                  type="tel"
+                pattern= "[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                maxLength={10}
+                minLength={10}
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={params?.smobile}
                   name="smobile"
                  
-                  placeholder="Phone number"
+                  placeholder="123-456-7890"
                   onChange={handleChange}
                 />
               </div>
                 <div className="col-12 col-sm-4">
                   <label className="text-white" htmlFor="exampleInputDOB">Whatsapp</label>
                   <input
-                    type="number"
+                    type="tel"
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="123-456-7890"
+                maxLength={12}
+                minLength={12}
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="swhatsapp"
                  
@@ -397,7 +404,7 @@ function EditTrainerInfo() {
             {/* Submit and cancel buttons */}
             <div className="flex items-center justify-between mt-3">
              <button type="submit" className="sm:px-4  px-5 py-2 Add-btn rounded-md">
-                Submit
+                Update
               </button>
               <button type="reset" className=" py-2 Cancel-btn sm:px-4  px-5 rounded-md">
                 Cancel

@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import PhoneInput from 'react-phone-number-input/input'
 
 function AddStudent() {
   const StudentUrl="/students";
@@ -207,7 +208,7 @@ fetchcitydata()
         <div className="  ">
           <div className="form-group w-[100%] grid grid-cols-1 sm:grid-cols-3 gap-2 items-center ">
             <div className="">
-              <label className="text-white" htmlFor="exampleInputUsername1">Student Name</label>
+              <label className="text-white" htmlFor="exampleInputUsername1"> * Student Name</label>
               <input
                 type="text"
                 required
@@ -219,7 +220,7 @@ fetchcitydata()
               />
             </div>
             <div className="">
-              <label className="text-white" htmlFor="exampleInputUsername1">User Type</label>
+              <label className="text-white" htmlFor="exampleInputUsername1"> * User Type</label>
               <input
                 type="text"
                 required
@@ -247,7 +248,7 @@ fetchcitydata()
             </div>
 
             <div className="">
-              <label className="text-white" htmlFor="exampleInputEmail1">Email</label>
+              <label className="text-white" htmlFor="exampleInputEmail1">* Email</label>
               <input
                 type="email"
                 required
@@ -260,18 +261,24 @@ fetchcitydata()
             </div>
 
             <div className="">
-              <label className="text-white" htmlFor="exampleInputMobile">Mobile</label>
+              <label className="text-white" htmlFor="exampleInputMobile">* Mobile</label>
               <input
-                type="number"
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="123-456-7890"
+                maxLength={12}
+                minLength={12}
                 required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.smobile}
                 name="smobile"
                
-                placeholder="Mobile"
+                
                 onChange={handleChange}
               />
             </div>
+
+           
            
             <div className="">
               <label className="text-white " htmlFor="exampleInputMobile">
@@ -294,15 +301,19 @@ fetchcitydata()
               
               </label>
               <input
-                type="number"
-                required
+                type="tel"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                placeholder="123-456-7890"
+                maxLength={12}
+                minLength={12}
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.swhatsapp}
                 name="swhatsapp"
              
                
 
-                placeholder="Whatsapp"
+                
                 onChange={handleChange}
               />
               
@@ -312,7 +323,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputDOB">Date of Birth</label>
               <input
                 type="date"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sdob}
                 name="sdob"
@@ -347,7 +358,7 @@ fetchcitydata()
             <label className="text-white" htmlFor="exampleInputDOB">Country</label>
               
                <select 
-               required
+               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="scountry" value={formData?.scountry}>
                <option> Select country</option>
@@ -368,7 +379,7 @@ fetchcitydata()
             <label className="text-white" htmlFor="exampleInputDOB">State</label>
               
                <select 
-               required
+              
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
                onChange={handleChange} name="sstate" value={formData.sstate}>
               <optoin>Select state</optoin>
@@ -412,7 +423,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputDOB">Address</label>
               <input
                 type="text"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.saddress}
                 name="saddress"
@@ -425,7 +436,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
               <input
                 type="number"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.spincode}
                 name="spincode"
@@ -437,7 +448,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputDOB">Profile Pic</label>
               <input
                 type="file"
-                required
+                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="sprofilepicUrl"
                 onChange={handleChange}
@@ -447,7 +458,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputDOB">Background Image</label>
               <input
                 type="file"
-                required
+                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 name="sbackgroundUrl"
                 onChange={handleChange}
@@ -463,7 +474,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Experience</label>
               <input
                 type="text"
-                required
+                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.experience}
                 name="experience"
@@ -475,7 +486,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Languages</label>
               <input
                 type="text"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.languages}
                 name="languages"
@@ -487,7 +498,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Level Of Education</label>
               <input
                 type="text"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.levelOfeducation}
                 name="levelOfeducation"
@@ -499,7 +510,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Pass Out Year</label>
               <input
                 type="number"
-                required
+                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.passOutYear}
                 name="passOutYear"
@@ -511,7 +522,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Fcm</label>
               <input
                 type="text"
-                required
+                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sfcm}
                 name="sfcm"
@@ -523,7 +534,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Lattitude</label>
               <input
                 type="text"
-                required
+                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.slattitude}
                 name="slattitude"
@@ -535,7 +546,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Longitude</label>
               <input
                 type="text"
-                required
+               
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.slongitude}
                 name="slongitude"
@@ -549,7 +560,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">Intro</label>
               <textarea
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                required
+                
                 value={formData.sintro}
                 name="sintro"
                 placeholder="Intro"
@@ -561,7 +572,7 @@ fetchcitydata()
               <label className="text-white" htmlFor="exampleInputMobile">About</label>
               <textarea
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                required
+                
                 value={formData.sabout}
                 name="sabout"
                 placeholder="About"

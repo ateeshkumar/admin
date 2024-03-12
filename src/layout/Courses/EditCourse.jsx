@@ -256,7 +256,7 @@ function EditCourses() {
 
               <div className="flex items-center justify-between mt-3">
                 <button type="submit" className="rounded-md py-2 Add-btn px-4">
-                  Submit
+                  Update
                 </button>
                 <button type="reset" className="rounded-md py-2 Cancel-btn px-4">
                   Cancel
