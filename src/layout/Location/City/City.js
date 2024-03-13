@@ -13,10 +13,11 @@ import { useFetch } from "../../../hooks/useFetch";
 import { useAdd } from "../../../hooks/useAdd";
 import { UsesubcategoriesContext } from "../../../context/SubcatContext";
 import ImageViewer from "../../../components/ImageViewer";
+import { toast } from "react-toastify";
 
 function LocationCity() {
 
-
+const navigate= useNavigate()
     const CityUrl ="/city"
   
 
@@ -48,14 +49,31 @@ function LocationCity() {
     `https://api.logicmitra.com:8086/api/address/create-city`
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", params.state);
+   
+    console.log(params)
 
-    event.preventDefault();
+    try {
+      const res = await axios.post("https://api.logicmitra.com:8086/api/address/create-city", params
+      ); //Adding the data
+      console.log(res.data);
 
-    addData(params , CityUrl);
+      if (res.status === 200) {
+        toast.success(res?.data?.message || "Data Created successfully");
+        navigate(CityUrl);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
+      } else {
+        toast.error(res?.data?.message || "Failed Data");
+      }
+    } catch (error) {
+      toast.error("Error Occurred");
+    }
+    // addData(params , CityUrl);
   };
 
  
@@ -67,6 +85,26 @@ function LocationCity() {
   // Handle deletion of a category
   const handleDelete = async (e) => {
     console.log("cate id is ", e.target.id);
+    
+    // try {
+    //   const res = await axios.delete(`https://api.logicmitra.com:8086/api/address/delete-city?cityId=${e.target.id}`
+    //   ); //Adding the data
+    //   console.log(res.data);
+
+    //   if (res.status === 200) {
+    //     toast.success(res?.data?.message || "Data Created successfully");
+    //     navigate(CityUrl);
+
+    //     setTimeout(() => {
+    //       window.location.reload();
+    //     }, 2000);
+
+    //   } else {
+    //     toast.error(res?.data?.message || "Failed Data");
+    //   }
+    // } catch (error) {
+    //   toast.error("Error Occurred");
+    // }
     Delete(e.target.id, CityUrl);
   };
 
@@ -80,15 +118,19 @@ function LocationCity() {
 
   console.log(data);
 
+ 
 
   //   fetch the state address data using fetch api
 
- const [data1, error1, loading1] = useFetch(
+ const [CityList, error1, loading1] = useFetch(
     "https://api.logicmitra.com:8086/api/address/state-list",
     true
-  );
+  )
 
-  console.log(data1)  
+
+
+ 
+  console.log(CityList)  
 
   
   return (
@@ -130,7 +172,7 @@ function LocationCity() {
                         <td>{item.title}</td>
                         <td>
                          {
-                            data1?.data?.filter(elm=>{
+                            CityList?.data?.filter(elm=>{
                                 return elm.id === item.state
                             }).map(elm=>{
                                 return (
@@ -196,7 +238,7 @@ function LocationCity() {
                onChange={handleChange} name="state" value={params?.state}>
                <option> select state</option>
                {
-                data1?.data?.map(elm=>{
+                CityList?.data?.map(elm=>{
                     
                     return (
                         <>

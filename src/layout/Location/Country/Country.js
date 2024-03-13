@@ -10,10 +10,11 @@ import { useAdd } from "../../../hooks/useAdd";
 
 import { useFetch } from "../../../hooks/useFetch";
 import { useDeleteOne } from "../../../hooks/useDeleteOne";
+import { toast } from "react-toastify";
 
 function LocationCountry() {
   const CountryUrl = "/country";
-
+const navigate= useNavigate()
   
  
 
@@ -25,11 +26,7 @@ function LocationCountry() {
     currency: "",
   });
   console.log(
-    params.title,
-   
-    params.currency,
-    params.sequence,
-    params.status
+  params
   );
   //handle addition of category
   const handleChange = (event) => {
@@ -41,18 +38,36 @@ function LocationCountry() {
     });
   };
 
-  const [addData] = useAdd(
-    `https://api.logicmitra.com:8086/api/address/create-country`
-  );
+ 
 
-  const handleSubmit = (event) => {
+  const handleSubmit =async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("image", params.imageUrl);
+    
 
-    event.preventDefault();
+   console.log(params)
 
-    addData(params, CountryUrl);
+    // addData(params, CountryUrl);
+
+
+   
+    try {
+      const res = await axios.post("https://api.logicmitra.com:8086/api/address/create-country", params
+      ); //Adding the data
+      console.log(res.data);
+
+      if (res.status === 200) {
+        toast.success(res?.data?.message || "Data Created successfully");
+        navigate(CountryUrl);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        toast.error(res?.data?.message || "Failed Data");
+      }
+    } catch (error) {
+      toast.error("Error Occurred");
+    }
   };
 
 
@@ -79,6 +94,9 @@ const [data, error, loading] = useFetch(
 
 console.log(data)
  
+
+
+console.log("hello dear")
 // /api/address/country-list
 
 const [data1, error1, loading1] = useFetch(

@@ -9,8 +9,10 @@ import ImageViewer from "../../../components/ImageViewer";
 import { useAdd } from "../../../hooks/useAdd";
 import { useDeleteOne } from "../../../hooks/useDeleteOne";
 import { useFetch } from "../../../hooks/useFetch";
+import { toast } from "react-toastify";
 
 function LocationState() {
+  const navigate=useNavigate()
   const StateUrl = "/state";
 
   const [params, setparams] = useState({
@@ -41,12 +43,30 @@ function LocationState() {
     `https://api.logicmitra.com:8086/api/address/create-state`
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
     
-    
+    console.log(params)
+    try {
+      const res = await axios.post("https://api.logicmitra.com:8086/api/address/create-state", params
+      ); //Adding the data
+      console.log(res.data);
 
-    addData(params);
+      if (res.status === 200) {
+        toast.success(res?.data?.message || "Data Created successfully");
+        navigate(StateUrl);
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      } else {
+        toast.error(res?.data?.message || "Failed Data");
+      }
+    } catch (error) {
+      toast.error("Error Occurred");
+    }
+
+    // addData(params);
   };
 
  
@@ -58,6 +78,8 @@ function LocationState() {
   // Handle deletion of a category
   const handleDelete = async (e) => {
     console.log("cate id is ", e.target.id);
+    
+
     Delete(e.target.id, StateUrl);
   };
 
@@ -70,12 +92,12 @@ function LocationState() {
   console.log(data);
 
   // Fetch category data using a custom hook (useFetch)
-  const [data1, error1, loading1] = useFetch(
+  const [CoutryList, error1, loading1] = useFetch(
     "https://api.logicmitra.com:8086/api/address/country-list",
     true
   );
 
-  console.log(data1);
+  console.log(CoutryList);
 
  
 
@@ -118,7 +140,7 @@ function LocationState() {
                         <td>{item.title}</td>
                         <td>
                           {
-                            data1?.data?.filter((elm) => {
+                            CoutryList?.data?.filter((elm) => {
                               return elm.id === item.country;
                             }).map(elm=>{
                                 return (
@@ -173,6 +195,7 @@ function LocationState() {
                   name="title"
                   value={params?.title}
                   type="text"
+                  placeholder="Title"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
               </div>
@@ -186,7 +209,7 @@ function LocationState() {
                   value={params?.country}
                 >
                   <option> select country</option>
-                  {data1?.data?.map((elm) => {
+                  {CoutryList?.data?.map((elm) => {
                     return (
                       <>
                         <option value={elm.id}> {elm.title} </option>
@@ -233,6 +256,7 @@ function LocationState() {
                   name="sequence"
                   value={params?.sequence}
                   type="number"
+                  placeholder="Sequence"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
               </div>

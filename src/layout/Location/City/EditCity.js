@@ -3,10 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import { useFetch } from "../../../hooks/useFetch";
 import useUpdate from "../../../hooks/useUpdate";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 
 function EditCity() {
 
+  const navigate=useNavigate()
   const CitUrl = "/city";
 
   const { id } = useParams();
@@ -51,13 +54,40 @@ function EditCity() {
 
   
   // Handles form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     console.log(e);
    
     e.preventDefault();
+
+    console.log(params)
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`addId=${e.target.id}`, params, CitUrl);
+    try{
+      const res= await axios.put(`https://api.logicmitra.com:8086/api/address/update-city?addId=${e.target.id}` , params)
+      console.log(await res.data)
+      if (res.status === 200) {
+        toast.success(res?.data?.message || "Data updated Successfully");
+        navigate(CitUrl);
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
+      }
+    }catch(error){
+      console.log(error)
+      toast.error("An error occurred");
+    }
+
+    // Calls the handleUpdate function from the custom hook
+    // handleUpdate(`addId=${e.target.id}`, params, CitUrl);
   };
+
+
+ //   fetch the state address data using fetch api
+
+ const [CityList, error1, loading1] = useFetch(
+  "https://api.logicmitra.com:8086/api/address/state-list",
+  true
+)
+
 
   return (
     <>
@@ -67,7 +97,7 @@ function EditCity() {
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
       {data.data && (
-        <div className="w-[100%] py-3 sm:p-3">
+        <div className="w-[100%] py-3 p-3 mb-16">
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -79,7 +109,7 @@ function EditCity() {
               {/* Form group for title */}
               <div className="form-group">
                 <div className="flex flex-col-reverse md:flex-row md:flex items-center justify-between ">
-                  <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] ">
+                  <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] items-center">
                     <div className=" ">
                       <label
                         className="text-white"
@@ -98,6 +128,26 @@ function EditCity() {
                       />
                     </div>
                    
+                    <div className="">
+                <label className="text-white">State</label>
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+               onChange={handleChange} name="state" value={params?.state}>
+               <option> select state</option>
+               {
+                CityList?.data?.map(elm=>{
+                    
+                    return (
+                        <>
+                            <option value={elm.id}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
+              </div>
 
                     <div className=" ">
                       <label
@@ -158,13 +208,13 @@ function EditCity() {
             <div className=" flex items-center my-4 justify-between">
               <button
                 type="submit"
-                className="submit Add-btn mr-2  rounded-md px-5 py-2"
+                className="submit Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
               >
-                Submit
+               Update
               </button>
               <button
                 type="reset"
-                className="Cancel-btn  rounded-md px-5 py-2"
+                className="Cancel-btn  rounded-md sm:px-4 px-5 py-2"
               >
                 Cancel
               </button>

@@ -23,6 +23,10 @@ console.log(id)
  console.log(SubCatUrl)
   //  Fetch subcategory data using a custom hook (useFetch)
 
+
+
+
+  
  
 const { subcatData, setData,
 loading, setLoading,
