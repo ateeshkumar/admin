@@ -136,7 +136,7 @@ console.log(data)
           {/* Form group for coursename*/}
           <div className="form-group  row">
           <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">* Course Slug</label>
+              <label className="text-white" htmlFor="exampleInputUsername1">Course Slug *</label>
               <input
                 type="text"
                 required
@@ -148,7 +148,7 @@ console.log(data)
               />
             </div>
             <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">* Course Title</label>
+              <label className="text-white" htmlFor="exampleInputUsername1"> Course Title *</label>
               <input
                 type="text"
                 required
@@ -161,7 +161,7 @@ console.log(data)
             </div>
 
             <div className="col-12 col-sm-4  flex flex-col">
-              <label className="text-white" htmlFor="category">* Category</label>
+              <label className="text-white" htmlFor="category"> Category *</label>
 
               <div>
                 <select
@@ -187,7 +187,7 @@ console.log(data)
             </div>
             
               <div className="col-12 col-sm-4  flex flex-col">
-                <label className="text-white" htmlFor="subcategory">* Subcategory</label>
+                <label className="text-white" htmlFor="subcategory"> Subcategory *</label>
 
                 <div>
                   <select

@@ -122,7 +122,7 @@ const navigate= useNavigate()
 
   //   fetch the state address data using fetch api
 
- const [CityList, error1, loading1] = useFetch(
+ const [StateList, error1, loading1] = useFetch(
     "https://api.logicmitra.com:8086/api/address/state-list",
     true
   )
@@ -130,7 +130,7 @@ const navigate= useNavigate()
 
 
  
-  console.log(CityList)  
+  console.log(StateList)  
 
   
   return (
@@ -172,7 +172,7 @@ const navigate= useNavigate()
                         <td>{item.title}</td>
                         <td>
                          {
-                            CityList?.data?.filter(elm=>{
+                            StateList?.data?.filter(elm=>{
                                 return elm.id === item.state
                             }).map(elm=>{
                                 return (
@@ -238,7 +238,7 @@ const navigate= useNavigate()
                onChange={handleChange} name="state" value={params?.state}>
                <option> select state</option>
                {
-                CityList?.data?.map(elm=>{
+                StateList?.data?.map(elm=>{
                     
                     return (
                         <>

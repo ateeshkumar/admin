@@ -40,10 +40,13 @@ function HomeSlider() {
     event.preventDefault();
     addData(params, HomeUrl);
   };
+
+
   console.log(params);
-  const { Delete } = useDeleteOne("");
+  const { Delete } = useDeleteOne(`https://api.logicmitra.com:8086/api/advertise/delete-advertise?adId=`);
   // Handle deletion of a slider item
   const handleDelete = async (e) => {
+
     Delete(e.target.id, HomeUrl);
   };
 

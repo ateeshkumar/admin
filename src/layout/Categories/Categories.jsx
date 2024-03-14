@@ -182,7 +182,7 @@ function Categories() {
               onSubmit={handleSubmit}
             >
               <div className="">
-                <p className="text-white">* Title</p>
+                <p className="text-white"> Title *</p>
                 <input
                   onChange={handleChange}
                  required
@@ -194,7 +194,7 @@ function Categories() {
                 />
               </div>
               <div className="">
-                <p className="text-white"> * Image Url</p>
+                <p className="text-white"> Image Url *</p>
                 <input
                   onChange={handleChange}
                   required

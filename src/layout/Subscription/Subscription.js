@@ -6,6 +6,7 @@ import axios from "axios";
 import { useAdd } from "../../hooks/useAdd";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
 import { useFetch } from "../../hooks/useFetch";
+import { toast } from "react-toastify";
 
 
 
@@ -14,8 +15,8 @@ import { useFetch } from "../../hooks/useFetch";
 function Subscription() {
 
 
-    const CityUrl ="/subscription"
- 
+    const SubScriptionUrl ="/subscription"
+   const navigate = useNavigate()
 
   const [params, setparams] = useState({
     city :"",
@@ -56,8 +57,15 @@ try{
   const res = await axios.post("https://api.logicmitra.com:8086/api/subscription/create",
   params)
   console.log(res.data)
-  if(res.status===200){
-    console.log(res.data)
+  if (res.status === 200) {
+    toast.success(res?.data?.message || "Data Created successfully");
+    navigate(SubScriptionUrl);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  } else {
+    toast.error(res?.data?.message || "Failed Data");
   }
 }catch(error){
   console.log(error)
@@ -91,7 +99,7 @@ try{
  
 
   return (
-    <div className="pl-3  p-md-3 text-white w-[100%]  relative">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Subscription List</h1>
@@ -146,7 +154,7 @@ try{
                           {/* Action links for each trainer */}
                           <Link
                             className="py-2 px-3 rounded-md edit-icon"
-                            to={`/categories/edit/${item.id}`}
+                            to={`/subscription/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>

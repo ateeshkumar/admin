@@ -106,7 +106,7 @@ if(!Checkbtn){
     formdata.append("sbackgroundUrl", formData.sbackgroundUrl);
 
       e.preventDefault();
-      const data = await axios.post(
+      const res = await axios.post(
         `https://api.logicmitra.com:8086/api/user/create_user`,
         formData
      ,{
@@ -116,7 +116,7 @@ if(!Checkbtn){
       },
      }
       );
-      if (data?.data?.response === "success") {
+      if (res.status===200) {
         toast.success("Student Created Successfully");
         setTimeout(() => {
           navigate(StudentUrl);
@@ -149,6 +149,8 @@ if(!Checkbtn){
     true
   );
 
+  console.log(Citydata)
+
   const [Countrydata, error2, loading2] = useFetch(
     "https://api.logicmitra.com:8086/api/address/country-list",
     true
@@ -159,6 +161,7 @@ if(!Checkbtn){
     true
   );
 
+  console.log(Statedata)
   
   // choose the city after state and coutnry clicked 
 
@@ -169,6 +172,7 @@ try{
 
   const res = await axios.get(`https://api.logicmitra.com:8086/api/address/city-detail?cityID=${formData.scity}`)
  const data = res.data
+ console.log(res.data)
  console.log(data?.data?.state)
 
   
@@ -200,7 +204,7 @@ fetchcitydata()
 
 
   console.log(formData.sstate)
-  console.log(`<h1> ${formData.sstate} </h1>`)
+  console.log(formData.scity)
 
   return (
     <div className="w-[100%] py-3 p-3 mb-16">
@@ -208,7 +212,7 @@ fetchcitydata()
         <div className="  ">
           <div className="form-group w-[100%] grid grid-cols-1 sm:grid-cols-3 gap-2 items-center ">
             <div className="">
-              <label className="text-white" htmlFor="exampleInputUsername1"> * Student Name</label>
+              <label className="text-white" htmlFor="exampleInputUsername1"> Student Name *</label>
               <input
                 type="text"
                 required
@@ -220,7 +224,7 @@ fetchcitydata()
               />
             </div>
             <div className="">
-              <label className="text-white" htmlFor="exampleInputUsername1"> * User Type</label>
+              <label className="text-white" htmlFor="exampleInputUsername1">  User Type *</label>
               <input
                 type="text"
                 required
@@ -248,7 +252,7 @@ fetchcitydata()
             </div>
 
             <div className="">
-              <label className="text-white" htmlFor="exampleInputEmail1">* Email</label>
+              <label className="text-white" htmlFor="exampleInputEmail1"> Email *</label>
               <input
                 type="email"
                 required
@@ -261,13 +265,13 @@ fetchcitydata()
             </div>
 
             <div className="">
-              <label className="text-white" htmlFor="exampleInputMobile">* Mobile</label>
+              <label className="text-white" htmlFor="exampleInputMobile"> Mobile *</label>
               <input
                 type="tel"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="123-456-7890"
-                maxLength={12}
-                minLength={12}
+               
+                placeholder="Mobile no."
+                maxLength={10}
+                minLength={10}
                 required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.smobile}
@@ -302,10 +306,10 @@ fetchcitydata()
               </label>
               <input
                 type="tel"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="123-456-7890"
-                maxLength={12}
-                minLength={12}
+               
+                placeholder="Whatsapp no."
+                maxLength={10}
+                minLength={10}
                
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData?.swhatsapp}

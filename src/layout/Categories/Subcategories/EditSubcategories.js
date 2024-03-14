@@ -3,11 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import swal from "sweetalert";
 import { useFetch } from "../../../hooks/useFetch";
 import useUpdate from "../../../hooks/useUpdate";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function EditSubcategories() {
  
   const { id } = useParams();
-  const subcatId = id;
+  const navigate= useNavigate()
+  const SubCategoryId = id;
 
   const Url= window.location.href;
 
@@ -19,27 +22,31 @@ function EditSubcategories() {
   // Fetch category data using a custom hook (useFetch)
 
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/categories/subcat-detail?subcatId=${subcatId}`,
-    subcatId
+    `https://api.logicmitra.com:8086/api/categories/subcat-detail?subcatId=${SubCategoryId}`,
+    SubCategoryId
   );
 
+  console.log(data)
   // State to store form parameters
  
-  const [formdata1, setformdata] = useState({});
+  const [params, setParams] = useState({});
 
   // Updates params when data is fetched
   useEffect(() => {
     if (data) {
      
-      setformdata(data.data);
+      setParams(data.data);
     }
   }, [data, loading, error]);
+
+
+
 
   const handleChange = (e) => {
     // Dynamically updates the corresponding form parameter
     const { name, value, type, files } = e.target;
-    setformdata({
-      ...formdata1,
+    setParams({
+      ...params,
       [name]: type === "file" ? files[0] : value,
     });
   };
@@ -48,22 +55,48 @@ function EditSubcategories() {
   const [handleUpdate] = useUpdate(
     `http://localhost:8086/api/categories/update-subcat`
   );
-  // Handles form submission
-  const handleSubmit = (e) => {
-    const formdata = new FormData();
 
-    formdata.append(
-      "image",
-      formdata1?.imageUrl 
-    );
+// Handles form submission
+  const handleSubmit = async(e) => {
+    console.log(e.target.id)
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", params.imageUrl);
+
     
     console.log(e);
-    e.preventDefault();
+   
+
+    console.log(params)
+
+    // try {
+      
+    //   const res = await axios.put(`http://localhost:8086/api/categories/update-subcat?subcatId=${e.target.id}`,params, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+          
+    //     },
+    //   });
+    //   console.log(res);
+    //   if (res.status === 200) {
+    //     toast.success(res?.data?.message || "Data updated Successfully");
+    //     navigate(SubCatUrl1);
+    //     setTimeout(() => {
+    //       window.location.reload()
+    //     }, 2000);
+    //   }
+    // } catch (error) {
+      
+    //   toast.error("An error occurred");
+    // }
+
+
+
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`subcatId=${e.target.id}`, formdata1, SubCatUrl);
+    handleUpdate(`subcatId=${e.target.id}`, params, SubCatUrl);
   };
 
-  console.log(formdata1);
+  console.log(params);
 
 
   return (
@@ -79,7 +112,7 @@ function EditSubcategories() {
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
             onSubmit={handleSubmit}
-            id={formdata1?.id}
+            id={params?.id}
           >
             {/* Form inputs for category details */}
             <div className="w-100 ">
@@ -98,7 +131,7 @@ function EditSubcategories() {
                         type="text"
                         required
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={formdata1?.title}
+                        value={params?.title}
                         name="title"
                         placeholder="title"
                         onChange={handleChange}
@@ -114,7 +147,7 @@ function EditSubcategories() {
                       <input
                         type="file"
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        // value={formdata1?.imageUrl[0]}
+                        // value={params?.imageUrl[0]}
                         name="imageUrl"
                         placeholder="imageUrl"
                         onChange={handleChange}
@@ -131,7 +164,7 @@ function EditSubcategories() {
                       <input
                         type="text"
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={formdata1?.sequence}
+                        value={params?.sequence}
                         name="sequence"
                         placeholder="sequence"
                         onChange={handleChange}
@@ -151,7 +184,7 @@ function EditSubcategories() {
                           id="active"
                           name="status"
                           value={1}
-                          checked={formdata1?.status == 1}
+                          checked={params?.status == 1}
                           onChange={handleChange}
                         />
                         Active
@@ -160,7 +193,7 @@ function EditSubcategories() {
                           id="active"
                           name="status"
                           value={0}
-                          checked={formdata1?.status == 0}
+                          checked={params?.status == 0}
                           onChange={handleChange}
                         />
                         Inactive
@@ -170,7 +203,7 @@ function EditSubcategories() {
 
                   <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
                     <img
-                      src={`https://api.logicmitra.com/uploads/subcategories/${formdata1?.imageUrl}`}
+                      src={`https://api.logicmitra.com/uploads/subcategories/${params?.imageUrl}`}
                       alt="image"
                       className="w-[100%] h-[100%]  object-cover"
                     />
@@ -186,7 +219,7 @@ function EditSubcategories() {
                     cols="10"
                     rows="10"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                    value={formdata1?.description}
+                    value={params?.description}
                     name="description"
                     placeholder="Description"
                     onChange={handleChange}

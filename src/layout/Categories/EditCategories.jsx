@@ -54,6 +54,7 @@ function EditCategories() {
     const formData = new FormData();
     formData.append("image", params.imageUrl);
 
+    console.log(params)
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
     handleUpdate(`catId=${e.target.id}`, params, CategoryUrl);

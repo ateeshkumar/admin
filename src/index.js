@@ -55,6 +55,7 @@ import Subscription from "./layout/Subscription/Subscription";
 import Position from "./layout/Position/Position";
 import EditCity from "./layout/Location/City/EditCity";
 import SubcatList from "./layout/Categories/Subcategories/SubcatList";
+import EditSubscription from "./layout/Subscription/EditSubscription";
 
 const router = createBrowserRouter([
   {
@@ -281,7 +282,18 @@ const router = createBrowserRouter([
       },
       {
         path :"subscription",
-        element:<Subscription/>
+        children: [
+          {
+            path: "",
+            element:<Subscription/>
+          },
+          {
+            path: "edit/:id",
+            element: <EditSubscription/>,
+          },
+         
+        ],
+        
       },
       {
         path :"position",

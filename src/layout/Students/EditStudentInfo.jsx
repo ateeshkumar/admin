@@ -189,10 +189,10 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputMobile">Mobile</label>
                   <input
                     type="tel"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="123-456-7890"
-                maxLength={12}
-                minLength={12}
+                    
+                placeholder="Mobile no."
+                maxLength={10}
+                minLength={10}
                 required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="smobile"
@@ -206,8 +206,8 @@ fetchcitydata()
                   <label className="text-white" htmlFor="exampleInputMobile">Whatsapp</label>
                   <input
                    type="tel"
-                   pattern= "[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                placeholder="123-456-7890"
+                  
+                placeholder="Whatsapp no."
                 maxLength={10}
                 minLength={10}
                    

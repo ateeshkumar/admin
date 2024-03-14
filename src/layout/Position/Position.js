@@ -67,12 +67,8 @@ function Position() {
 
     
       <div className="w-[100%] ">
-          {loading && <h1 className="text-white">Loading...</h1>}
-          {error && <h1 className="text-white">{error.message}</h1>}
-
-          {
-            data?.data && (
-              <>
+         
+         
 
               <div className="row">
         <div className="col">
@@ -148,7 +144,7 @@ function Position() {
           {loading && <h1 className="text-white">Loading...</h1>}
           {error && <h1 className="text-white">{error.message}</h1>}
 
-          {data?.data && (
+          {!data?.data?.length===0 && (
             <div className="table-responsive Ttable mt-4   h-[550px] overflow-y-auto Table-overflow">
               <table className=" table-striped  w-[100%]">
                 <thead>
@@ -206,9 +202,7 @@ function Position() {
         </div>
       </div>
 
-              </>
-            )
-          }
+          
      </div>     
 
      

@@ -177,14 +177,14 @@ function EditTrainerInfo() {
                 </label>
                 <input
                   type="tel"
-                pattern= "[0-9]{3}-[0-9]{2}-[0-9]{3}"
+               
                 maxLength={10}
                 minLength={10}
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={params?.smobile}
                   name="smobile"
                  
-                  placeholder="123-456-7890"
+                  placeholder="Mobile no."
                   onChange={handleChange}
                 />
               </div>
@@ -192,10 +192,10 @@ function EditTrainerInfo() {
                   <label className="text-white" htmlFor="exampleInputDOB">Whatsapp</label>
                   <input
                     type="tel"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="123-456-7890"
-                maxLength={12}
-                minLength={12}
+                    
+                placeholder="Whatsapp no."
+                maxLength={10}
+                minLength={10}
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="swhatsapp"
                  

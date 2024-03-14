@@ -238,7 +238,7 @@ console.log(e.target.id)
               onSubmit={handleSubmit}
             >
               <div className="">
-                <p className="text-white">* Title</p>
+                <p className="text-white"> Title *</p>
                 <input
                   onChange={handleChange}
                   required
@@ -251,7 +251,7 @@ console.log(e.target.id)
               </div>
 
               <div className="">
-                <p className="text-white">* Image Url</p>
+                <p className="text-white"> Image Url *</p>
                 <input
                   onChange={handleChange}
                  required

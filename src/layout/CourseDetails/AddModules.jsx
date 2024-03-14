@@ -32,6 +32,8 @@ const AddModules = () => {
     course: courseId,
     sequence: "",
   });
+
+
   console.log(params);
 
   // console.log(data1?.data?.ctrainer?._id);
@@ -75,14 +77,16 @@ const AddModules = () => {
     });
   };
 
+  
+
   //fetch module data from couses
-  const [data, loading, error] = useFetch(
+  const [data, error ,loading] = useFetch(
     `https://api.logicmitra.com:8086/api/course-detail/course-modules?courseId=${courseId}`,
     courseId
   );
   console.log(data);
   return (
-    <div className="pl-3  p-md-3 text-white w-[100%]  relative">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Course Module List</h1>
@@ -101,7 +105,7 @@ const AddModules = () => {
           {/* Display trainers data if available */}
             {data.data && (
               <div className="table-responsive Ttable">
-                <table className=" table-striped w-[100%]">
+                <table className=" table-striped w-[100%] text-center">
                   <thead>
                     <tr className="Thead">
                       <th scope="col">Title</th>

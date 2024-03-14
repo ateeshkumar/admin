@@ -158,7 +158,7 @@ console.log(formData)
             <div className="form-group grid grid-cols-1 sm:grid-cols-3 gap-3 items-center">
               <div className="">
                 <label className="text-white" htmlFor="exampleInputUsername1">
-                  * Trainer Name
+                  Trainer Name *
                 </label>
                 <input
                   type="text"
@@ -172,7 +172,7 @@ console.log(formData)
               </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputUsername1">
-                  * User Type
+                  User Type *
                 </label>
                 <input
                   type="text"
@@ -201,7 +201,7 @@ console.log(formData)
             </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputEmail1">
-                 * Email
+                  Email *
                 </label>
                 <input
                   type="email"
@@ -216,14 +216,14 @@ console.log(formData)
 
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                 * Phone Number
+                 Phone Number *
                 </label>
                 <input
                  type="tel"
-                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="123-456-7890"
-                maxLength={12}
-                minLength={12}
+                
+                placeholder="Mobile no."
+                maxLength={10}
+                minLength={10}
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.smobile}
                   name="smobile"
@@ -264,10 +264,10 @@ console.log(formData)
                
                
 
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                placeholder="123-456-7890"
-                maxLength={12}
-                minLength={12}
+               
+                placeholder="Whatsapp no."
+                maxLength={10}
+                minLength={10}
                 onChange={handleChange}
               />
               
