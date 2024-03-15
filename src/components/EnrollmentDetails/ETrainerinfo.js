@@ -14,6 +14,7 @@ const ETrainerInfo = ({ trainer }) => {
     setshow(!show);
   };
 
+  
   return (
     <>
       <section className="text-white">

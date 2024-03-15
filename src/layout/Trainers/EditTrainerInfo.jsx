@@ -127,6 +127,12 @@ function EditTrainerInfo() {
           {/* Display trainers data if available */}
       {data?.data && (
         <div className=" py-3 p-3 mb-16">
+        <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1>Trainer Edit Details</h1>
+         
+        </div>
+      </section>
           <form
             className="forms-sample w-100  p-4 box"
             onSubmit={handleSubmit}
@@ -135,9 +141,10 @@ function EditTrainerInfo() {
             <div className="w-100 d-flex gap-3">
               <div className="form-group  row items-center">
                 <div className="col-12 col-sm-4 items-center">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Trainer Name</label>
+                  <label className="text-white" htmlFor="exampleInputUsername1">Trainer Name *</label>
                   <input
                     type="text"
+                    required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sname"
                     value={params?.sname}
@@ -146,9 +153,10 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Email</label>
+                  <label className="text-white" htmlFor="exampleInputUsername1">Email *</label>
                   <input
                     type="email"
+                    required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="semail"
                     value={params?.semail}
@@ -157,12 +165,12 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Gender *</label>
              
              <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                value={params?.sgender}
                 name="sgender"
-                
+                required
                 onChange={handleChange}>
                 <option>Select gender</option>
               <option value="male">
@@ -173,11 +181,11 @@ function EditTrainerInfo() {
             </div>
                 <div className="col-12 col-sm-4">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  Phone Number
+                  Phone Number *
                 </label>
                 <input
                   type="tel"
-               
+               required
                 maxLength={10}
                 minLength={10}
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
@@ -205,23 +213,24 @@ function EditTrainerInfo() {
                 </div>
                
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputMobile">Date Of Birth</label>
+                  <label className="text-white" htmlFor="exampleInputMobile">Date Of Birth *</label>
                   <input
                     type="date"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sdob"
                     value={params?.sdob}
+                    required
                     onChange={handleChange}
                   />
                 </div>
                 
                 <div className="col-12 col-sm-4">
-            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+            <label className="text-white" htmlFor="exampleInputDOB">Country *</label>
               
                <select 
                required
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="scountry" value={params?.scountry}>
+               onChange={handleChange} name="scountry" value={params?.scountry}  >
                <option> select country</option>
                {
                 Countrydata?.data?.map(elm=>{
@@ -239,7 +248,7 @@ function EditTrainerInfo() {
 
              
               <div className="col-12 col-sm-4">
-            <label className="text-white" htmlFor="exampleInputDOB">State</label>
+            <label className="text-white" htmlFor="exampleInputDOB">State *</label>
               
                <select 
                required
@@ -261,7 +270,7 @@ function EditTrainerInfo() {
               </div>
 
               <div className="col-12 col-sm-4">
-            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+            <label className="text-white" htmlFor="exampleInputDOB">City *</label>
               
                <select 
                required
@@ -285,8 +294,9 @@ function EditTrainerInfo() {
 
               
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputMobile">Address</label>
+                  <label className="text-white" htmlFor="exampleInputMobile">Address *</label>
                   <input
+                   required
                     type="text"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="saddress"
@@ -296,13 +306,37 @@ function EditTrainerInfo() {
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Pin code</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Pin code *</label>
                   <input
                     type="number"
+                    required
+                    max={6}
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="spincode"
                     value={params?.spincode}
                     placeholder="Pincode"
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-12 col-sm-4">
+                  <label className="text-white" htmlFor="exampleInputDOB">Level Of Education *</label>
+                  <input
+                    type="text"
+                    required
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                    name="levelOfeducation"
+                    value={params?.levelOfeducation}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-12 col-sm-4">
+                  <label className="text-white" htmlFor="exampleInputDOB">Pass Out Year *</label>
+                  <input
+                    type="text"
+                    required
+                    className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                    name="passOutYear"
+                    value={params?.passOutYear}
                     onChange={handleChange}
                   />
                 </div>

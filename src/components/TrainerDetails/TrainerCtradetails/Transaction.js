@@ -69,7 +69,7 @@ console.log(data?.data?.walletTranscation)
                     <td>{item?.cardType}</td>
                     <td>{item?.transmethod}</td>
                     <td>{item?.amount}</td>
-                    <td className="flex flex-row"> {moment(item?.date).format("DD/ mm /yyyy")}</td>
+                    <td className="flex flex-row"> {moment(item?.date).format("DD/MM/YYYY")}</td>
                  </tr>
                       </>
                     )

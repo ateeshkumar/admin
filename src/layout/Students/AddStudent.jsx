@@ -208,6 +208,12 @@ fetchcitydata()
 
   return (
     <div className="w-[100%] py-3 p-3 mb-16">
+    <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1>Students Add Details</h1>
+         
+        </div>
+      </section>
       <form className="forms-sample w-[100%]  p-4 box" onSubmit={handleSubmit}>
         <div className="  ">
           <div className="form-group w-[100%] grid grid-cols-1 sm:grid-cols-3 gap-2 items-center ">
@@ -236,13 +242,15 @@ fetchcitydata()
               />
             </div>
             <div className="">
-              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Gender *</label>
              
              <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                value={formData.sgender}
                 name="sgender"
                 
-                onChange={handleChange}>
+               
+                onChange={handleChange}
+                required>
                 <option>Select gender</option>
               <option value="male">
                 male
@@ -324,10 +332,10 @@ fetchcitydata()
             </div>
            
             <div className="">
-              <label className="text-white" htmlFor="exampleInputDOB">Date of Birth</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Date of Birth *</label>
               <input
                 type="date"
-               
+                required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.sdob}
                 name="sdob"
@@ -359,12 +367,13 @@ fetchcitydata()
              
            
             <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+            <label className="text-white" htmlFor="exampleInputDOB">Country *</label>
               
                <select 
                
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="scountry" value={formData?.scountry}>
+              
+               onChange={handleChange} name="scountry" value={formData?.scountry}  required>
                <option> Select country</option>
                {
                 Countrydata?.data?.map(elm=>{
@@ -380,12 +389,12 @@ fetchcitydata()
                </select>
               </div>
             <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">State</label>
+            <label className="text-white" htmlFor="exampleInputDOB">State *</label>
               
                <select 
               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="sstate" value={formData.sstate}>
+               onChange={handleChange} name="sstate" value={formData.sstate}  required>
               <optoin>Select state</optoin>
                {
                 Statedata?.data?.map(elm=>{
@@ -402,12 +411,12 @@ fetchcitydata()
               </div>
            
               <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+            <label className="text-white" htmlFor="exampleInputDOB">City *</label>
               
                <select 
-               required
+              
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2 py-[10px]"
-               onChange={handleChange} name="scity" value={formData?.scity}>
+               onChange={handleChange} name="scity" value={formData?.scity}  required>
                <option> Select city</option>
                {
                 Citydata?.data?.map(elm=>{
@@ -424,10 +433,10 @@ fetchcitydata()
               </div>
 
               <div className="">
-              <label className="text-white" htmlFor="exampleInputDOB">Address</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Address *</label>
               <input
                 type="text"
-               
+                required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.saddress}
                 name="saddress"
@@ -437,10 +446,12 @@ fetchcitydata()
             </div>
             
             <div className="">
-              <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Pin Code *</label>
               <input
                 type="number"
+                required
                
+                max={6}
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.spincode}
                 name="spincode"
@@ -499,10 +510,10 @@ fetchcitydata()
               />
             </div>
             <div className="">
-              <label className="text-white" htmlFor="exampleInputMobile">Level Of Education</label>
+              <label className="text-white" htmlFor="exampleInputMobile">Level Of Education *</label>
               <input
                 type="text"
-               
+                required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.levelOfeducation}
                 name="levelOfeducation"
@@ -511,10 +522,10 @@ fetchcitydata()
               />
             </div>
             <div className="">
-              <label className="text-white" htmlFor="exampleInputMobile">Pass Out Year</label>
+              <label className="text-white" htmlFor="exampleInputMobile">Pass Out Year *</label>
               <input
                 type="number"
-                
+                required
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 value={formData.passOutYear}
                 name="passOutYear"

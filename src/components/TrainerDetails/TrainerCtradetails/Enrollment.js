@@ -64,7 +64,7 @@ console.log(data?.data)
                     <td>{item?.cofferfees}</td>
                     <td>{item?.transmethod}</td>
                     <td>{item?.amount}</td>
-                    <td className="flex flex-row"> {moment(item?.date).format("DD/ mm /yyyy")}</td>
+                    <td className="flex flex-row"> {moment(item?.date).format("DD/MM/YYYY")}</td>
                  </tr>
                       </>
                     )

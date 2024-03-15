@@ -60,6 +60,14 @@ function Trainers() {
     Delete(e.target.id ,TrainerUrl )
   };
 
+//* fetch the city list 
+  const [CityList, error3, loading3] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/city-list",
+    true
+  );
+
+
+
   return (
     <div className=" md:pl-3  p-3 text-white w-[100%] mb-16">
       <section className="section py-3">
@@ -85,6 +93,10 @@ function Trainers() {
               <>
 
  {/* Statistics Cards */}
+
+
+
+ 
  <div className="row">
         <Card title="Total Trainers" value={totalTrainers} />
         <Card title="Organization Trainers" value={organizationTrainers} />
@@ -192,7 +204,22 @@ function Trainers() {
                       <td>{item.smobile}</td>
                       <td>{item.semail}</td>
                       <td>{item.sgender}</td>
-                      <td>{item.scity}</td>
+                      <td>
+                      {
+                            CityList?.data?.filter((elm) => {
+                              return elm.id === item.scity;
+                            }).map(elm=>{
+                                return (
+                                    <>
+                                        <div className="" key={elm.id}>
+                                            {elm.title}
+                                        </div>
+                                    </>
+                                )
+                            })
+                          }
+                      
+                     </td>
                       <td>{item.courses.length}</td>
                       <td>{item.walletAmt}</td>
                       <td className="flex gap-2 items-center">

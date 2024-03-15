@@ -126,6 +126,12 @@ fetchcitydata()
           {/* Display trainers data if available */}
       {data.data && (
         <div className=" py-3 p-3 mb-16">
+        <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1>Students Edit Details</h1>
+         
+        </div>
+      </section>
           <form
             className="forms-sample w-100  p-4 box"
             onSubmit={handleSubmit}
@@ -133,7 +139,7 @@ fetchcitydata()
             <div className="w-100 d-flex ">
               <div className="form-group  row items-center">
                 <div className="col-12 col-sm-4 items-center">
-                  <label className="text-white" htmlFor="exampleInputUsername1">Student Name</label>
+                  <label className="text-white" htmlFor="exampleInputUsername1">Student Name *</label>
                   <input
                     type="text"
                    required
@@ -147,13 +153,13 @@ fetchcitydata()
                
 
                 <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Gender *</label>
              
              <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                value={params?.sgender}
                 name="sgender"
                 
-                onChange={handleChange}>
+                onChange={handleChange} required>
                 <option>Select gender</option>
               <option value="male">
                 male
@@ -162,7 +168,7 @@ fetchcitydata()
              </select>
             </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputEmail1">Email</label>
+                  <label className="text-white" htmlFor="exampleInputEmail1">Email *</label>
                   <input
                     type="email"
                     required
@@ -186,7 +192,7 @@ fetchcitydata()
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputMobile">Mobile</label>
+                  <label className="text-white" htmlFor="exampleInputMobile">Mobile *</label>
                   <input
                     type="tel"
                     
@@ -220,10 +226,10 @@ fetchcitydata()
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Date of Birth</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Date of Birth *</label>
                   <input
                     type="date"
-                   
+                    required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sdob"
                     value={params?.sdob}
@@ -245,12 +251,12 @@ fetchcitydata()
               
             </div>
                 <div className="col-12 col-sm-4">
-            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+            <label className="text-white" htmlFor="exampleInputDOB">Country *</label>
               
                <select 
               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="scountry" value={params?.scountry}>
+               onChange={handleChange} name="scountry" value={params?.scountry}  required>
                <option> Select country</option>
                {
                 Countrydata?.data?.map(elm=>{
@@ -266,12 +272,12 @@ fetchcitydata()
                </select>
               </div>
             <div className="col-12 col-sm-4">
-            <label className="text-white" htmlFor="exampleInputDOB">State</label>
+            <label className="text-white" htmlFor="exampleInputDOB">State *</label>
               
                <select 
               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="sstate" value={params?.sstate}>
+               onChange={handleChange} name="sstate" value={params?.sstate}  required>
               <optoin>Select state</optoin>
                {
                 Statedata?.data?.map(elm=>{
@@ -288,12 +294,12 @@ fetchcitydata()
               </div>
            
               <div className="col-12 col-sm-4">
-            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+            <label className="text-white" htmlFor="exampleInputDOB">City *</label>
               
                <select 
               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2 py-[10px]"
-               onChange={handleChange} name="scity" value={params?.scity}>
+               onChange={handleChange} name="scity" value={params?.scity}  required>
                <option> Select city</option>
                {
                 Citydata?.data?.map(elm=>{
@@ -310,10 +316,10 @@ fetchcitydata()
               </div>
                
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Address</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Address *</label>
                   <input
                     type="text"
-                   
+                    required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="saddress"
                     value={params?.saddress}
@@ -321,10 +327,11 @@ fetchcitydata()
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Pin Code</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Pin Code *</label>
                   <input
                     type="number"
-                   
+                    required
+                   max={6}
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="spincode"
                     value={params?.spincode}
@@ -365,10 +372,10 @@ fetchcitydata()
                 </div>
                
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Level of Education</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Level of Education *</label>
                   <input
                     type="text"
-                   
+                    required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="levelOfeducation"
                     value={params?.levelOfeducation}
@@ -376,10 +383,10 @@ fetchcitydata()
                   />
                 </div>
                 <div className="col-12 col-sm-4">
-                  <label className="text-white" htmlFor="exampleInputDOB">Pass Out Year</label>
+                  <label className="text-white" htmlFor="exampleInputDOB">Pass Out Year *</label>
                   <input
                     type="number"
-                   
+                    required
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="passOutYear"
                     value={params?.passOutYear}

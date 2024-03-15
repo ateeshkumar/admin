@@ -3,6 +3,10 @@ import { IoSearchSharp } from "react-icons/io5";
 import { FaEllipsisH, FaTimes } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { IoMdSettings } from "react-icons/io";
+import { MdError } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
 const Topbar = ({ setshow, show }) => {
   const Handleclick = () => {
@@ -23,18 +27,21 @@ const Topbar = ({ setshow, show }) => {
     window.addEventListener("scroll", topnav);
   }, [topnav]);
 
+
+
+const [ notifybtn , Shownotifybtn]=useState(false)
+
+
+
   return (
     <>
-      <section>
+      <section className="relative">
         <div
           className={`flex justify-between items-center gap-3 
            px-2 text-white topnavbar
            ${top ? `fixed top-0 w-[100%] z-50` : `static`}
       `}
         >
-
-
-
           {/* ///left side */}
           <div className="flex items-center gap-3">
             <div
@@ -70,7 +77,6 @@ const Topbar = ({ setshow, show }) => {
                 <IoSearchSharp />
                 <input
                   type="search"
-                  
                   placeholder="Search Now"
                   className="  px-2 border-none outline-none text-white bg-none "
                 />
@@ -82,7 +88,7 @@ const Topbar = ({ setshow, show }) => {
 
           <div>
             <ul className="flex items-center gap-3">
-              <li>
+              <li onClick={()=>Shownotifybtn(!notifybtn)} className="cursor-pointer">
                 <IoNotifications className="text-2xl" />
               </li>
               <li>
@@ -113,7 +119,77 @@ const Topbar = ({ setshow, show }) => {
             </ul>
           </div>
         </div>
+
+
+        
+//? this is the notifation bar 
+
+
+{
+  notifybtn ? (
+    <>
+    <div className="text-white box w-64 space-y-2
+absolute top-20 right-3 z-50" style={{ zIndex:"99999"}}>
+  <h1 className="heading p-1  mb-3">Notifications</h1>
+
+  <ul className="space-y-2">
+    <li>
+      <div className="flex items-center gap-2">
+        <div className="view-icon p-2 rounded-full">
+          <MdError  className="text-white text-md"/>
+        </div>
+        <div className="">
+          <h1 className="font-medium">
+            Application Error
+          </h1>
+          <p className="">
+            Just now
+          </p>
+        </div>
+      </div>
+    </li>
+    <li>
+    
+    <div className="flex items-center gap-2">
+     <div className="edit-icon p-2 rounded-full">
+       <IoMdSettings className="text-white text-md"/>
+    </div>
+    <div className="">
+        <h1 className="font-medium">Settings</h1>
+        <p className="">
+          Private Messages
+        </p>
+      </div>
+    </div>
+    </li>
+    <li>
+     
+     <div className="flex items-center gap-2">
+     <div className="delete-icon p-2 rounded-full">
+      <FaUser className="text-white text-md"/>
+     </div>
+     <div className="">
+        <h1 className="font-medium">
+         New User 
+         Registration
+        </h1>
+        <p className="">
+          2 days ago
+        </p>
+      </div>
+     </div>
+    </li>
+  </ul>
+</div>
+    </>
+  ) : null
+}
       </section>
+
+
+
+
+     
     </>
   );
 };

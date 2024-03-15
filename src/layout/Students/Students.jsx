@@ -63,6 +63,13 @@ function Students() {
    Delete(e.target.id ,StudentUrl )
   };
 
+
+  // Fetch category data using a custom hook (useFetch)
+  const [CityList, error3, loading3] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/city-list",
+    true
+  );
+
   return (
     <div className="md:pl-3  p-3 text-white w-[100%] mb-16">
       <section className="section py-3">
@@ -194,7 +201,22 @@ function Students() {
                       <td>{item.sname}</td>
                       <td>{item.smobile}</td>
                       <td> {item.semail}</td>
-                      <td>{item.scity}</td>
+                      <td>
+                      
+                      {
+                            CityList?.data?.filter((elm) => {
+                              return elm.id === item.scity;
+                            }).map(elm=>{
+                                return (
+                                    <>
+                                        <div className="" key={elm.id}>
+                                            {elm.title}
+                                        </div>
+                                    </>
+                                )
+                            })
+                          }
+                      </td>
                       {/* <td>{item.sdob}</td>
                       <td>{item.createdAt}</td> */}
                       {/* <td>{item.status}</td> */}

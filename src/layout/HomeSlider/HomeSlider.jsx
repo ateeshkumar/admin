@@ -10,7 +10,7 @@ import ImageViewer from "../../components/ImageViewer";
 
 function HomeSlider() {
   const HomeUrl = "/home-slider";
-
+ const navigate= useNavigate()
   // State to store filter parameters
   const [params, setParams] = useState({
     title: "",
@@ -43,11 +43,46 @@ function HomeSlider() {
 
 
   console.log(params);
+
+  
   const { Delete } = useDeleteOne(`https://api.logicmitra.com:8086/api/advertise/delete-advertise?adId=`);
   // Handle deletion of a slider item
   const handleDelete = async (e) => {
 
-    Delete(e.target.id, HomeUrl);
+
+    console.log(e.target.id)
+    // Delete(e.target.id, HomeUrl);
+
+   
+
+    try {
+      const res = await axios.delete(`https://api.logicmitra.com:8086/api/advertise/delete-advertise?adId=${e.target.id}`)
+
+      if(res.status===200){
+          swal({
+              title: "Are you sure?",
+              text: "you want to delete this !",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+
+            navigate(HomeUrl)
+            
+               setTimeout(() => {
+                window.location.reload()
+               }, 2000);
+              
+      }
+      
+  } catch (error) {
+      swal({
+          icon: "error",
+          title: "Oops...",
+          text: "An error occurred while deleting the data",
+        });
+  }
+
   };
 
   // Fetch category data using a custom hook (useFetch)

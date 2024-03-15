@@ -29,6 +29,7 @@ function TopBar() {
             </div>
           </li>
         </ul>
+        
         <ul className="navbar-nav navbar-nav-right">
           <li className="nav-item dropdown">
             <a
@@ -108,6 +109,8 @@ function TopBar() {
             </a>
           </li>
         </ul>
+
+
         <button
           className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" style={{boxShadow:"none"}}
           type="button"

@@ -150,6 +150,12 @@ console.log(formData)
   return (
     <>
       <div className="w-[100%] py-3 p-3 mb-16">
+      <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1>Trainer Add Details</h1>
+         
+        </div>
+      </section>
         <form
           className="forms-sample w-[100%]  p-4 box"
           onSubmit={handleSubmit}
@@ -185,13 +191,13 @@ console.log(formData)
                 />
               </div>
               <div className="">
-              <label className="text-white" htmlFor="exampleInputDOB">Gender</label>
+              <label className="text-white" htmlFor="exampleInputDOB">Gender *</label>
              
              <select className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                value={formData.sgender}
                 name="sgender"
                 
-                onChange={handleChange}>
+                onChange={handleChange} required>
                 <option>Select gender</option>
               <option value="male">
                 male
@@ -205,6 +211,7 @@ console.log(formData)
                 </label>
                 <input
                   type="email"
+                  required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData?.semail}
                   name="semail"
@@ -276,9 +283,10 @@ console.log(formData)
              
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  D.O.B
+                  Date Of Birth *
                 </label>
                 <input
+                required
                   type="date"
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.sdob}
@@ -289,12 +297,12 @@ console.log(formData)
               </div>
              
               <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">Country</label>
+            <label className="text-white" htmlFor="exampleInputDOB">Country *</label>
               
                <select 
               
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="scountry" value={formData?.scountry}>
+               onChange={handleChange} name="scountry" value={formData?.scountry} required>
                <option> select country</option>
                {
                 Countrydata?.data?.map(elm=>{
@@ -312,12 +320,12 @@ console.log(formData)
 
              
               <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">State</label>
+            <label className="text-white" htmlFor="exampleInputDOB">State *</label>
               
                <select 
                
                className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2  py-[10px]"
-               onChange={handleChange} name="sstate" value={formData?.sstate}>
+               onChange={handleChange} name="sstate" value={formData?.sstate} required>
                <option> select state</option>
                {
                 Statedata?.data?.map(elm=>{
@@ -334,7 +342,7 @@ console.log(formData)
               </div>
 
               <div className="">
-            <label className="text-white" htmlFor="exampleInputDOB">City</label>
+            <label className="text-white" htmlFor="exampleInputDOB">City *</label>
               
                <select 
                
@@ -358,10 +366,11 @@ console.log(formData)
              
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  Address
+                  Address *
                 </label>
                 <input
                   type="text"
+                  required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.saddress}
                   name="saddress"
@@ -371,10 +380,12 @@ console.log(formData)
               </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  Pincode
+                  Pincode *
                 </label>
                 <input
                   type="number"
+                  max={6}
+                  required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.spincode}
                   name="spincode"
@@ -475,10 +486,11 @@ console.log(formData)
               </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  Level Of Education
+                  Level Of Education *
                 </label>
                 <input
                   type="text"
+                  required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.levelOfeducation}
                   name="levelOfeducation"
@@ -488,10 +500,11 @@ console.log(formData)
               </div>
               <div className="">
                 <label className="text-white" htmlFor="exampleInputMobile">
-                  Pass Out Year
+                  Pass Out Year *
                 </label>
                 <input
                   type="number"
+                  required
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.passOutYear}
                   name="passOutYear"

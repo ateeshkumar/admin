@@ -77,7 +77,7 @@ console.log(data?.data)
                     <td>{item?.bseats}</td>
                     <td>{item?.bsequence}</td>
                     <td>{item?.btime}</td>
-                    <td className="flex flex-row"> {moment(item?.bstartdate).format("DD/ mm /yyyy")}</td>
+                    <td className="flex flex-row"> {moment(item?.bstartdate).format("DD/MM/YYYY")}</td>
                  </tr>
                       </>
                     )
