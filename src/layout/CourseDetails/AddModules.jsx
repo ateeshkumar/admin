@@ -25,8 +25,14 @@ const CourseId= id
   const Url = window.location.href;
   const ModuleUrl = Url.substring(Url.indexOf("/courses/"))
   
+  // * to fetch the trainer id through particular course
  
+  // const [TrainerId , setTrainerId] = useState()
+ 
+  
 
+ 
+  
 
 
   const [params, setparams] = useState({
@@ -35,11 +41,13 @@ const CourseId= id
     duration: "",
     fileUrl: "",
     videoUrl: "",
-    // trainer: trainerId,
+    // trainer: data?.data?.ctrainer?._id,
     status: "1",
     course: CourseId,
     sequence: "",
   });
+
+
 
 
   console.log(params);
@@ -80,8 +88,9 @@ const CourseId= id
     CourseId
   );
 
+  console.log(data)
+ 
 
-  console.log(data);
   return (
     <div className="py-3  p-3 text-white w-[100%]  relative mb-32">
       <section className="section py-3">
@@ -100,7 +109,7 @@ const CourseId= id
           {/* Display error message if there's an error */}
           {error && <h1 className="text-white">{error.message}</h1>}
           {/* Display trainers data if available */}
-            {data.data && (
+            {data?.data && (
               <div className="table-responsive Ttable">
                 <table className=" table-striped w-[100%] text-center">
                   <thead>
@@ -117,7 +126,7 @@ const CourseId= id
                   <tbody className="table-group-divider">
                     {/* Map through trainers data and display in table rows */}
                     {data.data.map((item) => (
-                      <tr key={item.title} className="Tbody">
+                      <tr key={item._id} className="Tbody">
                         <td>{item.title}</td>
                         <td>{item?.duration}</td>
 
@@ -173,6 +182,7 @@ const CourseId= id
                   required
                   name="title"
                   value={params?.title}
+                  placeholder="Title"
                   type="text"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                 />
@@ -182,6 +192,7 @@ const CourseId= id
                 <input
                   onChange={handleChange}
                   required
+                  placeholder="Duration"
                   name="duration"
                   value={params?.duration}
                   type="text"
@@ -193,6 +204,7 @@ const CourseId= id
                 <input
                   onChange={handleChange}
                   required
+                  placeholder="File"
                   name="fileUrl"
                   value={params?.fileUrl}
                   type="url"
@@ -204,6 +216,7 @@ const CourseId= id
                 <input
                   onChange={handleChange}
                   required
+                  placeholder="Vedio"
                   name="videoUrl"
                   value={params?.videoUrl}
                   type="url"
@@ -246,6 +259,7 @@ const CourseId= id
                   onChange={handleChange}
                   required
                   name="sequence"
+                  placeholder="Sequence"
                   value={params?.sequence}
                   type="number"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
@@ -256,6 +270,7 @@ const CourseId= id
                 <textarea
                   type="text"
                   required
+                  placeholder="Description"
                   className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2"
                   value={params?.description}
                   name="description"

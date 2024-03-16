@@ -1,7 +1,47 @@
 
-import React from 'react'
+import React, { useState } from 'react'
+import FieldUST from './FieldUST'
+import { FaTimeline } from 'react-icons/fa6';
+import { FaTimes, FaTimesCircle } from 'react-icons/fa';
 
  const Notification = () => {
+
+
+    const [open, setOpen] = useState("AlluserList");
+
+    console.log(open)
+    const handleClickOpen = (elm) => {
+      setOpen(elm);
+    };
+
+
+
+
+    const [params , SetParams]=useState({
+      title:"",
+      message:"",
+      banner:"",
+      userId:[]
+    })
+
+
+
+    const handleChange = (e) => {
+      const { name, value, type, files } = e.target;
+  
+     
+  
+    
+      SetParams((prevData) => ({
+        ...prevData,
+        [name]: type === "file" ? files[0] : value,
+      }));
+    
+    };
+
+
+    console.log(params)
+
   return (
     <>
 
@@ -19,32 +59,64 @@ import React from 'react'
    
    <div className="flex gap-2 items-center">
    
-    <input type='radio' id='inputelement' className='' name='Notificationuser'/>
+<input type='radio' id='inputelement' className='' name='Notificationuser' onClick={()=>handleClickOpen("UserList")}/>
     <label  className="text-white" htmlFor='inputelement'> All Users</label>
    </div>
 
 
+
+
+
+
+
    <div className="flex gap-2 items-center">
    
-    <input type='radio' id='inputelement' className='' name='Notificationuser'/>
+    <input type='radio' id='inputelement' className='' name='Notificationuser' onClick={()=>handleClickOpen("TrainerList")}/>
     <label  className="text-white" htmlFor='inputelement'>Trainers</label>
    </div> 
    
    <div className="flex gap-2 items-center">
   
-    <input type='radio' id='inputelement' className='' name='Notificationuser'/>
+    <input type='radio' id='inputelement' className='' name='Notificationuser' onClick={()=>handleClickOpen("StudentList")}/>
     <label  className="text-white" htmlFor='inputelement'>Students</label>
    </div>
 
 </div>
 
-<div className="space-y-3">
-<textarea type="text" className='form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white'>
-    Type here...
-</textarea>
+
+
+
+
+
+
 
 <div className="">
-     <input type='file' className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "/>
+{
+    <FieldUST open={open} setOpen={setOpen} userId={params.userId} SetParams={SetParams}/>
+}
+</div>
+
+
+<div className="space-y-3">
+
+
+<div className="space-y-2">
+<p> Title</p>
+ <input type='text' name="title"  onChange={handleChange}
+     placeholder='Title' className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "/>
+ </div>
+
+<div className="space-y-2">
+<p> Messages</p>
+<textarea type="text" name="message" onChange={handleChange}  className='form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white'>
+    Type here...
+</textarea>
+</div>
+
+
+<div className="space-y-2">
+<p> Image</p>
+     <input type='file' name="banner" onChange={handleChange}  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "/>
  </div>
 
  <button className='Add-btn px-3 py-2 rounded-md mt-3 '> Send Notification</button>
@@ -53,6 +125,10 @@ import React from 'react'
 </div>
 
 </section>
+
+
+
+
     </>
   )
 }

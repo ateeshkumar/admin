@@ -24,7 +24,6 @@ function EditSubscription() {
 
  
 
-
   // State to store form parameters
   const [params, setParams] = useState({});
 
@@ -215,7 +214,7 @@ function EditSubscription() {
                 type="submit"
                 className="submit Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
               >
-                Submit
+                Update
               </button>
               <button
                 type="reset"
