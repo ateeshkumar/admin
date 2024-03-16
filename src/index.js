@@ -56,6 +56,7 @@ import Position from "./layout/Position/Position";
 import EditCity from "./layout/Location/City/EditCity";
 import SubcatList from "./layout/Categories/Subcategories/SubcatList";
 import EditSubscription from "./layout/Subscription/EditSubscription";
+import Notification from "./layout/Notification/Notification";
 
 const router = createBrowserRouter([
   {
@@ -129,21 +130,38 @@ const router = createBrowserRouter([
             element: <AddCourses />,
           },
           {
-            path: "module",
+            path: ":id/module",
+            children:[
+            {
+            path:"",
             element: <AddModules />,
+            },
+
+              {
+                path: "edit/:id",
+                element: <EditModule />,
+              },
+              {
+                path: "sub-module",
+
+                children:[
+                  {
+                    path:"",
+                    element: <SubModule />,
+                  },
+                  {
+                    path: "edit/:id",
+                    element: <EditSubModule />,
+                  },
+                ]
+               
+              },
+             
+            ]
+           
           },
-          {
-            path: "module/edit/:id",
-            element: <EditModule />,
-          },
-          {
-            path: "module/sub-module",
-            element: <SubModule />,
-          },
-          {
-            path: "module/sub-module/edit/:id",
-            element: <EditSubModule />,
-          },
+         
+         
         ],
       },
       {
@@ -298,6 +316,10 @@ const router = createBrowserRouter([
       {
         path :"position",
         element:<Position/>
+      },
+      {
+        path :"notification",
+        element:<Notification/>
       }
     ],
   },

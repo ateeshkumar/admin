@@ -39,12 +39,12 @@ console.log(data?.data?.walletTranscation)
   
              
           
-            <div className="table-responsive Ttable h-[500px] overflow-y-auto Table-overflow
+            <div className="table-responsive Ttable  overflow-y-auto Table-overflow
             ">
               <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >
-                    <th scope="col">Sender</th>
+                   
                     <th scope="col">Reciever</th>
                     <th scope="col">Payment Method</th>
                     <th scope="col">Payment Status</th>
@@ -64,7 +64,7 @@ console.log(data?.data?.walletTranscation)
                     return(
                       <>
                  <tr className="Tbody" key={item.id}>
-                    <td>{item?.senderId?.sname}</td>
+                  
                     <td>{item?.receiverId?.sname}</td>
                     <td>{item?.cardType}</td>
                     <td>{item?.transmethod}</td>

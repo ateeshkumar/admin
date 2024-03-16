@@ -36,7 +36,7 @@ console.log(data?.data)
   
              
           
-            <div className="table-responsive Ttable h-[500px] overflow-y-auto Table-overflow">
+            <div className="table-responsive Ttable  overflow-y-auto Table-overflow">
               <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >

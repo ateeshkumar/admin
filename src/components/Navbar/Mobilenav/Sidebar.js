@@ -10,7 +10,7 @@ import { useState } from "react";
 import { MdDashboard, MdPersonOutline } from "react-icons/md";
 
 import { MdOutlineAssignment } from "react-icons/md";
-import { IoLocationOutline } from "react-icons/io5";
+import { IoLocationOutline, IoNotifications } from "react-icons/io5";
 import { TbBuildingEstate, TbCategoryPlus } from "react-icons/tb";
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { MdOutlineEditLocation } from "react-icons/md";
@@ -326,6 +326,30 @@ const Sidebar = ({ setshow, show }) => {
               )}
               <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
                Position
+              </span>
+            </NavLink>
+          </li>
+
+          <li>
+          <NavLink
+              className="border-none outline-none flex items-center gap-2 side-menu p-2 rounded-md "
+              style={{ color: "white" }}
+              to="/notification"
+            >
+              {show ? (
+                <IoNotifications className="text-xl"/>
+              ) : (
+                <button
+                  className=""
+                  data-toggle="tooltip"
+                  data-placement="right"
+                  title="Batch"
+                >
+                  <IoNotifications className="text-xl"/>
+                </button>
+              )}
+              <span className={` ${!show ? "d-lg-none" : "d-block"}`}>
+               Notification
               </span>
             </NavLink>
           </li>

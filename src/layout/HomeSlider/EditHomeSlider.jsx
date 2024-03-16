@@ -69,6 +69,12 @@ function EditHomeSlider() {
           {/* Display trainers data if available */}
       {data.data && (
         <div className="w-[100%] py-3 p-3 mb-16">
+        <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1> Edit HomeSlider Details</h1>
+         
+        </div>
+      </section>
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -86,7 +92,7 @@ function EditHomeSlider() {
                         className="text-white"
                         htmlFor="exampleInputUsername1"
                       >
-                        Title
+                        Title *
                       </label>
                       <input
                         type="text"
@@ -103,12 +109,12 @@ function EditHomeSlider() {
                         className="text-white"
                         htmlFor="exampleInputUsername1"
                       >
-                        ImageUrl
+                        ImageUrl *
                       </label>
                       <input
                         type="file"
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        
+                        required
                         name="bannerUrl"
                         placeholder="imageUrl"
                         onChange={handleChange}
@@ -120,13 +126,29 @@ function EditHomeSlider() {
                         className="text-white"
                         htmlFor="exampleInputUsername1"
                       >
-                        Sequence
+                        Sequence *
                       </label>
                       <input
                         type="text"
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         value={params?.sequence}
                         name="sequence"
+                        placeholder="sequence"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className=" ">
+                      <label
+                        className="text-white"
+                        htmlFor="exampleInputUsername1"
+                      >
+                        Position
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                        value={params?.position}
+                        name="position"
                         placeholder="sequence"
                         onChange={handleChange}
                       />
@@ -171,7 +193,8 @@ function EditHomeSlider() {
                   </div>
                 </div>
 
-                <div className="">
+
+                {/* <div className="">
                   <label className="text-white" htmlFor="exampleInputUsername1">
                     Description
                   </label>
@@ -185,7 +208,11 @@ function EditHomeSlider() {
                     placeholder="Description"
                     onChange={handleChange}
                   ></textarea>
-                </div>
+                </div> */}
+
+
+
+
               </div>
             </div>
 

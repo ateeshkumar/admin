@@ -36,6 +36,16 @@ function ViewStudentInfo() {
   const showmoreclick = () => {
     setshow(!show);
   };
+
+   // Fetch category data using a custom hook (useFetch)
+   const [CityList, error3, loading3] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/city-list",
+    true
+  );
+
+
+
+
   return (
     <>
 
@@ -62,6 +72,7 @@ function ViewStudentInfo() {
                 `}
             />
 
+
             <div className="py-4 md:py-6">
               <div className="w-40 h-40  mx-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                 <img
@@ -76,8 +87,8 @@ function ViewStudentInfo() {
                 />
               </div>
             </div>
-            <div className="btn2 font-extrabold w-[90%] text-black  text-center mx-auto my-3 md:my-0">
-              <p> ID : 322456</p>
+            <div className="btn2 font-extrabold  w-[90%] text-gray-800  text-center mx-auto mt-3 mb-3 md:my-0">
+              <p> ID : {data?.data?.id}</p>
             </div>
           </div>
 
@@ -114,7 +125,19 @@ function ViewStudentInfo() {
 
                
                   <p className="">
-                    {data?.data?.scity} {data?.data?.sstate}{" "}
+                  {
+                            CityList?.data?.filter((elm) => {
+                              return elm.id === data?.data?.scity;
+                            }).map(elm=>{
+                                return (
+                                    <>
+                                        <div className="" key={elm.id}>
+                                            {elm.title}
+                                        </div>
+                                    </>
+                                )
+                            })
+                          }   {data?.data?.sstate}{" "}
                     {data?.data?.saddress}
                   </p>
                  
@@ -164,14 +187,18 @@ function ViewStudentInfo() {
               className="flex  justify-around p-2    relative "
               style={{ borderBottom: "2px solid #04775A" }}
             >
-              <li className="cursor-pointer" onClick={() => setCTR("courses")}>
+
+
+              {/* <li className="cursor-pointer" onClick={() => setCTR("courses")}>
                 Courses
                 <div
                   className={` ${
                     CTR === "courses" ? " CTR1" : "border-b-0"
                   } cursor-pointer text-center absolute   w-[100%]`}
                 ></div>
-              </li>
+              </li> */}
+
+
               <li
                 className="cursor-pointer"
                 onClick={() => setCTR("transaction")}
@@ -212,9 +239,7 @@ function ViewStudentInfo() {
               </li>
             </ul>
 
-            {CTR === "courses" ? (
-              <CourseDetails StudentData={data} />
-            ) : CTR === "transaction" ? (
+            {  CTR === "transaction" ? (
               <TransactionDetails StudentData={data} />
             ) : CTR === "enrollstudent" ? (
               <EnrollStudent StudentData={data} />

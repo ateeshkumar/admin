@@ -31,27 +31,14 @@ function Courses() {
 
   const { courseId, setCourseId, trainerId, setTrainerId } =
     UsesubcategoriesContext();
-  //open subModeule of course
-  const getSubModuleData = async (e) => {
-    e.preventDefault();
-    console.log("event ka data is " + e.target.id);
-    setCourseId(e.target.id);
+  
+  
+    //open subModeule of course
 
-    try {
-      const res = await axios.get(
-        `https://api.logicmitra.com:8086/api/course-detail/course-modules-list?courseId=${e.target.id}`
-      );
-      console.log(res.data);
-      if (res.status === 200) {
-        console.log(await res.data);
-        setTrainerId(res.data.data.ctrainer._id);
-      } else {
-        console.log("somethind fizzt");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+ 
+
+
   //setting student categories count
   const [totalCourses, setTotalCourses] = useState(0);
   const [activeCourses, setActiveCourses] = useState(0);
@@ -259,12 +246,12 @@ function Courses() {
                         </td>
                         <td>
                           <button
-                            onClick={getSubModuleData}
+                           
                             className="flex flex-row w-[100%]"
                           >
                             <Link
                               className="  py-2 px-3 text-sm rounded-md view-icon"
-                              to={`/courses/module`}
+                              to={`/courses/${item.id}/module`}
                               id={item.id}
                             >
                               Add Module

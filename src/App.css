@@ -409,7 +409,7 @@ label{
 
 padding:var(--padding-text);
 border-radius: 8px;
-font-size: 20px;
+font-size: 15px;
 line-height:24.2px
 }
 
@@ -432,7 +432,7 @@ line-height:24.2px
 
       top: 31px;
      left: 0;
-      width: 20%;
+      width: 26%;
       padding: 5px;
       border-bottom: 2px solid var(--text-border1);
   }
@@ -442,8 +442,8 @@ line-height:24.2px
     position: absolute;
   
         top: 31px;
-        left:22%;
-        width: 20%;
+        left:0%;
+        width: 26%;
         padding: 5px;
         border-bottom: 2px solid var(--text-border1);
     }
@@ -451,8 +451,8 @@ line-height:24.2px
   
       position: absolute;
           top: 31px;
-          right: 38%;
-          width: 20%;
+         left: 25%;
+          width: 26%;
           padding: 5px;
           border-bottom: 2px solid var(--text-border1);
       }
@@ -461,8 +461,8 @@ line-height:24.2px
         position: absolute;
       
             top: 31px;
-           left: 61%;
-            width: 20%;
+          right:22%;
+            width: 26%;
             padding: 5px;
             border-bottom: 2px solid var(--text-border1);
         }
@@ -473,7 +473,7 @@ line-height:24.2px
         
               top: 31px;
              right: 0;
-              width: 20%;
+              width: 26%;
               padding: 5px;
               border-bottom: 2px solid var(--text-border1);
           }

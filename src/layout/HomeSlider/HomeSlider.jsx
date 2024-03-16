@@ -193,18 +193,19 @@ function HomeSlider() {
                 onSubmit={handleSubmit}
               >
                 <div className="">
-                  <p className="text-white">Title</p>
+                  <p className="text-white">Title *</p>
                   <input
                     onChange={handleChange}
                     required
                     name="title"
+                    placeholder="Title"
                     value={params?.title}
                     type="text"
                     className="form-control input focus-within:bg-none border-none outline-none focus:bg-none my-2 text-white"
                   />
                 </div>
                 <div className="">
-                  <p className="text-white">Image Url</p>
+                  <p className="text-white">Image Url *</p>
                   <input
                     onChange={handleChange}
                     required
@@ -244,10 +245,11 @@ function HomeSlider() {
                   </div>
                 </div>
                 <div className="">
-                  <p className="text-white">Sequence</p>
+                  <p className="text-white">Sequence *</p>
                   <input
                     onChange={handleChange}
                     required
+                    placeholder="Sequence"
                     name="sequence"
                     value={params?.sequence}
                     type="number"
@@ -259,7 +261,7 @@ function HomeSlider() {
                   <p className="text-white">Position</p>
                   <input
                     onChange={handleChange}
-                    required
+                   placeholder="Postion"
                     name="position"
                     value={params?.position}
                     type="text"

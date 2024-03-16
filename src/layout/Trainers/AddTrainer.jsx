@@ -152,7 +152,7 @@ console.log(formData)
       <div className="w-[100%] py-3 p-3 mb-16">
       <section className="section py-3">
         <div className="text-xl font-medium text-white  d-flex justify-between items-center">
-          <h1>Trainer Add Details</h1>
+          <h1> Add Trainer Details</h1>
          
         </div>
       </section>
@@ -246,7 +246,7 @@ console.log(formData)
               <label className="text-white " htmlFor="exampleInputMobile">
              
              <div className="flex gap-2 items-center  ">
-             <p> Whatsap</p>
+             <p> Whatsapp</p>
              
             
              <input
@@ -536,6 +536,7 @@ console.log(formData)
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.sintro}
                   name="sintro"
+                  placeholder="Intro"
                   onChange={handleChange}
                 />
               </div>
@@ -547,6 +548,7 @@ console.log(formData)
                   className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white "
                   value={formData.sabout}
                   name="sabout"
+                  placeholder="About"
                   onChange={handleChange}
                 />
               </div>

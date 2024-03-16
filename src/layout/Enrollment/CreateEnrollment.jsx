@@ -55,6 +55,8 @@ const CreateEnrollment = () => {
       payamount: courseData?.cfees,
     });
   }, [courseData]);
+
+  
   const [addData] = useAdd(
     `https://api.logicmitra.com:8086/api/enroll/enroll-student`
   );

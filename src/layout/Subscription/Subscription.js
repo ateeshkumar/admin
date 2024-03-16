@@ -89,12 +89,13 @@ try{
 
 
  // fetch tha city data 
- const [Citydata, error1, loading1] = useFetch(
+ const [CityList, error1, loading1] = useFetch(
     "https://api.logicmitra.com:8086/api/address/city-list",
     true
   );
 
-  console.log(Citydata);
+  
+  console.log(CityList);
 
  
 
@@ -117,7 +118,7 @@ try{
             {error && <h1 className="text-white">{error.message}</h1>}
             {/* Display Category data if available */}
             {data.data && (
-              <div className="table-responsive Ttable  h-[550px] overflow-y-auto Table-overflow">
+              <div className="table-responsive Ttable overflow-y-auto Table-overflow">
                 <table className=" table-striped w-[100%]">
                   <thead>
                     <tr className="Thead">
@@ -136,7 +137,7 @@ try{
                       <tr key={item.id} className="Tbody">
                         <td>{
                           
-                          Citydata?.data?.filter(elm=>elm.id===item?.city).map(elm=>elm.title)
+                          CityList?.data?.filter(elm=>elm.id===item?.city).map(elm=>elm.title)
 
                       
                         }
@@ -146,7 +147,7 @@ try{
                          {item?.position}
                         </td>
 
-                        <td>{item?.status === 1 ? "Active " : "Inactive"}</td>
+                        <td>{item?.status == 1 ? "Active " : "Inactive"}</td>
                         <td>{item?.fees}</td>
 
                        
@@ -183,7 +184,7 @@ try{
                onChange={handleChange} name="city" value={params?.city}>
                <option> select city</option>
                {
-                Citydata?.data?.map(elm=>{
+                CityList?.data?.map(elm=>{
                    
                     
                     return (

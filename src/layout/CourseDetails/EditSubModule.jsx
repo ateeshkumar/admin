@@ -5,9 +5,22 @@ import useUpdate from "../../hooks/useUpdate";
 
 const EditSubModule = () => {
   const navigate = useNavigate();
+
+  // * find the id for the submodule to edit the data
   const { id } = useParams();
+
+  const SubModuleId = id
+
+
+  // todo find the url to redirect the submodule 
+
+  const Url = window.location.href;
+  const SubModuleUrl = Url.substring(Url.indexOf('/courses/'))
+
+  const SubModuleUrl1 = SubModuleUrl.substring(0 , SubModuleUrl.lastIndexOf('/edit/'))
+
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/course-detail/get-submodule-detail?submoduleId=${id}`
+    `https://api.logicmitra.com:8086/api/course-detail/get-submodule-detail?submoduleId=${SubModuleId}`
   );
   const [params, setParams] = useState({});
   useEffect(() => {
@@ -15,6 +28,9 @@ const EditSubModule = () => {
       setParams(data?.data);
     }
   }, [data]);
+
+
+
   console.log(params);
   const handleChange = async (e) => {
     console.log(e.target);
@@ -24,13 +40,16 @@ const EditSubModule = () => {
       [name]: type === "file" ? files[0] : value,
     });
   };
+
+
+
   const [handleUpdate] = useUpdate(
     `https://api.logicmitra.com:8086/api/course-detail/update-submodule`
   );
   const handleSubmit = async (e) => {
     console.log(e);
     e.preventDefault();
-    handleUpdate(`submoduleId=${e.target.id}`, params, "/courses/module");
+    handleUpdate(`submoduleId=${e.target.id}`, params, SubModuleUrl1);
   };
 
   return (

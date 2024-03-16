@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { UseCourseContext } from "../../context/CourseContext";
 import { useFetch } from "../../hooks/useFetch";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UsesubcategoriesContext } from "../../context/SubcatContext";
 import { useAdd } from "../../hooks/useAdd";
 import swal from "sweetalert";
@@ -9,6 +9,18 @@ import axios from "axios";
 import { useDeleteOne } from "../../hooks/useDeleteOne";
 
 const SubModule = () => {
+
+  //*find the modules id through params
+
+const {id} = useParams()
+ const SubModuleId = id
+
+
+// todo find the url path to redirect the page 
+
+const Url = window.location.href;
+const SubModuleUrl = Url.substring(Url.indexOf("/courses/"))
+
   const { moduleId, setModuleId } = UseCourseContext();
   const { courseId, setCourseId, trainerId, setTrainerId } =
     UsesubcategoriesContext();
@@ -44,29 +56,16 @@ const SubModule = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    addData(params, "/courses/module/sub-module");
+    addData(params, SubModuleUrl);
     console.log(params);
   };
   const { Delete } = useDeleteOne(
     `https://api.logicmitra.com:8086/api/course-detail/delete-submodule?submoduleId=`
   );
   const handleDelete = async (e) => {
-    console.log("cate id is ", e.target.id);
-    swal({
-      title: "Are you sure?",
-      text: "you want to delete this !",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        Delete(e.target.id);
-        window.location.reload();
-      } else {
-        swal("Your  is safe");
-      }
-    });
+   Delete(e.target.id , SubModuleUrl)
   };
+
 
   console.log(moduleId);
   console.log(data);
@@ -123,7 +122,7 @@ const SubModule = () => {
                           </Link>{" "}
                           <Link
                             className="py-2 px-3 rounded-md bg-warning"
-                            to={`/courses/module/sub-module/edit/${item.id}`}
+                            to={`${SubModuleUrl}/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>

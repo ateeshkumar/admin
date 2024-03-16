@@ -47,6 +47,8 @@ const AddBatchesStudent = () => {
   }, [data?.data?.bcourse?._id]);
   console.log(courseData);
 
+  
+
   // add student data in batches
   const addStudentData = async (e) => {
     console.log(e.target.id);

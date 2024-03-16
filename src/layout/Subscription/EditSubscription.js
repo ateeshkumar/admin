@@ -49,6 +49,7 @@ function EditSubscription() {
 
   console.log(params);
 
+  // http://api/subscription/update-subscription?subId=
   // Uses a custom hook (useUpdate) for handling the update API call
   const [handleUpdate] = useUpdate(
     `https://api.logicmitra.com:8086/api/subscription/update-subscription`
@@ -60,8 +61,15 @@ function EditSubscription() {
    
     e.preventDefault();
     // Calls the handleUpdate function from the custom hook
-    handleUpdate(`subId==${e.target.id}`, params, SubscriptionUrl);
+    handleUpdate(`subId=${e.target.id}`, params, SubscriptionUrl);
   };
+
+
+  //* city lists data 
+  const [CityList, error1, loading1] = useFetch(
+    "https://api.logicmitra.com:8086/api/address/city-list",
+    true
+  );
 
   return (
     <>
@@ -72,6 +80,12 @@ function EditSubscription() {
           {/* Display trainers data if available */}
       {data.data && (
         <div className="w-[100%] py-3 p-3 mb-16">
+        <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1> Edit Subscription Details</h1>
+         
+        </div>
+      </section>
           <form
             // Form for updating category information
             className="forms-sample w-100 m-2 p-4 box"
@@ -84,7 +98,8 @@ function EditSubscription() {
               <div className="form-group">
                 <div className="flex flex-col-reverse md:flex-row md:flex items-center justify-between ">
                   <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] ">
-                    <div className=" ">
+
+                    {/* <div className=" ">
                       <label
                         className="text-white"
                         htmlFor="exampleInputUsername1"
@@ -100,9 +115,29 @@ function EditSubscription() {
                         placeholder="title"
                         onChange={handleChange}
                       />
-                    </div>
+                    </div> */}
                    
-
+                    <div className="">
+                <label className="text-white">City Name</label>
+               <select 
+               required
+               className="form-select input focus-within:bg-none border-none outline-none focus:bg-none my-2"
+               onChange={handleChange} name="city" value={params?.city}>
+               <option> select city</option>
+               {
+                CityList?.data?.map(elm=>{
+                   
+                    
+                    return (
+                        <>
+                            <option value={elm.id}> {elm.title} </option>
+                        </>
+                    )
+                })
+               }
+               
+               </select>
+              </div>
                     <div className=" ">
                       <label
                         className="text-white"

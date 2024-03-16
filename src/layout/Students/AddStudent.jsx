@@ -210,7 +210,7 @@ fetchcitydata()
     <div className="w-[100%] py-3 p-3 mb-16">
     <section className="section py-3">
         <div className="text-xl font-medium text-white  d-flex justify-between items-center">
-          <h1>Students Add Details</h1>
+          <h1> Add  Students Details</h1>
          
         </div>
       </section>
@@ -296,7 +296,7 @@ fetchcitydata()
               <label className="text-white " htmlFor="exampleInputMobile">
              
              <div className="flex gap-2 items-center  ">
-             <p> Whatsap</p>
+             <p> Whatsapp</p>
              
             
              <input
@@ -571,7 +571,9 @@ fetchcitydata()
             </div>
           
           </div>
-          <div className="">
+
+
+          {/* <div className="">
               <label className="text-white" htmlFor="exampleInputMobile">Intro</label>
               <textarea
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
@@ -593,7 +595,10 @@ fetchcitydata()
                 placeholder="About"
                 onChange={handleChange}
               />
-            </div>
+            </div> */}
+
+
+            
         </div>
 
         {/* Submit and cancel buttons */}

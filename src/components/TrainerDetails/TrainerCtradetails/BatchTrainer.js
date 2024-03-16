@@ -17,7 +17,7 @@ console.log(data?.data)
         
       {
         data?.data?.batches?.length===0 ? (<>
-        <div className="text-white px-2 py-3 "> There is no Batches Data</div>
+        <div className="text-white px-2 py-3 ">  No Batches Data Found</div>
         </>) : (
           <div className="px-2 py-3 "> 
         <div className="">

@@ -11,7 +11,7 @@ function EditCourses() {
 
   const courseId = id;
 
-  const [data, loading, error] = useFetch(
+  const [data,error, loading] = useFetch(
     `https://api.logicmitra.com:8086/api/courses/course-detail?courseId=${courseId}`,
     courseId
   );
@@ -77,6 +77,12 @@ function EditCourses() {
       ) : (
         <>
           <div className="w-100 py-3 p-3 mb-16">
+          <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1> Edit Course Details</h1>
+         
+        </div>
+      </section>
             <form
               // Form for Adding Course information
               className="forms-sample   p-4 box"

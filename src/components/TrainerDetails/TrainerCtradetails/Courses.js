@@ -25,7 +25,7 @@ console.log(data?.data?.courses)
   (
     <>
       <div className="text-white">
-        There is no Courses 
+      No Courses Data Found
       </div>
     </>
   ) :

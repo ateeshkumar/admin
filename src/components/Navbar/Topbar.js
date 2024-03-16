@@ -35,7 +35,7 @@ const [ notifybtn , Shownotifybtn]=useState(false)
 
   return (
     <>
-      <section className="relative">
+      <section className="">
         <div
           className={`flex justify-between items-center gap-3 
            px-2 text-white topnavbar
@@ -88,7 +88,7 @@ const [ notifybtn , Shownotifybtn]=useState(false)
 
           <div>
             <ul className="flex items-center gap-3">
-              <li onClick={()=>Shownotifybtn(!notifybtn)} className="cursor-pointer">
+              <li className="cursor-pointer">
                 <IoNotifications className="text-2xl" />
               </li>
               <li>
@@ -125,65 +125,8 @@ const [ notifybtn , Shownotifybtn]=useState(false)
 //? this is the notifation bar 
 
 
-{
-  notifybtn ? (
-    <>
-    <div className="text-white box w-64 space-y-2
-absolute top-20 right-3 z-50" style={{ zIndex:"99999"}}>
-  <h1 className="heading p-1  mb-3">Notifications</h1>
 
-  <ul className="space-y-2">
-    <li>
-      <div className="flex items-center gap-2">
-        <div className="view-icon p-2 rounded-full">
-          <MdError  className="text-white text-md"/>
-        </div>
-        <div className="">
-          <h1 className="font-medium">
-            Application Error
-          </h1>
-          <p className="">
-            Just now
-          </p>
-        </div>
-      </div>
-    </li>
-    <li>
-    
-    <div className="flex items-center gap-2">
-     <div className="edit-icon p-2 rounded-full">
-       <IoMdSettings className="text-white text-md"/>
-    </div>
-    <div className="">
-        <h1 className="font-medium">Settings</h1>
-        <p className="">
-          Private Messages
-        </p>
-      </div>
-    </div>
-    </li>
-    <li>
-     
-     <div className="flex items-center gap-2">
-     <div className="delete-icon p-2 rounded-full">
-      <FaUser className="text-white text-md"/>
-     </div>
-     <div className="">
-        <h1 className="font-medium">
-         New User 
-         Registration
-        </h1>
-        <p className="">
-          2 days ago
-        </p>
-      </div>
-     </div>
-    </li>
-  </ul>
-</div>
-    </>
-  ) : null
-}
+
       </section>
 
 

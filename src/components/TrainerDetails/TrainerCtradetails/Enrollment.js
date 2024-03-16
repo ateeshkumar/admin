@@ -16,7 +16,7 @@ console.log(data?.data)
 
 {
         data?.data?.enrollCourse.length===0 ? (<>
-        <div className="text-white px-2 py-3"> There is no Enrolled courses</div>
+        <div className="text-white px-2 py-3"> No Enrolled Courses Data Found</div>
         </>) : (
           <div className="px-2 py-3 "> 
         <div className="">
@@ -35,7 +35,7 @@ console.log(data?.data)
   
              
           
-            <div className="table-responsive Ttable h-[500px] overflow-y-auto Table-overflow">
+            <div className="table-responsive Ttable  overflow-y-auto Table-overflow">
               <table className=" table-striped w-[100%]">
                 <thead className="Thead">
                   <tr >
@@ -58,12 +58,12 @@ console.log(data?.data)
                     console.log(item)
                     return(
                       <>
-                 <tr className="Tbody" key={item.id}>
-                    <td>{item?.ctitle}</td>
-                    <td>{item?.cfees}</td>
-                    <td>{item?.cofferfees}</td>
-                    <td>{item?.transmethod}</td>
-                    <td>{item?.amount}</td>
+                      <tr className="Tbody" key={item.id}>
+                    <td>{item?.courseid?.ctitle}</td>
+                    <td>{item?.courseid?.cfees}</td>
+                    <td>{item?.courseid?.cofferfees}</td>
+                    <td>{item?.paymode}</td>
+                    <td>{item?.payamount}</td>
                     <td className="flex flex-row"> {moment(item?.date).format("DD/MM/YYYY")}</td>
                  </tr>
                       </>

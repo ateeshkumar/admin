@@ -28,6 +28,17 @@ function ViewTrainerInfo() {
   console.log(CTR);
 
   console.log(data?.data?.sgender.charAt(0).toLowerCase());
+
+
+//* fetch the city list 
+const [CityList, error3, loading3] = useFetch(
+  "https://api.logicmitra.com:8086/api/address/city-list",
+  true
+);
+
+
+
+
   return (
     <>
 
@@ -68,8 +79,8 @@ function ViewTrainerInfo() {
                 />
               </div>
             </div>
-            <div className="btn2 font-extrabold w-[90%] text-black  text-center mx-auto my-3 md:my-0">
-              <p> ID : 322456</p>
+            <div className="btn2 font-extrabold w-[90%] text-gray-800  text-center mx-auto my-3 md:my-0">
+              <p> ID : {data?.data?.id}</p>
             </div>
           </div>
 
@@ -98,7 +109,24 @@ function ViewTrainerInfo() {
               </li>
               <li className="flex items-center gap-2">
                 
-                <FaLocationDot className="text-xs" /> {data?.data?.scity} , {data?.data?.sstate} ,{data?.data?.scountry} ,{data?.data?.spincode}
+                <FaLocationDot className="text-xs" /> 
+                
+                {
+                            CityList?.data?.filter((elm) => {
+                              return elm.id === data?.data?.scity;
+                            }).map(elm=>{
+                                return (
+                                    <>
+                                        <div className="" key={elm.id}>
+                                            {elm.title}
+                                        </div>
+                                    </>
+                                )
+                            })
+                          }
+
+
+                , {data?.data?.sstate} ,{data?.data?.scountry} ,{data?.data?.spincode}
               </li>
             </ul>
 

@@ -129,7 +129,7 @@ function EditTrainerInfo() {
         <div className=" py-3 p-3 mb-16">
         <section className="section py-3">
         <div className="text-xl font-medium text-white  d-flex justify-between items-center">
-          <h1>Trainer Edit Details</h1>
+          <h1> Edit Trainer Details</h1>
          
         </div>
       </section>
@@ -417,6 +417,7 @@ function EditTrainerInfo() {
                     type="text"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sabout"
+                    placeholder="About"
                     value={params?.sabout}
                     onChange={handleChange}
                   />
@@ -427,6 +428,7 @@ function EditTrainerInfo() {
                     type="text"
                     className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                     name="sintro"
+                    placeholder="Intro"
                     value={params?.sintro}
                     onChange={handleChange}
                   />

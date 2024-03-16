@@ -10,16 +10,24 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const AddModules = () => {
-  const navigate = useNavigate();
-  const { courseId, setCourseId, trainerId, setTrainerId } =
-    UsesubcategoriesContext();
-  const { moduleId, setModuleId } = UseCourseContext();
 
-  //get submodule data
-  const getSubModuleData = async (e) => {
-    e.preventDefault();
-    setModuleId(e.target.id);
-  };
+// use params to fetch the particular course id
+
+const {id} = useParams()
+
+const CourseId= id
+
+
+
+  const navigate = useNavigate();
+
+  
+  const Url = window.location.href;
+  const ModuleUrl = Url.substring(Url.indexOf("/courses/"))
+  
+ 
+
+
 
   const [params, setparams] = useState({
     title: "",
@@ -27,24 +35,25 @@ const AddModules = () => {
     duration: "",
     fileUrl: "",
     videoUrl: "",
-    trainer: trainerId,
+    // trainer: trainerId,
     status: "1",
-    course: courseId,
+    course: CourseId,
     sequence: "",
   });
 
 
   console.log(params);
 
-  // console.log(data1?.data?.ctrainer?._id);
+  
+  //*add module data
 
-  //add module data
   const [addData] = useAdd(
     `https://api.logicmitra.com:8086/api/course-detail/create-module`
   );
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    addData(params, "/courses/module");
+    addData(params, ModuleUrl);
   };
 
   const handleChange = (event) => {
@@ -60,33 +69,21 @@ const AddModules = () => {
     `https://api.logicmitra.com:8086/api/course-detail/delete-module?moduleId=`
   );
   const handleDelete = async (e) => {
-    console.log("cate id is ", e.target.id);
-    swal({
-      title: "Are you sure?",
-      text: "you want to delete this !",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        Delete(e.target.id);
-        window.location.reload();
-      } else {
-        swal("Your  is safe");
-      }
-    });
+   Delete(e.target.id , ModuleUrl)
   };
 
   
 
   //fetch module data from couses
   const [data, error ,loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/course-detail/course-modules?courseId=${courseId}`,
-    courseId
+    `https://api.logicmitra.com:8086/api/course-detail/course-modules?courseId=${CourseId}`,
+    CourseId
   );
+
+
   console.log(data);
   return (
-    <div className="py-3  p-3 text-white w-[100%]  relative mb-16">
+    <div className="py-3  p-3 text-white w-[100%]  relative mb-32">
       <section className="section py-3">
         <div className="text-xl font-medium ">
           <h1>Course Module List</h1>
@@ -129,9 +126,9 @@ const AddModules = () => {
 
                         <td className="w-full">
                           {/* This button will show te subcatehory card */}
-                          <button className="btn " onClick={getSubModuleData}>
+                          <button className="btn ">
                             <Link
-                              to={"/courses/module/sub-module"}
+                              to={`${ModuleUrl}/${item.id}/sub-module`}
                               className="py-2 px-3 rounded-md view-icon text-white"
                               id={item.id}
                             >
@@ -143,7 +140,7 @@ const AddModules = () => {
                           {/* Action links for each trainer */}
                           <Link
                             className="py-2 px-3 rounded-md edit-icon"
-                            to={`/courses/module/edit/${item.id}`}
+                            to={`/courses/${item.id}/module/edit/${item.id}`}
                           >
                             <i class="bi bi-pencil-square"></i>
                           </Link>

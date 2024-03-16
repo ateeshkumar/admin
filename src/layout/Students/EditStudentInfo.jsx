@@ -128,7 +128,7 @@ fetchcitydata()
         <div className=" py-3 p-3 mb-16">
         <section className="section py-3">
         <div className="text-xl font-medium text-white  d-flex justify-between items-center">
-          <h1>Students Edit Details</h1>
+          <h1> Edit Students Details</h1>
          
         </div>
       </section>

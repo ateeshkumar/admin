@@ -9,12 +9,26 @@ const EditModule = () => {
   const [data, error, loading] = useFetch(
     `https://api.logicmitra.com:8086/api/course-detail/modules-details?moduleId=${id}`
   );
+
+
+const Url = window.location.href;
+const ModuleUrl = Url.substring(Url.indexOf("/courses/"))
+const ModuleUrl1 = ModuleUrl.substring(0 , ModuleUrl.lastIndexOf("/edit/"))
+
+
+
+
+
+
+
   const [params, setParams] = useState({});
   useEffect(() => {
     if (data) {
       setParams(data?.data);
     }
   }, [data]);
+
+  
   const handleChange = async (e) => {
     console.log(e.target);
     const { name, value, type, files } = e.target;
@@ -29,7 +43,7 @@ const EditModule = () => {
   const handleSubmit = async (e) => {
     console.log(e);
     e.preventDefault();
-    handleUpdate(`moduleId=${e.target.id}`, params, "/courses/module");
+    handleUpdate(`moduleId=${e.target.id}`, params, ModuleUrl1);
   };
   console.log(params);
 

@@ -125,7 +125,7 @@ function EditSubcategories() {
                         className="text-white"
                         htmlFor="exampleInputUsername1"
                       >
-                        Title
+                        Title *
                       </label>
                       <input
                         type="text"
@@ -142,10 +142,11 @@ function EditSubcategories() {
                         className="text-white"
                         htmlFor="exampleInputUsername1"
                       >
-                        ImageUrl
+                        ImageUrl *
                       </label>
                       <input
                         type="file"
+                        required
                         className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                         // value={params?.imageUrl[0]}
                         name="imageUrl"

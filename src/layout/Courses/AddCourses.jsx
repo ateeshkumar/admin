@@ -126,6 +126,12 @@ console.log(data)
   console.log(formData);
   return (
     <div className="w-[100%] py-3 sm:p-3 mb-16">
+     <section className="section py-3">
+        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+          <h1> Add Course Details</h1>
+         
+        </div>
+      </section>
       <form
         // Form for Adding Course information
         className="forms-sample  m-2 p-4 box "
@@ -323,6 +329,7 @@ console.log(data)
               <textarea
                 name="cdescription"
                 id=""
+                placeholder="Description"
                 handleChange={formData?.cdescription}
                 className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                 cols="30"
