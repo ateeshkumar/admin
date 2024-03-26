@@ -1,11 +1,14 @@
 import React from "react";
+import Home from "../../Home";
 
 function Dashboard() {
   return (
     <>
-      <div className="text-white">home page</div>
+      <Home>
+        <div className="text-white">home page</div>
+      </Home>
     </>
-  )
+  );
 }
 
 export default Dashboard;

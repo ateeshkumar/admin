@@ -4,17 +4,17 @@ import swal from "sweetalert";
 
 import useUpdate from "../../hooks/useUpdate";
 import { useFetch } from "../../hooks/useFetch";
+import Home from "../../Home";
 
 function EditHomeSlider() {
   const HomeSliderUrl = "/home-slider";
 
   const { id } = useParams();
 
-
   // Fetch category data using a custom hook (useFetch)
 
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/advertise/advertise-details?adId=${id}`,
+    `/advertise/advertise-details?adId=${id}`,
     id
   );
 
@@ -59,142 +59,140 @@ function EditHomeSlider() {
     handleUpdate(`adId=${e.target.id}`, params, HomeSliderUrl);
   };
 
-  
   return (
     <>
-       {/* Display loading message while data is being fetched */}
-       {loading && <h1 className="text-white">Loading...</h1>}
-          {/* Display error message if there's an error */}
-          {error && <h1 className="text-white">{error.message}</h1>}
-          {/* Display trainers data if available */}
-      {data.data && (
-        <div className="w-[100%] py-3 p-3 mb-16">
-        <section className="section py-3">
-        <div className="text-xl font-medium text-white  d-flex justify-between items-center">
-          <h1> Edit HomeSlider Details</h1>
-         
-        </div>
-      </section>
-          <form
-            // Form for updating category information
-            className="forms-sample w-100 m-2 p-4 box"
-            onSubmit={handleSubmit}
-            id={params?.id}
-          >
-            {/* Form inputs for category details */}
-            <div className="w-100 ">
-              {/* Form group for title */}
-              <div className="form-group">
-                <div className="flex flex-col-reverse md:flex-row md:flex items-center justify-between ">
-                  <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] ">
-                    <div className=" ">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        Title *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={params?.title}
-                        name="title"
-                        placeholder="title"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className=" ">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        ImageUrl *
-                      </label>
-                      <input
-                        type="file"
-                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        required
-                        name="bannerUrl"
-                        placeholder="imageUrl"
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    <div className=" ">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        Sequence *
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={params?.sequence}
-                        name="sequence"
-                        placeholder="sequence"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className=" ">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        Position
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                        value={params?.position}
-                        name="position"
-                        placeholder="sequence"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="col-12 col-sm-4">
-                      <label
-                        className="text-white"
-                        htmlFor="exampleInputUsername1"
-                      >
-                        Status
-                      </label>
-
-                      <div className="text-white d-flex gap-2">
+      <Home>
+        {/* Display loading message while data is being fetched */}
+        {loading && <h1 className="text-white">Loading...</h1>}
+        {/* Display error message if there's an error */}
+        {error && <h1 className="text-white">{error.message}</h1>}
+        {/* Display trainers data if available */}
+        {data.data && (
+          <div className="w-[100%] py-3 p-3 mb-16">
+            <section className="section py-3">
+              <div className="text-xl font-medium text-white  d-flex justify-between items-center">
+                <h1> Edit HomeSlider Details</h1>
+              </div>
+            </section>
+            <form
+              // Form for updating category information
+              className="forms-sample w-100 m-2 p-4 box"
+              onSubmit={handleSubmit}
+              id={params?.id}
+            >
+              {/* Form inputs for category details */}
+              <div className="w-100 ">
+                {/* Form group for title */}
+                <div className="form-group">
+                  <div className="flex flex-col-reverse md:flex-row md:flex items-center justify-between ">
+                    <div className=" grid grid-cols-1  sm:grid-cols-2 gap-5 w-[100%] md:w-[70%] ">
+                      <div className=" ">
+                        <label
+                          className="text-white"
+                          htmlFor="exampleInputUsername1"
+                        >
+                          Title *
+                        </label>
                         <input
-                          type="radio"
-                          id="active"
-                          name="status"
-                          value={1}
-                          checked={params?.status == 1}
+                          type="text"
+                          required
+                          className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                          value={params?.title}
+                          name="title"
+                          placeholder="title"
                           onChange={handleChange}
                         />
-                        Active
+                      </div>
+                      <div className=" ">
+                        <label
+                          className="text-white"
+                          htmlFor="exampleInputUsername1"
+                        >
+                          ImageUrl *
+                        </label>
                         <input
-                          type="radio"
-                          id="active"
-                          name="status"
-                          value={0}
-                          checked={params?.status == 0}
+                          type="file"
+                          className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                          required
+                          name="bannerUrl"
+                          placeholder="imageUrl"
                           onChange={handleChange}
                         />
-                        Inactive
+                      </div>
+
+                      <div className=" ">
+                        <label
+                          className="text-white"
+                          htmlFor="exampleInputUsername1"
+                        >
+                          Sequence *
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                          value={params?.sequence}
+                          name="sequence"
+                          placeholder="sequence"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className=" ">
+                        <label
+                          className="text-white"
+                          htmlFor="exampleInputUsername1"
+                        >
+                          Position
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                          value={params?.position}
+                          name="position"
+                          placeholder="sequence"
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="col-12 col-sm-4">
+                        <label
+                          className="text-white"
+                          htmlFor="exampleInputUsername1"
+                        >
+                          Status
+                        </label>
+
+                        <div className="text-white d-flex gap-2">
+                          <input
+                            type="radio"
+                            id="active"
+                            name="status"
+                            value={1}
+                            checked={params?.status == 1}
+                            onChange={handleChange}
+                          />
+                          Active
+                          <input
+                            type="radio"
+                            id="active"
+                            name="status"
+                            value={0}
+                            checked={params?.status == 0}
+                            onChange={handleChange}
+                          />
+                          Inactive
+                        </div>
                       </div>
                     </div>
+
+                    <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
+                      <img
+                        src={`https://api.logicmitra.com/uploads/advertiseBanner/${params?.bannerUrl}`}
+                        alt="image"
+                        className="w-[100%] h-[100%]  object-cover"
+                      />
+                    </div>
                   </div>
 
-                  <div className="h-44 md:h-[100%]  w-[100%] md:w-[20%] border-2 rounded-md">
-                    <img
-                      src={`https://api.logicmitra.com/uploads/advertiseBanner/${params?.bannerUrl}`}
-                      alt="image"
-                      className="w-[100%] h-[100%]  object-cover"
-                    />
-                  </div>
-                </div>
-
-
-                {/* <div className="">
+                  {/* <div className="">
                   <label className="text-white" htmlFor="exampleInputUsername1">
                     Description
                   </label>
@@ -209,32 +207,29 @@ function EditHomeSlider() {
                     onChange={handleChange}
                   ></textarea>
                 </div> */}
-
-
-
-
+                </div>
               </div>
-            </div>
 
-            {/* Submit and cancel buttons */}
+              {/* Submit and cancel buttons */}
 
-            <div className=" flex items-center my-4 justify-between">
-              <button
-                type="submit"
-                className="Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
-              >
-                Update
-              </button>
-              <button
-                type="reset"
-                className="Cancel-btn   rounded-md sm:px-4 px-5 py-2"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
+              <div className=" flex items-center my-4 justify-between">
+                <button
+                  type="submit"
+                  className="Add-btn mr-2  rounded-md sm:px-4 px-5 py-2"
+                >
+                  Update
+                </button>
+                <button
+                  type="reset"
+                  className="Cancel-btn   rounded-md sm:px-4 px-5 py-2"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+      </Home>
     </>
   );
 }

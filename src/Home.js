@@ -11,24 +11,19 @@ import LocationState from "./layout/Location/State/State";
 import DesktopSidebar from "./components/Navbar/Desktopnav/Sidebar";
 import MobileSidebar from "./components/Navbar/Mobilenav/Sidebar";
 
-function Home() {
-
-  const [show , setshow]=useState(true)
-  const [showsidebar , setshowbar]=useState(false)
+function Home({ children }) {
+  const [show, setshow] = useState(true);
+  const [showsidebar, setshowbar] = useState(false);
 
   return (
     <>
-     
-
-       <Topbar setshow={setshow} show={show}/>
+      <Topbar setshow={setshow} show={show} />
       <div className=" flex  pl-0 h-[100%]">
-        
         <div>
-        <DesktopSidebar setshow={setshow} show={show} />
-        <MobileSidebar setshow={setshow} show={show} />
+          <DesktopSidebar setshow={setshow} show={show} />
+          <MobileSidebar setshow={setshow} show={show} />
         </div>
-        <Outlet />
-      
+        {children}
       </div>
     </>
   );

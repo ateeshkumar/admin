@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Home from "../../Home";
 
 function ViewHomeSlider() {
   return (
-    <div className='text-white'>
-      ViewHomeSlider
-    </div>
-  )
+    <Home>
+      <div className="text-white">ViewHomeSlider</div>
+    </Home>
+  );
 }
 
-export default ViewHomeSlider
+export default ViewHomeSlider;

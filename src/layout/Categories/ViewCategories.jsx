@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import Home from "../../Home";
 
 function ViewCategories() {
   return (
     <div>
-      ViewCategories
+      <Home>ViewCategories</Home>
     </div>
-  )
+  );
 }
 
-export default ViewCategories
+export default ViewCategories;

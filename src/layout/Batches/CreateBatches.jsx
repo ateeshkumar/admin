@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import axios from "axios";
 import { useAdd } from "../../hooks/useAdd";
+import Home from "../../Home";
 
 const CreateBatches = () => {
   const [courData, setCourData] = useState([]);
-  const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/user/list?userType=trainer`
-  );
+  const [data, error, loading] = useFetch(`/user/list?userType=trainer`);
   const [params, setParams] = useState({
     btitle: "",
     bstartdate: "",
@@ -30,16 +29,14 @@ const CreateBatches = () => {
 
     try {
       const data1 = await axios.get(
-        `https://api.logicmitra.com:8086/api/courses/trainer-courses?trainId=${params.btrainer}`
+        `/courses/trainer-courses?trainId=${params.btrainer}`
       );
       setCourData(data1?.data?.data?.courses);
     } catch (error) {
       console.log(error);
     }
   };
-  const [addData] = useAdd(
-    `https://api.logicmitra.com:8086/api/batches/create-batch`
-  );
+  const [addData] = useAdd(`/batches/create-batch`);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -50,203 +47,205 @@ const CreateBatches = () => {
   console.log(courData);
   console.log(data);
   return (
-    <div className="w-[100%] py-3 sm:p-3">
-      <form
-        // Form for Adding Course information
-        className="forms-sample  m-2 p-4 box "
-        onSubmit={handleSubmit}
-      >
-        {/* Form inputs for course details */}
-        <div className="w-100  gap-3">
-          {/* Form group for coursename*/}
-          <div className="form-group  row">
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                Batch Title
-              </label>
-              <input
-                type="text"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={params?.btitle}
-                name="btitle"
-                placeholder="Batch Title"
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="col-12 col-sm-4  flex flex-col">
-              <label className="text-white" htmlFor="subcategory">
-                Batch Trainer
-              </label>
-
-              <div>
-                <select
-                  name="btrainer"
-                  value={params.btrainer}
+    <Home>
+      <div className="w-[100%] py-3 sm:p-3">
+        <form
+          // Form for Adding Course information
+          className="forms-sample  m-2 p-4 box "
+          onSubmit={handleSubmit}
+        >
+          {/* Form inputs for course details */}
+          <div className="w-100  gap-3">
+            {/* Form group for coursename*/}
+            <div className="form-group  row">
+              <div className="col-12 col-sm-4">
+                <label className="text-white" htmlFor="exampleInputUsername1">
+                  Batch Title
+                </label>
+                <input
+                  type="text"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                  value={params?.btitle}
+                  name="btitle"
+                  placeholder="Batch Title"
                   onChange={handleChange}
-                  id="btrainer"
-                  className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                >
-                  <option selected>Open this select menu</option>
-                  {data?.data &&
-                    data?.data?.map((elm) => {
-                      // const { _id, title } = elm.csubcategory;
-                      // console.log(_id, title);
-
-                      return (
-                        <>
-                          <option value={elm.id}>{elm?.sname}</option>
-                        </>
-                      );
-                    })}
-                </select>
+                />
               </div>
-            </div>
 
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                Start Date
-              </label>
-              <input
-                type="date"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={params?.bstartdate}
-                name="bstartdate"
-                placeholder="Start date"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                Batch Time
-              </label>
-              <input
-                type="time"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={params?.btime}
-                name="btime"
-                placeholder="Batch time"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                Batch Seats
-              </label>
-              <input
-                type="number"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                value={params?.bseats}
-                name="bseats"
-                placeholder="Batch seats"
-                onChange={handleChange}
-              />
-            </div>
-            {courData.length > 0 && (
               <div className="col-12 col-sm-4  flex flex-col">
-                <label className="text-white" htmlFor="ctrainer">
-                  Batch Course
+                <label className="text-white" htmlFor="subcategory">
+                  Batch Trainer
                 </label>
 
                 <div>
                   <select
-                    name="bcourse"
-                    value={params?.bcourse}
+                    name="btrainer"
+                    value={params.btrainer}
                     onChange={handleChange}
-                    id="bcourse"
-                    className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-2"
+                    id="btrainer"
+                    className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
                   >
                     <option selected>Open this select menu</option>
-                    {courData &&
-                      courData?.map((elm) => {
-                        // const { _id, sname } = elm.ctrainer;
-                        // console.log(_id, sname);
+                    {data?.data &&
+                      data?.data?.map((elm) => {
+                        // const { _id, title } = elm.csubcategory;
+                        // console.log(_id, title);
+
                         return (
                           <>
-                            <option value={elm._id}>{elm.ctitle}</option>
+                            <option value={elm.id}>{elm?.sname}</option>
                           </>
                         );
                       })}
                   </select>
                 </div>
               </div>
-            )}
 
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                Batch Image
-              </label>
-              <input
-                type="file"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                name="bimage"
-                placeholder="Image File"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12 col-sm-4">
-              <label className="text-white" htmlFor="exampleInputUsername1">
-                Sequence
-              </label>
-              <input
-                type="number"
-                className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
-                name="bsequence"
-                value={params?.bsequence}
-                placeholder="Batch Sequence"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="col-12 col-sm-4">
-              <label className="text-white">Status</label>
+              <div className="col-12 col-sm-4">
+                <label className="text-white" htmlFor="exampleInputUsername1">
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                  value={params?.bstartdate}
+                  name="bstartdate"
+                  placeholder="Start date"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-12 col-sm-4">
+                <label className="text-white" htmlFor="exampleInputUsername1">
+                  Batch Time
+                </label>
+                <input
+                  type="time"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                  value={params?.btime}
+                  name="btime"
+                  placeholder="Batch time"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-12 col-sm-4">
+                <label className="text-white" htmlFor="exampleInputUsername1">
+                  Batch Seats
+                </label>
+                <input
+                  type="number"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                  value={params?.bseats}
+                  name="bseats"
+                  placeholder="Batch seats"
+                  onChange={handleChange}
+                />
+              </div>
+              {courData.length > 0 && (
+                <div className="col-12 col-sm-4  flex flex-col">
+                  <label className="text-white" htmlFor="ctrainer">
+                    Batch Course
+                  </label>
 
-              <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
-                <div className=" ">
-                  <input
-                    type="radio"
-                    id="active"
-                    name="bstatus"
-                    value={0}
-                    checked={params?.bstatus == 0}
-                    onChange={handleChange}
-                  />
-                  upcomming
+                  <div>
+                    <select
+                      name="bcourse"
+                      value={params?.bcourse}
+                      onChange={handleChange}
+                      id="bcourse"
+                      className="form-select input focus-within:bg-none focus:border-none outline-none w-[100%] text-white py-2"
+                    >
+                      <option selected>Open this select menu</option>
+                      {courData &&
+                        courData?.map((elm) => {
+                          // const { _id, sname } = elm.ctrainer;
+                          // console.log(_id, sname);
+                          return (
+                            <>
+                              <option value={elm._id}>{elm.ctitle}</option>
+                            </>
+                          );
+                        })}
+                    </select>
+                  </div>
                 </div>
+              )}
 
-                <div className="">
-                  <input
-                    type="radio"
-                    id="inactive"
-                    value={1}
-                    name="bstatus"
-                    onChange={handleChange}
-                    checked={params?.bstatus == 1}
-                  />
-                  running
+              <div className="col-12 col-sm-4">
+                <label className="text-white" htmlFor="exampleInputUsername1">
+                  Batch Image
+                </label>
+                <input
+                  type="file"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                  name="bimage"
+                  placeholder="Image File"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-12 col-sm-4">
+                <label className="text-white" htmlFor="exampleInputUsername1">
+                  Sequence
+                </label>
+                <input
+                  type="number"
+                  className="form-control input focus-within:bg-none focus:border-none outline-none w-[100%] text-white"
+                  name="bsequence"
+                  value={params?.bsequence}
+                  placeholder="Batch Sequence"
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="col-12 col-sm-4">
+                <label className="text-white">Status</label>
+
+                <div className="d-flex justify-content-start text-white gap-4 align-items-center my-2">
+                  <div className=" ">
+                    <input
+                      type="radio"
+                      id="active"
+                      name="bstatus"
+                      value={0}
+                      checked={params?.bstatus == 0}
+                      onChange={handleChange}
+                    />
+                    upcomming
+                  </div>
+
+                  <div className="">
+                    <input
+                      type="radio"
+                      id="inactive"
+                      value={1}
+                      name="bstatus"
+                      onChange={handleChange}
+                      checked={params?.bstatus == 1}
+                    />
+                    running
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Submit and cancel buttons */}
+            {/* Submit and cancel buttons */}
 
-          <div className="flex justify-between items-center">
-            <button
-              type="submit"
-              className="Add-btn rounded-sm py-2 my-2  px-5"
-            >
-              Submit
-            </button>
-            <button
-              type="reset"
-              className="Cancel-btn  py-2  rounded-sm my-2 px-5"
-            >
-              Cancel
-            </button>
+            <div className="flex justify-between items-center">
+              <button
+                type="submit"
+                className="Add-btn rounded-sm py-2 my-2  px-5"
+              >
+                Submit
+              </button>
+              <button
+                type="reset"
+                className="Cancel-btn  py-2  rounded-sm my-2 px-5"
+              >
+                Cancel
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </Home>
   );
 };
 

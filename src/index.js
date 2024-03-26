@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
@@ -57,12 +61,14 @@ import EditCity from "./layout/Location/City/EditCity";
 import SubcatList from "./layout/Categories/Subcategories/SubcatList";
 import EditSubscription from "./layout/Subscription/EditSubscription";
 import Notification from "./layout/Notification/Notification";
+import Login from "./layout/Login/Login";
+import App from "./App";
+import { AuthProvider } from "./context/auth";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-
     children: [
       {
         path: "",
@@ -131,11 +137,11 @@ const router = createBrowserRouter([
           },
           {
             path: ":id/module",
-            children:[
-            {
-            path:"",
-            element: <AddModules />,
-            },
+            children: [
+              {
+                path: "",
+                element: <AddModules />,
+              },
 
               {
                 path: "edit/:id",
@@ -144,24 +150,19 @@ const router = createBrowserRouter([
               {
                 path: "sub-module",
 
-                children:[
+                children: [
                   {
-                    path:"",
+                    path: "",
                     element: <SubModule />,
                   },
                   {
                     path: "edit/:id",
                     element: <EditSubModule />,
                   },
-                ]
-               
+                ],
               },
-             
-            ]
-           
+            ],
           },
-         
-         
         ],
       },
       {
@@ -262,11 +263,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <LocationCountry/>,
+            element: <LocationCountry />,
           },
           {
             path: "edit/:id",
-            element: <EditCountry/>,
+            element: <EditCountry />,
           },
         ],
       },
@@ -275,13 +276,12 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <LocationState/>,
+            element: <LocationState />,
           },
           {
             path: "edit/:id",
             element: <EditLocationState />,
           },
-         
         ],
       },
       {
@@ -289,51 +289,50 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <LocationCity/>,
+            element: <LocationCity />,
           },
           {
             path: "edit/:id",
-            element: <EditCity/>,
+            element: <EditCity />,
           },
-         
         ],
       },
       {
-        path :"subscription",
+        path: "subscription",
         children: [
           {
             path: "",
-            element:<Subscription/>
+            element: <Subscription />,
           },
           {
             path: "edit/:id",
-            element: <EditSubscription/>,
+            element: <EditSubscription />,
           },
-         
         ],
-        
       },
       {
-        path :"position",
-        element:<Position/>
+        path: "position",
+        element: <Position />,
       },
       {
-        path :"notification",
-        element:<Notification/>
-      }
+        path: "notification",
+        element: <Notification />,
+      },
     ],
   },
- 
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <AuthProvider>
     <SubModuleContext>
       <SubcatContext>
-        <RouterProvider router={router} />
-        <ToastContainer />
+        {/* <RouterProvider router={router} /> */}
+        <BrowserRouter>
+          <App />
+          <ToastContainer />
+        </BrowserRouter>
       </SubcatContext>
     </SubModuleContext>
-  </React.StrictMode>
+  </AuthProvider>
 );

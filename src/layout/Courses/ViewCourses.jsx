@@ -5,40 +5,39 @@ import CourseContent from "../../components/CourseDetails/courseDescription/Cour
 import STdetails from "../../components/CourseDetails/courseDescription/STdetailsreview";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
+import Home from "../../Home";
 function ViewCourses() {
-
   // https://api.logicmitra.com:8086/api/courses/course-detail?courseId=65cf3c311c9ac2fe9015264a
 
   const { id } = useParams();
   const [data, error, loading] = useFetch(
-    `https://api.logicmitra.com:8086/api/courses/course-detail?courseId=${id}`,
+    `/courses/course-detail?courseId=${id}`,
     id
   );
   console.log(data);
   return (
     <>
+      <Home>
+        {loading && <h1 className="text-white ">Loading...</h1>}
+        {error && <h1 className="text-white ">{error.message}</h1>}
 
-{loading && <h1 className="text-white ">Loading...</h1>}
-          {error && <h1 className="text-white ">{error.message}</h1>}
-
-          {data?.data && (
-            <>
+        {data?.data && (
+          <>
             <div className="p-3  p-md-3 text-white w-[100%] h-[900px] overflow-y-auto Table-overflow">
-        <div className="">
-          
-          <CourseEnroll CourseData={data}/>
-        </div>
-        <div className="">
-          <CourseContent CourseData={data}/>
-        </div>
+              <div className="">
+                <CourseEnroll CourseData={data} />
+              </div>
+              <div className="">
+                <CourseContent CourseData={data} />
+              </div>
 
-        <div className="">
-          
-          <STdetails CourseData={data}/>
-        </div>
-      </div>
-     </> )
-          }
+              <div className="">
+                <STdetails CourseData={data} />
+              </div>
+            </div>
+          </>
+        )}
+      </Home>
     </>
   );
 }
