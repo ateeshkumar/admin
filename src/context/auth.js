@@ -7,7 +7,8 @@ const AuthProvider = ({ children }) => {
     user: null,
     token: "",
   });
-  axios.defaults.baseURL = "https://api.logicmitra.com/api";
+  axios.defaults.baseURL =
+    "http://ec2-52-66-212-98.ap-south-1.compute.amazonaws.com:8086/api";
   axios.defaults.headers.common["Authorization"] = auth?.token;
   useEffect(() => {
     const data = localStorage.getItem("admin");
